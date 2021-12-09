@@ -1,0 +1,20 @@
+.footer {
+  background-color: rgb(196, 196, 196);
+  border: 2px groove black;
+  bottom: 0;
+  height: 80px;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+}
+
+.footerBtns {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.footerImg {
+  height: 80px;
+  width: 50px;
+}
+
