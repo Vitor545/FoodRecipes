@@ -1,18 +1,9 @@
 import React from 'react';
-import './App.css';
-// import rockGlass from './images/rockGlass.svg';
-import { Route, Switch } from 'react-router';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter } from 'react-router-dom';
-import Login from './pages/Login';
+import Routes from './components/Routes';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={ Login } />
-      </Switch>
-    </BrowserRouter>
+    <Routes />
   );
 }
 
