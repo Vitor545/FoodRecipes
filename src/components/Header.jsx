@@ -45,6 +45,7 @@ export default function Header() {
       <div>
         <label htmlFor="ingredientFilter">
           <input
+            value="ingredient"
             id="ingredientFilter"
             type="radio"
             data-testid="ingredient-search-radio"
@@ -54,6 +55,7 @@ export default function Header() {
         </label>
         <label htmlFor="nameFilter">
           <input
+            value="name"
             id="nameFilter"
             type="radio"
             data-testid="name-search-radio"
@@ -63,6 +65,7 @@ export default function Header() {
         </label>
         <label htmlFor="firstLetter">
           <input
+            value="first-letter"
             id="firstLetter"
             type="radio"
             data-testid="first-letter-search-radio"
