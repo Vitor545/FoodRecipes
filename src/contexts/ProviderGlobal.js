@@ -6,6 +6,8 @@ import { urlIBebidas, urlNameBebidas, urlPBebidas, urlIs, urlNames, urlPs, allUr
   allUrlsCocks }
   from '../fetchApi/fetchApi';
 
+// Source useHistory - https://dev.to/ino_gu/utilizando-usehistory-no-react-bgf
+
 // Source https://stackoverflow.com/questions/3522090/event-when-window-location-href-changes
 const locationName = document.location.pathname;
 

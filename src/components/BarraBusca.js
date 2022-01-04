@@ -24,7 +24,7 @@ function BarraBusca() {
           data-testid="ingredient-search-radio"
         />
       </label>
-      <label htmlFor="name">
+      <label htmlFor="name" data-testid="name-search-radio">
         Nome
         <input
           type="radio"
@@ -32,7 +32,6 @@ function BarraBusca() {
           onClick={ handleClick }
           id="name"
           value="name"
-          data-testid="name-search-radio"
         />
       </label>
       <label htmlFor="first-letter">
