@@ -12,7 +12,7 @@ const RecipesProvider = ({ children }) => {
   const isSubmitButtonDisabled = () => {
     const emailValidation = new RegExp(/[\w]+@+[\w]+[.]+[\w]/);
     const MIN_LENGTH = 6;
-    console.log(email, password);
+    // console.log(email, password);
     return !(emailValidation.test(email) && password.length > MIN_LENGTH);
   };
   const handleChange = ({ target }) => {
