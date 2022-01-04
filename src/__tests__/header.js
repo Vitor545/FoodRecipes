@@ -1,12 +1,9 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import renderWithRouterAndProvider from '../renderWithRouterAndProvider';
-import FoodPage from '../pages/FoodPage';
 import Login from '../pages/LoginPage';
 import App from '../App';
-import Perfil from '../pages/Perfil';
-import Header from '../components/Header';
-
+// testsIds
 const testIdPerfilBtn = 'profile-top-btn';
 const testIdSearchBtn = 'search-top-btn';
 
