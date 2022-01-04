@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import Provider from '../contexts/Provider';
 
 function BarraBusca() {
-  const { onClickButton, handleClick, handleChange, onClickButtonTeste } = useContext(Provider);
+  const { onClickButton, handleClick, handleChange,
+    onClickButtonTeste } = useContext(Provider);
   return (
     <div>
       <input

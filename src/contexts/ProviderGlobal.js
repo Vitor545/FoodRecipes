@@ -24,50 +24,52 @@ function ProviderGlobal({ children }) {
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
-      await setSaveCockIngredientState(await urlIBebidas(handleChangeState));
-      if (saveCockIngredientState.length === 1) {
-        return history.push(`/bebidas/${saveCockIngredientState
+      const bebidasIn = await urlIBebidas(handleChangeState);
+      if (bebidasIn.length === 1) {
+        return history.push(`/bebidas/${bebidasIn
           .map((obj) => obj.idDrink)}`);
       }
-    } else {
-      await setSaveMealsIngredientState(await urlIs(handleChangeState));
-      if (saveMealsIngredientState.length === 1) {
-        return history.push(`/comidas/${saveMealsIngredientState
-          .map((obj) => obj.idMeal)}`);
-      }
+      return setSaveCockIngredientState(bebidasIn);
     }
+    const comidasIn = await urlIs(handleChangeState);
+    if (comidasIn.length === 1) {
+      return history.push(`/comidas/${comidasIn
+        .map((obj) => obj.idMeal)}`);
+    }
+    return setSaveMealsIngredientState(comidasIn);
   };
 
   const caseName = async () => {
     if (locationName === '/bebidas') {
-      await setSaveCockNameState(await urlNameBebidas(handleChangeState));
-      if (saveCockNameState.length === 1) {
-        return history.push(`/bebidas/${saveCockNameState.map((obj) => obj.idDrink)}`);
+      const bebidasName = await urlNameBebidas(handleChangeState);
+      if (bebidasName.length === 1) {
+        return history.push(`/bebidas/${bebidasName.map((obj) => obj.idDrink)}`);
       }
-    } else {
-      return setSaveMealsNameState(await urlNames(handleChangeState));
+      return setSaveCockNameState(bebidasName);
     }
+    const comidasName = await urlNames(handleChangeState);
+    if (comidasName.length === 1) {
+      return history.push(`/comidas/${comidasName.map((obj) => obj.idMeal)}`);
+    }
+    return setSaveMealsNameState(comidasName);
   };
-
-  if (saveMealsNameState.length === 1) {
-    return history.push(`/comidas/${saveMealsNameState.map((obj) => obj.idMeal)}`);
-  }
 
   const caseLetter = async () => {
     if (handleChangeState.length !== 1) {
       return global.alert('Sua busca deve conter somente 1 (um) caracter');
     }
     if (locationName === '/bebidas') {
-      await setSaveCockLetterState(await urlPBebidas(handleChangeState));
-      if (saveCockLetterState.length === 1) {
-        return history.push(`/bebidas/${saveCockLetterState.map((obj) => obj.idDrink)}`);
+      const bebidasLetter = await urlPBebidas(handleChangeState);
+      if (bebidasLetter.length === 1) {
+        return history.push(`/bebidas/${bebidasLetter.map((obj) => obj.idDrink)}`);
       }
-    } else {
-      await setSaveMealsLetterState(await urlPs(handleChangeState));
-      if (saveMealsLetterState.length === 1) {
-        return history.push(`/comidas/${saveMealsLetterState.map((obj) => obj.idMeal)}`);
-      }
+      return setSaveCockLetterState(bebidasLetter);
     }
+    const comidasLetter = await urlPs(handleChangeState);
+    if (comidasLetter.length === 1) {
+      return history.push(`/comidas/${comidasLetter.map((obj) => obj.idMeal)}`);
+    }
+    return setSaveMealsLetterState(comidasLetter);
   };
 
   const onClickButton = () => {
