@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory, useLocation } from 'react-router';
+import { RecipesContext } from '../contexts/RecipesContext';
 import ProfilePic from '../images/profileIcon.svg';
 import SearchPic from '../images/searchIcon.svg';
 import handleTitle from '../services/handleUrlPath';
@@ -14,6 +15,8 @@ export default function Header() {
     '/explorar/comidas/ingredientes', '/receitas-feitas',
     '/perfil', '/receitas-favoritas', '/', '/explorar/comidas',
     '/explorar/bebidas', '/explorar/bebidas/ingredientes'];
+  const { onClickButtonSearch, handleClickSearch,
+    handleChangeSearch } = useContext(RecipesContext);
 
   const verifySearchIcon = () => notShowIconImg.some((url) => url === pathname);
 
@@ -36,6 +39,7 @@ export default function Header() {
           type="text"
           data-testid="search-input"
           placeholder="Search Recipe"
+          onChange={ handleChangeSearch }
         />
       </label>
       <div>
@@ -44,6 +48,7 @@ export default function Header() {
             id="ingredientFilter"
             type="radio"
             data-testid="ingredient-search-radio"
+            onClick={ handleClickSearch }
           />
           Ingrediente
         </label>
@@ -52,6 +57,7 @@ export default function Header() {
             id="nameFilter"
             type="radio"
             data-testid="name-search-radio"
+            onClick={ handleClickSearch }
           />
           Nome
         </label>
@@ -60,6 +66,7 @@ export default function Header() {
             id="firstLetter"
             type="radio"
             data-testid="first-letter-search-radio"
+            onClick={ handleClickSearch }
           />
           Primeira Letra
         </label>
@@ -67,6 +74,7 @@ export default function Header() {
       <button
         type="button"
         data-testid="exec-search-btn"
+        onClick={ onClickButtonSearch }
       >
         Buscar
       </button>
