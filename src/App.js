@@ -1,20 +1,19 @@
 import React from 'react';
+import { BrowserRouter, BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
-import rockGlass from './images/rockGlass.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import BarraBusca from './components/BarraBusca';
 
 function App() {
   return (
-    <div className="meals">
-      <span className="logo">TRYBE</span>
-      <object
-        className="rocksGlass"
-        type="image/svg+xml"
-        data={ rockGlass }
-      >
-        Glass
-      </object>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Router>
+          <Route path="/:tipo" component={ BarraBusca } />
+        </Router>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
