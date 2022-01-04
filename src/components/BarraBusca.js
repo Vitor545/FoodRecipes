@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import Provider from '../contexts/Provider';
+import { RecipesContext } from '../contexts/RecipesContext';
 
 function BarraBusca() {
-  const { onClickButton, handleClick, handleChange,
-    onClickButtonTeste } = useContext(Provider);
+  const { onClickButtonSearch, handleClickSearch,
+    handleChangeSearch } = useContext(RecipesContext);
   return (
     <div>
       <input
@@ -11,7 +11,7 @@ function BarraBusca() {
         placeholder="Search"
         id="barra-pesquisa"
         data-testid="search-input"
-        onChange={ handleChange }
+        onChange={ handleChangeSearch }
       />
       <label htmlFor="ingredient">
         Ingrediente
@@ -20,7 +20,7 @@ function BarraBusca() {
           name="select"
           id="ingredient"
           value="ingredient"
-          onClick={ handleClick }
+          onClick={ handleClickSearch }
           data-testid="ingredient-search-radio"
         />
       </label>
@@ -29,7 +29,7 @@ function BarraBusca() {
         <input
           type="radio"
           name="select"
-          onClick={ handleClick }
+          onClick={ handleClickSearch }
           id="name"
           value="name"
         />
@@ -40,7 +40,7 @@ function BarraBusca() {
           type="radio"
           name="select"
           value="first-letter"
-          onClick={ handleClick }
+          onClick={ handleClickSearch }
           id="first-letter"
           data-testid="first-letter-search-radio"
         />
@@ -48,15 +48,9 @@ function BarraBusca() {
       <button
         type="button"
         data-testid="exec-search-btn"
-        onClick={ onClickButton }
+        onClick={ onClickButtonSearch }
       >
         Busca
-      </button>
-      <button
-        type="button"
-        onClick={ onClickButtonTeste }
-      >
-        Teste
       </button>
     </div>
   );

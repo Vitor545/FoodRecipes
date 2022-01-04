@@ -3,7 +3,10 @@ import BarraBusca from './BarraBusca';
 
 function Bebidas() {
   return (
-    <BarraBusca />
+    <div>
+      <BarraBusca />
+
+    </div>
   );
 }
 
