@@ -13,12 +13,13 @@ const locationName = document.location.pathname;
 const RecipesContext = createContext();
 
 const RecipesProvider = ({ children }) => {
-  const [state, setState] = useState({
+  const [state, setStateGlobal] = useState({
     email: '',
     password: '',
     foodIng: [],
     foodLetter: [],
     foodName: [],
+    foodRecipes: [],
     drinkIng: [],
     drinkLetter: [],
     drinkName: [],
@@ -28,7 +29,7 @@ const RecipesProvider = ({ children }) => {
     valueClickSearch: '',
   });
   const history = useHistory();
-  const { email, password, valueInputSearch, valueClickSearch } = state;
+  const { email, password, valueInputSearch, valueClickSearch, foodRecipes } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
@@ -37,14 +38,14 @@ const RecipesProvider = ({ children }) => {
         return history.push(`/bebidas/${bebidasIn
           .map((obj) => obj.idDrink)}`);
       }
-      return setState({ ...state, drinkIng: bebidasIn });
+      return setStateGlobal({ ...state, drinkIng: bebidasIn });
     }
     const comidasIn = await urlIs(valueInputSearch);
     if (comidasIn.length === 1) {
       return history.push(`/comidas/${comidasIn
         .map((obj) => obj.idMeal)}`);
     }
-    return setState({ ...state, foodIng: comidasIn });
+    return setStateGlobal({ ...state, foodIng: comidasIn });
   };
 
   const caseName = async () => {
@@ -53,13 +54,13 @@ const RecipesProvider = ({ children }) => {
       if (bebidasName.length === 1) {
         return history.push(`/bebidas/${bebidasName.map((obj) => obj.idDrink)}`);
       }
-      return setState({ ...state, drinkName: bebidasName });
+      return setStateGlobal({ ...state, drinkName: bebidasName });
     }
     const comidasName = await urlNames(valueInputSearch);
     if (comidasName.length === 1) {
       return history.push(`/comidas/${comidasName.map((obj) => obj.idMeal)}`);
     }
-    return setState({ ...state, foodName: comidasName });
+    return setStateGlobal({ ...state, foodName: comidasName });
   };
 
   const caseLetter = async () => {
@@ -71,13 +72,13 @@ const RecipesProvider = ({ children }) => {
       if (bebidasLetter.length === 1) {
         return history.push(`/bebidas/${bebidasLetter.map((obj) => obj.idDrink)}`);
       }
-      return setState({ ...state, drinkLetter: bebidasLetter });
+      return setStateGlobal({ ...state, drinkLetter: bebidasLetter });
     }
     const comidasLetter = await urlPs(valueInputSearch);
     if (comidasLetter.length === 1) {
       return history.push(`/comidas/${comidasLetter.map((obj) => obj.idMeal)}`);
     }
-    return setState({ ...state, foodLetter: comidasLetter });
+    return setStateGlobal({ ...state, foodLetter: comidasLetter });
   };
 
   const onClickButtonSearch = async () => {
@@ -94,40 +95,42 @@ const RecipesProvider = ({ children }) => {
     default:
       if (locationName === '/bebidas') {
         const allbebidas = await allUrlsCocks();
-        setState({ ...state, drinkAll: allbebidas });
+        setStateGlobal({ ...state, drinkAll: allbebidas });
       } else {
         const allcomidas = await allUrls();
-        setState({ ...state, foodAll: allcomidas });
+        setStateGlobal({ ...state, foodAll: allcomidas });
       }
     }
   };
 
   const handleClickSearch = ({ target: { value } }) => {
-    setState({ ...state, valueClickSearch: value });
+    setStateGlobal({ ...state, valueClickSearch: value });
   };
 
   const handleChangeSearch = ({ target: { value } }) => {
-    setState({ ...state, valueInputSearch: value });
+    setStateGlobal({ ...state, valueInputSearch: value });
   };
 
   const isSubmitButtonDisabled = () => {
     const emailValidation = new RegExp(/[\w]+@+[\w]+[.]+[\w]/);
     const MIN_LENGTH = 6;
-    // console.log(email, password);
     return !(emailValidation.test(email) && password.length > MIN_LENGTH);
   };
   const handleChange = ({ target }) => {
     const { name } = target;
     const { value } = target;
-    setState({ ...state, [name]: value });
+    setStateGlobal({ ...state, [name]: value });
   };
+
   const context = { email,
     password,
     handleChange,
     isSubmitButtonDisabled,
     onClickButtonSearch,
     handleClickSearch,
-    handleChangeSearch };
+    handleChangeSearch,
+    foodRecipes,
+    setStateGlobal };
 
   return (
     <RecipesContext.Provider value={ context }>
