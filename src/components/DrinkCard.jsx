@@ -6,7 +6,8 @@ import { drinkFilterCategory,
 
 function DrinkCard() {
   const { state, setStateGlobal,
-    drinkRecipes, drinkRecipesBtns } = useContext(RecipesContext);
+    drinkRecipes, drinkRecipesBtns, saveDrinkToggle,
+    toggleDrink } = useContext(RecipesContext);
 
   const AMOUNT_RECIPES_NUMBER = 12;
   const AMOUNT_CATEGORT_NUMBER = 5;
@@ -28,20 +29,24 @@ function DrinkCard() {
     });
     setStateGlobal({ ...state,
       drinkRecipes: drinksFiltered,
-      drinkRecipesBtns: categoryBtns });
+      drinkRecipesBtns: categoryBtns,
+      saveDrinkToggle: drinksFiltered });
   };
 
   const handleCategory = async ({ target }) => {
     const { name } = target;
-    setStateGlobal({ ...state });
-    const drinks = await drinkFilterCategory(name);
-    const drinksFilter = drinks.filter((drink, index) => {
-      if (index < AMOUNT_RECIPES_NUMBER) {
-        return drink;
-      }
-      return null;
-    });
-    setStateGlobal({ ...state, drinkRecipes: drinksFilter });
+    if (toggleDrink) {
+      const drinks = await drinkFilterCategory(name);
+      const drinksFilter = drinks.filter((drink, index) => {
+        if (index < AMOUNT_RECIPES_NUMBER) {
+          return drink;
+        }
+        return null;
+      });
+      setStateGlobal({ ...state, drinkRecipes: drinksFilter, toggleDrink: false });
+    } else {
+      setStateGlobal({ ...state, drinkRecipes: saveDrinkToggle, toggleDrink: true });
+    }
   };
 
   useEffect(() => {
