@@ -6,7 +6,7 @@ import { drinkFilterCategory,
 
 function DrinkCard() {
   const { state, setStateGlobal,
-    drinkRecipes, drinkRecipesBtns, saveDrinkToggle,
+    drinkRecipes, drinkRecipesBtns, saveDrinkRecipes,
     toggleDrink } = useContext(RecipesContext);
 
   const AMOUNT_RECIPES_NUMBER = 12;
@@ -30,7 +30,11 @@ function DrinkCard() {
     setStateGlobal({ ...state,
       drinkRecipes: drinksFiltered,
       drinkRecipesBtns: categoryBtns,
-      saveDrinkToggle: drinksFiltered });
+      saveDrinkRecipes: drinksFiltered });
+  };
+
+  const handleAll = () => {
+    setStateGlobal({ ...state, drinkRecipes: saveDrinkRecipes });
   };
 
   const handleCategory = async ({ target }) => {
@@ -45,7 +49,7 @@ function DrinkCard() {
       });
       setStateGlobal({ ...state, drinkRecipes: drinksFilter, toggleDrink: name });
     } else if (toggleDrink === name) {
-      setStateGlobal({ ...state, drinkRecipes: saveDrinkToggle, toggleDrink: ' ' });
+      setStateGlobal({ ...state, drinkRecipes: saveDrinkRecipes, toggleDrink: '' });
     } else {
       const drinks = await drinkFilterCategory(name);
       const drinksFilter = drinks.filter((dk, index) => {
@@ -64,6 +68,13 @@ function DrinkCard() {
 
   return (
     <div>
+      <button
+        type="submit"
+        data-testid="All-category-filter"
+        onClick={ handleAll }
+      >
+        All
+      </button>
       { drinkRecipesBtns && drinkRecipesBtns.map(({ strCategory }) => ((
         <button
           key={ strCategory }
