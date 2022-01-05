@@ -20,6 +20,7 @@ const RecipesProvider = ({ children }) => {
     foodLetter: [],
     foodName: [],
     foodRecipes: [],
+    drinkRecipes: [],
     drinkIng: [],
     drinkLetter: [],
     drinkName: [],
@@ -29,7 +30,8 @@ const RecipesProvider = ({ children }) => {
     valueClickSearch: '',
   });
   const history = useHistory();
-  const { email, password, valueInputSearch, valueClickSearch, foodRecipes } = state;
+  const { email, password,
+    valueInputSearch, valueClickSearch, foodRecipes, drinkRecipes } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
@@ -124,12 +126,13 @@ const RecipesProvider = ({ children }) => {
 
   const context = { email,
     password,
+    foodRecipes,
+    drinkRecipes,
     handleChange,
     isSubmitButtonDisabled,
     onClickButtonSearch,
     handleClickSearch,
     handleChangeSearch,
-    foodRecipes,
     setStateGlobal };
 
   return (

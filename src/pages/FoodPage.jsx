@@ -29,23 +29,23 @@ export default function FoodPage() {
   return (
 
     <div>
-      {foodRecipes && foodRecipes.map((card, index) => (
-        (<div
-          key={ card.idMeal }
+      {foodRecipes && foodRecipes.map((el, index) => ((
+        <div
+          key={ el.idMeal }
         >
           <img
-            src={ card.strMealThumb }
+            src={ el.strMealThumb }
             alt=""
             data-testid={ `${index}-card-img` }
           />
           <h3 data-testid={ `${index}-card-name` }>
-            {card.strMeal}
+            {el.strMeal}
 
           </h3>
           <p
             data-testid={ `${index}-recipe-card` }
           >
-            {card.strSource}
+            {el.strSource}
 
           </p>
          </div>)
