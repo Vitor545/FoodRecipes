@@ -45,7 +45,7 @@ function DrinkCard() {
       });
       setStateGlobal({ ...state, drinkRecipes: drinksFilter, toggleDrink: name });
     } else if (toggleDrink === name) {
-      setStateGlobal({ ...state, drinkRecipes: saveDrinkToggle, toggleDrink: ' ' });
+      setStateGlobal({ ...state, drinkRecipes: saveDrinkToggle, toggleDrink: '' });
     } else {
       const drinks = await drinkFilterCategory(name);
       const drinksFilter = drinks.filter((dk, index) => {
