@@ -18,23 +18,28 @@ import FavoritesRecipes from '../pages/FavoritesRecipes';
 export default function Routes() {
   return (
     <Switch>
-      <Route exact path="/" component={ LoginPage } />
-      <Route exact path="/bebidas" component={ DrinksPage } />
-      <Route path="/bebidas/:id" component={ DrinkId } />
-      <Route path="/explorar" component={ ExplorePage } />
-      <Route exact path="/comidas" component={ FoodPage } />
-      <Route path="/comidas/:id" component={ FoodId } />
-      <Route path="/perfil" component={ Perfil } />
-      <Route path="/explorar/comidas" component={ FoodExplorePage } />
-      <Route path="/explorar/bebidas" component={ DrinksExplorePage } />
-      <Route path="/explorar/comidas/ingredientes" component={ FoodExploreIngredients } />
-      <Route
-        path="/explorar/bebidas/ingredientes"
-        component={ DrinksExploreIngrientes }
-      />
-      <Route path="/explorar/comidas/area" component={ ExploreFoodFromOrigin } />
-      <Route path="/receitas-feitas" component={ RecipeMadePage } />
-      <Route path="/receitas-favoritas" component={ FavoritesRecipes } />
+      <div className="container">
+        <Route exact path="/" component={ LoginPage } />
+        <Route exact path="/bebidas" component={ DrinksPage } />
+        <Route path="/bebidas/:id" component={ DrinkId } />
+        <Route path="/explorar" component={ ExplorePage } />
+        <Route exact path="/comidas" component={ FoodPage } />
+        <Route path="/comidas/:id" component={ FoodId } />
+        <Route path="/perfil" component={ Perfil } />
+        <Route path="/explorar/comidas" component={ FoodExplorePage } />
+        <Route path="/explorar/bebidas" component={ DrinksExplorePage } />
+        <Route
+          path="/explorar/comidas/ingredientes"
+          component={ FoodExploreIngredients }
+        />
+        <Route
+          path="/explorar/bebidas/ingredientes"
+          component={ DrinksExploreIngrientes }
+        />
+        <Route path="/explorar/comidas/area" component={ ExploreFoodFromOrigin } />
+        <Route path="/receitas-feitas" component={ RecipeMadePage } />
+        <Route path="/receitas-favoritas" component={ FavoritesRecipes } />
+      </div>
     </Switch>
   );
 }
