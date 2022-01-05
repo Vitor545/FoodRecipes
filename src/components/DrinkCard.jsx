@@ -33,6 +33,10 @@ function DrinkCard() {
       saveDrinkRecipes: drinksFiltered });
   };
 
+  const handleAll = () => {
+    setStateGlobal({ ...state, drinkRecipes: saveDrinkRecipes });
+  };
+
   const handleCategory = async ({ target }) => {
     const { name } = target;
     if (toggleDrink === '') {
@@ -64,6 +68,13 @@ function DrinkCard() {
 
   return (
     <div>
+      <button
+        type="submit"
+        data-testid="All-category-filter"
+        onClick={ handleAll }
+      >
+        All
+      </button>
       { drinkRecipesBtns && drinkRecipesBtns.map(({ strCategory }) => ((
         <button
           key={ strCategory }
