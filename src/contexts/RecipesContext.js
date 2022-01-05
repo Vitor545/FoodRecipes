@@ -128,7 +128,8 @@ const RecipesProvider = ({ children }) => {
     setStateGlobal({ ...state, [name]: value });
   };
 
-  const context = { email,
+  const context = { state,
+    email,
     password,
     foodRecipes,
     drinkRecipes,

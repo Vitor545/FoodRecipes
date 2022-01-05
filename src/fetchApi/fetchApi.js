@@ -85,3 +85,10 @@ export const drinkRecipesCategoryAPI = async () => {
   const responseJson = await responseRaw.json();
   return responseJson.drinks;
 };
+
+export const drinkFilterCategory = async (drink) => {
+  const urlName = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${drink}`;
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.drinks;
+};

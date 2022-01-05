@@ -1,7 +1,8 @@
 import React, { useEffect, useContext } from 'react';
 import Footer from './Footer';
 import { RecipesContext } from '../contexts/RecipesContext';
-import { drinkRecipesAPI, drinkRecipesCategoryAPI } from '../fetchApi/fetchApi';
+import { drinkFilterCategory,
+  drinkRecipesAPI, drinkRecipesCategoryAPI } from '../fetchApi/fetchApi';
 
 function DrinkCard() {
   const { state, setStateGlobal,
@@ -19,7 +20,6 @@ function DrinkCard() {
       }
       return null;
     });
-    console.log(categoryBtns);
     const drinksFiltered = drinks.filter((el, index) => {
       if (index < AMOUNT_RECIPES_NUMBER) {
         return el;
@@ -29,6 +29,19 @@ function DrinkCard() {
     setStateGlobal({ ...state,
       drinkRecipes: drinksFiltered,
       drinkRecipesBtns: categoryBtns });
+  };
+
+  const handleCategory = async ({ target }) => {
+    const { name } = target;
+    console.log(name);
+    const drinks = await drinkFilterCategory(name);
+    const drinksFilter = drinks.filter((drink, index) => {
+      if (index < AMOUNT_RECIPES_NUMBER) {
+        return drink;
+      }
+      return null;
+    });
+    setStateGlobal({ ...state, drinkRecipes: drinksFilter });
   };
 
   useEffect(() => {
@@ -41,7 +54,9 @@ function DrinkCard() {
         <button
           key={ strCategory }
           type="submit"
+          name={ strCategory }
           data-testid={ `${strCategory}-category-filter` }
+          onClick={ handleCategory }
         >
           { strCategory }
         </button>
