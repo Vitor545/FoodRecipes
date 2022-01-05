@@ -35,6 +35,9 @@ function DrinkCard() {
             alt=""
             data-testid={ `${index}-card-img` }
           />
+          <h3 data-testid={ `${index}-card-name` }>
+            {el.strDrink}
+          </h3>
         </div>)
       ))}
       <Footer />
