@@ -39,14 +39,7 @@ export default function FoodPage() {
           />
           <h3 data-testid={ `${index}-card-name` }>
             {el.strMeal}
-
           </h3>
-          <p
-            data-testid={ `${index}-recipe-card` }
-          >
-            {el.strSource}
-
-          </p>
         </div>)
       ))}
       Food Page

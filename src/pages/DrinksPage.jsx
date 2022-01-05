@@ -37,14 +37,7 @@ export default function DrinksPage() {
           />
           <h3 data-testid={ `${index}-card-name` }>
             {el.strDrink}
-
           </h3>
-          <p
-            data-testid={ `${index}-recipe-card` }
-          >
-            {el.strInstructions}
-
-          </p>
         </div>)
       ))}
       <Footer />
