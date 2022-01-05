@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { fetchFoodCategory,
   foodRecipesAPI,
@@ -33,23 +33,37 @@ function FoodCard() {
     });
     setStateGlobal({ ...state,
       foodRecipes: foodFiltered,
-      foodRecipesBTN: btnFiltered });
+      foodRecipesBTN: btnFiltered,
+      saveFoodRecipes: foodFiltered });
   };
 
   async function handleCategory({ target }) {
-    const { id, value } = target;
-    const filterCategory = await fetchFoodCategory(id);
+    const { id } = target;
+    if (toggleFood === '') {
+      const filterCategory = await fetchFoodCategory(id);
 
-    const categoryFilter = filterCategory.filter((elem, index) => {
-      if (index < AMOUNT_NUMBER) {
-        return elem;
-      }
-      return null;
-    });
+      const categoryFilter = filterCategory.filter((elem, index) => {
+        if (index < AMOUNT_NUMBER) {
+          return elem;
+        }
+        return null;
+      });
 
-    setStateGlobal({ ...state,
-      foodRecipes: categoryFilter });
-    console.log(value);
+      setStateGlobal({ ...state, foodRecipes: categoryFilter, toggleFood: id });
+    } else if (toggleFood === id) {
+      setStateGlobal({ ...state, toggleFood: '', foodRecipes: saveFoodRecipes});
+    } else {
+      const filterCategory = await fetchFoodCategory(id);
+
+      const categoryFilter = filterCategory.filter((foods, index) => {
+        if (index < AMOUNT_NUMBER) {
+          return foods;
+        }
+        return null;
+      });
+
+      setStateGlobal({ ...state, foodRecipes: categoryFilter, toggleFood: id });
+    }
   }
 
   useEffect(() => {
@@ -58,6 +72,13 @@ function FoodCard() {
 
   return (
     <div>
+      <button
+        data-testid="All-category-filter"
+        type="button"
+        onClick={ () => setStateGlobal({ foodRecipes: saveFoodRecipes }) }
+      >
+        All Recipes
+      </button>
       {foodRecipesBTN && foodRecipesBTN.map((el) => ((
         <button
           key={ el.strCategory }

@@ -34,8 +34,8 @@ const RecipesProvider = ({ children }) => {
     foodAll: [],
     valueInputSearch: '',
     valueClickSearch: '',
-    toggleFood: false,
-    toggleDrink: true,
+    toggleDrink: '',
+    toggleFood: '',
   });
   const history = useHistory();
   const { email, password,
@@ -151,7 +151,8 @@ const RecipesProvider = ({ children }) => {
     handleClickSearch,
     handleChangeSearch,
     setStateGlobal,
-    foodRecipesBTN };
+    foodRecipesBTN,
+  };
 
   return (
     <RecipesContext.Provider value={ context }>
