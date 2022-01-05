@@ -13,7 +13,7 @@ export default function FoodPage() {
     const food = await foodRecipesAPI();
     console.log(food);
     const foodFiltered = food.filter((food, index) => {
-      if (index <= AMOUNT_NUMBER) {
+      if (index < AMOUNT_NUMBER) {
         return food;
       }
     });
@@ -36,14 +36,14 @@ export default function FoodPage() {
           <img
             src={ card.strMealThumb }
             alt=""
-            data-testid={ ` ${index}-card-img ` }
+            data-testid={ `${index}-card-img` }
           />
-          <h3 data-testid={ ` ${index}-card-name ` }>
+          <h3 data-testid={ `${index}-card-name` }>
             {card.strMeal}
 
           </h3>
           <p
-            data-testid={ ` ${index}-recipe-card ` }
+            data-testid={ `${index}-recipe-card` }
           >
             {card.strSource}
 
