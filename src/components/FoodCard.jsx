@@ -1,27 +1,15 @@
 import React, { useEffect, useContext } from 'react';
 import { RecipesContext } from '../contexts/RecipesContext';
-import { foodRecipesAPI } from '../fetchApi/fetchApi';
+import { foodRecipesAPI, foodRecipesCategoryAPI } from '../fetchApi/fetchApi';
 
 function FoodCard() {
   const { state,
     setStateGlobal,
     foodRecipes,
-    drinkRecipesBTN } = useContext(RecipesContext);
+    foodRecipesBTN } = useContext(RecipesContext);
 
   const AMOUNT_NUMBER = 12;
   const AMOUNT_NUMBER_BTN = 5;
-
-  const requestAPIBTN = async () => {
-    const btn = await foodRecipesAPI();
-    console.log(btn);
-    const btnFiltered = btn.filter((el, index) => {
-      if (index < AMOUNT_NUMBER_BTN) {
-        return el;
-      }
-      return null;
-    });
-    setStateGlobal({ ...state, drinkRecipesBTN: btnFiltered });
-  };
 
   const requestAPI = async () => {
     const food = await foodRecipesAPI();
@@ -31,28 +19,40 @@ function FoodCard() {
       }
       return null;
     });
-    setStateGlobal({ ...state, foodRecipes: foodFiltered });
+
+    const btn = await foodRecipesCategoryAPI();
+    const btnFiltered = btn.filter((el, index) => {
+      if (index < AMOUNT_NUMBER_BTN) {
+        return el;
+      }
+      return null;
+    });
+    setStateGlobal({ ...state,
+      foodRecipes: foodFiltered,
+      foodRecipesBTN: btnFiltered });
   };
 
   useEffect(() => {
     requestAPI();
-    requestAPIBTN();
   }, []);
 
   return (
     <div>
-      {drinkRecipesBTN && drinkRecipesBTN.map((el) => ((<button
-        key={ el.idMeal }
-        type="button"
-        data-testid={ `${el.strMeal}-category-filter` }
-      >
-        {el.strMeal}
-        {' '}
-                                                        </button>)))}
+      {foodRecipesBTN && foodRecipesBTN.map((el) => ((
+        <button
+          key={ el.strCategory }
+          type="button"
+          data-testid={ `${el.strCategory}-category-filter` }
+        >
+          {el.strCategory}
+          {' '}
+        </button>
+      )))}
 
       {foodRecipes && foodRecipes.map((el, index) => ((
         <div
           key={ el.idMeal }
+          data-testid={ `${index}-recipe-card` }
         >
           <img
             src={ el.strMealThumb }

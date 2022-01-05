@@ -65,8 +65,22 @@ export const foodRecipesAPI = async () => {
   return userData.meals;
 };
 
+export const foodRecipesCategoryAPI = async () => {
+  const urlName = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
+  const response = await fetch(urlName);
+  const userData = await response.json().then((data) => data);
+  return userData.meals;
+};
+
 export const drinkRecipesAPI = async () => {
   const urlName = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.drinks;
+};
+
+export const drinkRecipesCategoryAPI = async () => {
+  const urlName = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
   const responseRaw = await fetch(urlName);
   const responseJson = await responseRaw.json();
   return responseJson.drinks;
