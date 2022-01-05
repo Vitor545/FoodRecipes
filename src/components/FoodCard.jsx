@@ -3,7 +3,6 @@ import { RecipesContext } from '../contexts/RecipesContext';
 import { foodRecipesAPI } from '../fetchApi/fetchApi';
 
 function FoodCard() {
-
   const { state, setStateGlobal, foodRecipes } = useContext(RecipesContext);
 
   const AMOUNT_NUMBER = 12;
