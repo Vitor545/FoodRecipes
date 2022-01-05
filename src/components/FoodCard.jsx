@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { fetchFoodCategory,
   foodRecipesAPI,
@@ -37,7 +37,7 @@ function FoodCard() {
   };
 
   async function handleCategory({ target }) {
-    const { id } = target;
+    const { id, value } = target;
     const filterCategory = await fetchFoodCategory(id);
 
     const categoryFilter = filterCategory.filter((elem, index) => {
@@ -49,6 +49,7 @@ function FoodCard() {
 
     setStateGlobal({ ...state,
       foodRecipes: categoryFilter });
+    console.log(value);
   }
 
   useEffect(() => {
@@ -57,13 +58,12 @@ function FoodCard() {
 
   return (
     <div>
-      {console.log(toggleFood)}
       {foodRecipesBTN && foodRecipesBTN.map((el) => ((
         <button
           key={ el.strCategory }
           type="button"
           data-testid={ `${el.strCategory}-category-filter` }
-          onClick={ () => setStateGlobal({ ...state, toggleFood:  }) }
+          onClick={ handleCategory }
           id={ el.strCategory }
         >
           {el.strCategory}
