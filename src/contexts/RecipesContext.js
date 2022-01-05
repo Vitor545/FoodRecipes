@@ -24,11 +24,7 @@ const RecipesProvider = ({ children }) => {
     foodRecipesBTN: [],
     drinkRecipes: [],
     saveDrinkRecipes: [],
-<<<<<<< HEAD
     saveFoodRecipes: [],
-    saveDrinkToggle: [],
-=======
->>>>>>> 78bc5549f490a2e4295015f5944b71c19421fe32
     drinkRecipesBtns: [],
     drinkIng: [],
     drinkLetter: [],
@@ -44,11 +40,7 @@ const RecipesProvider = ({ children }) => {
   const { email, password,
     valueInputSearch, valueClickSearch,
     foodRecipes, drinkRecipes, drinkRecipesBtns, foodRecipesBTN,
-<<<<<<< HEAD
-    toggleFood, saveDrinkRecipes, saveFoodRecipes, toggleDrink, saveDrinkToggle } = state;
-=======
-    toggleDrink, saveDrinkRecipes } = state;
->>>>>>> 78bc5549f490a2e4295015f5944b71c19421fe32
+    toggleFood, saveDrinkRecipes, saveFoodRecipes, toggleDrink } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
@@ -145,12 +137,10 @@ const RecipesProvider = ({ children }) => {
     email,
     password,
     foodRecipes,
+    foodRecipesBTN,
+    saveFoodRecipes,
     drinkRecipes,
     saveDrinkRecipes,
-<<<<<<< HEAD
-    saveFoodRecipes,
-=======
->>>>>>> 78bc5549f490a2e4295015f5944b71c19421fe32
     drinkRecipesBtns,
     toggleFood,
     saveDrinkToggle,
@@ -161,7 +151,6 @@ const RecipesProvider = ({ children }) => {
     handleClickSearch,
     handleChangeSearch,
     setStateGlobal,
-    foodRecipesBTN,
   };
 
   return (
