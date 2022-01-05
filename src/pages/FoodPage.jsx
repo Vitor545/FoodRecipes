@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from 'react';
 import Footer from '../components/Footer';
-import Header from '../components/Header';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { foodRecipesAPI } from '../fetchApi/fetchApi';
 
@@ -11,10 +10,10 @@ export default function FoodPage() {
 
   const requestAPI = async () => {
     const food = await foodRecipesAPI();
-
-    const foodFiltered = food.filter((card, index) => {
+    console.log(food);
+    const foodFiltered = food.filter((el, index) => {
       if (index < AMOUNT_NUMBER) {
-        return card;
+        return el;
       }
       return null;
     });
@@ -48,7 +47,7 @@ export default function FoodPage() {
             {el.strSource}
 
           </p>
-         </div>)
+        </div>)
       ))}
       Food Page
       <Footer />

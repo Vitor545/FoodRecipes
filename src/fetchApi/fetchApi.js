@@ -66,8 +66,8 @@ export const foodRecipesAPI = async () => {
 };
 
 export const drinkRecipesAPI = async () => {
-  const urlName = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
+  const urlName = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
   const responseRaw = await fetch(urlName);
   const responseJson = await responseRaw.json();
-  return responseJson.meals;
+  return responseJson.drinks;
 };
