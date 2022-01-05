@@ -64,3 +64,10 @@ export const foodRecipesAPI = async () => {
   const userData = await response.json().then((data) => data);
   return userData.meals;
 };
+
+export const drinkRecipesAPI = async () => {
+  const urlName = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.meals;
+};

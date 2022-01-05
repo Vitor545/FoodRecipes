@@ -20,10 +20,8 @@ function App() {
   };
   return (
     <body>
-      <div className="main-content">
-        { !verifyUrl() && <Header /> }
-        <Routes />
-      </div>
+      { !verifyUrl() && <Header /> }
+      <Routes />
     </body>
   );
 }
