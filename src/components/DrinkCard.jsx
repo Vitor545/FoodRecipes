@@ -1,0 +1,45 @@
+import React, { useEffect, useContext } from 'react';
+import Footer from './Footer';
+import { RecipesContext } from '../contexts/RecipesContext';
+import { drinkRecipesAPI } from '../fetchApi/fetchApi';
+
+function DrinkCard() {
+  const { state, setStateGlobal, drinkRecipes } = useContext(RecipesContext);
+
+  const AMOUNT_NUMBER = 12;
+
+  const requestAPI = async () => {
+    const drinks = await drinkRecipesAPI();
+    const drinksFiltered = drinks.filter((el, index) => {
+      if (index < AMOUNT_NUMBER) {
+        return el;
+      }
+      return null;
+    });
+    console.log(drinksFiltered);
+    setStateGlobal({ ...state, drinkRecipes: drinksFiltered });
+  };
+
+  useEffect(() => {
+    requestAPI();
+  }, []);
+
+  return (
+    <div>
+      {drinkRecipes && drinkRecipes.map((el, index) => ((
+        <div
+          key={ el.idDrink }
+        >
+          <img
+            src={ el.strDrinkThumb }
+            alt=""
+            data-testid={ `${index}-card-img` }
+          />
+        </div>)
+      ))}
+      <Footer />
+    </div>
+  );
+}
+
+export default DrinkCard;
