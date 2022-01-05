@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { createContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { urlIBebidas, urlNameBebidas, urlPBebidas, urlIs, urlNames, urlPs, allUrls,
+import { urlIBebidas, urlNameBebidas,
+  urlPBebidas, urlIs, urlNames, urlPs, allUrls,
   allUrlsCocks }
   from '../fetchApi/fetchApi';
 
