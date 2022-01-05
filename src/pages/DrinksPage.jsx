@@ -14,6 +14,7 @@ export default function DrinksPage() {
       if (index <= AMOUNT_NUMBER) {
         return el;
       }
+      return null;
     });
     console.log(drinksFiltered);
     setStateGlobal({ ...state, drinkRecipes: drinksFiltered });
