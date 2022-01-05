@@ -47,6 +47,7 @@ export default function Header() {
           <input
             value="ingredient"
             id="ingredientFilter"
+            name="teste"
             type="radio"
             data-testid="ingredient-search-radio"
             onClick={ handleClickSearch }
@@ -56,6 +57,7 @@ export default function Header() {
         <label htmlFor="nameFilter">
           <input
             value="name"
+            name="teste"
             id="nameFilter"
             type="radio"
             data-testid="name-search-radio"
@@ -67,6 +69,7 @@ export default function Header() {
           <input
             value="first-letter"
             id="firstLetter"
+            name="teste"
             type="radio"
             data-testid="first-letter-search-radio"
             onClick={ handleClickSearch }
