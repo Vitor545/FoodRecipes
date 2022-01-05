@@ -34,10 +34,19 @@ function FoodCard() {
       foodRecipesBTN: btnFiltered });
   };
 
-  async function handleCategory(e) {
-    const { id } = e.target;
+  async function handleCategory({ target }) {
+    const { id } = target;
     const filterCategory = await fetchFoodCategory(id);
-    setStateGlobal({ ...state, foodRecipes: filterCategory });
+
+    const categoryFilter = filterCategory.filter((elem, index) => {
+      if (index < AMOUNT_NUMBER) {
+        return elem;
+      }
+      return null;
+    });
+
+    setStateGlobal({ ...state,
+      foodRecipes: categoryFilter });
   }
 
   useEffect(() => {

@@ -92,3 +92,10 @@ export const fetchFoodCategory = async (digitado) => {
   const responseJson = await responseRaw.json().then((data) => data);
   return responseJson.meals;
 };
+
+export const drinkFilterCategory = async (drink) => {
+  const urlName = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${drink}`;
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.drinks;
+};
