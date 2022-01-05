@@ -32,7 +32,7 @@ const RecipesProvider = ({ children }) => {
     foodAll: [],
     valueInputSearch: '',
     valueClickSearch: '',
-    toggleDrink: true,
+    toggleDrink: '',
   });
   const history = useHistory();
   const { email, password,

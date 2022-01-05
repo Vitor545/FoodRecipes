@@ -35,7 +35,7 @@ function DrinkCard() {
 
   const handleCategory = async ({ target }) => {
     const { name } = target;
-    if (toggleDrink) {
+    if (toggleDrink === '') {
       const drinks = await drinkFilterCategory(name);
       const drinksFilter = drinks.filter((drink, index) => {
         if (index < AMOUNT_RECIPES_NUMBER) {
@@ -43,9 +43,18 @@ function DrinkCard() {
         }
         return null;
       });
-      setStateGlobal({ ...state, drinkRecipes: drinksFilter, toggleDrink: false });
+      setStateGlobal({ ...state, drinkRecipes: drinksFilter, toggleDrink: name });
+    } else if (toggleDrink === name) {
+      setStateGlobal({ ...state, drinkRecipes: saveDrinkToggle, toggleDrink: ' ' });
     } else {
-      setStateGlobal({ ...state, drinkRecipes: saveDrinkToggle, toggleDrink: true });
+      const drinks = await drinkFilterCategory(name);
+      const drinksFilter = drinks.filter((dk, index) => {
+        if (index < AMOUNT_RECIPES_NUMBER) {
+          return dk;
+        }
+        return null;
+      });
+      setStateGlobal({ ...state, drinkRecipes: drinksFilter, toggleDrink: name });
     }
   };
 
