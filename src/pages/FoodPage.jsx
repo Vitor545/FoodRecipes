@@ -11,11 +11,12 @@ export default function FoodPage() {
 
   const requestAPI = async () => {
     const food = await foodRecipesAPI();
-    console.log(food);
-    const foodFiltered = food.filter((food, index) => {
+
+    const foodFiltered = food.filter((card, index) => {
       if (index < AMOUNT_NUMBER) {
-        return food;
+        return card;
       }
+      return null;
     });
     console.log(foodFiltered);
     setStateGlobal({ ...state, foodRecipes: foodFiltered });
@@ -28,7 +29,6 @@ export default function FoodPage() {
   return (
 
     <div>
-      <Header />
       {foodRecipes && foodRecipes.map((card, index) => (
         (<div
           key={ card.idMeal }
@@ -48,7 +48,7 @@ export default function FoodPage() {
             {card.strSource}
 
           </p>
-        </div>)
+         </div>)
       ))}
       Food Page
       <Footer />
