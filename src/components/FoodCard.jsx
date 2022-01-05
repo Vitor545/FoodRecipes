@@ -51,7 +51,7 @@ function FoodCard() {
 
       setStateGlobal({ ...state, foodRecipes: categoryFilter, toggleFood: id });
     } else if (toggleFood === id) {
-      setStateGlobal({ ...state, toggleFood: '', foodRecipes: saveFoodRecipes});
+      setStateGlobal({ ...state, toggleFood: '', foodRecipes: saveFoodRecipes });
     } else {
       const filterCategory = await fetchFoodCategory(id);
 
