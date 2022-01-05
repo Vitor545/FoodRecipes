@@ -31,19 +31,29 @@ const RecipesProvider = ({ children }) => {
   });
   const history = useHistory();
   const { email, password,
-    valueInputSearch, valueClickSearch, foodRecipes, drinkRecipes } = state;
+    valueInputSearch, valueClickSearch, foodRecipes, drinkRecipes, foodName } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
       const bebidasIn = await urlIBebidas(valueInputSearch);
+      if (bebidasIn === null) {
+        return global.alert(`Sinto muito, não encontramos nenhuma 
+          receita para esses filtros.`);
+      }
       if (bebidasIn.length === 1) {
+        setStateGlobal({ ...state, drinkIng: bebidasIn });
         return history.push(`/bebidas/${bebidasIn
           .map((obj) => obj.idDrink)}`);
       }
       return setStateGlobal({ ...state, drinkIng: bebidasIn });
     }
     const comidasIn = await urlIs(valueInputSearch);
+    if (comidasIn === null) {
+      return global.alert(`Sinto muito, não encontramos nenhuma 
+        receita para esses filtros.`);
+    }
     if (comidasIn.length === 1) {
+      setStateGlobal({ ...state, foodIng: comidasIn });
       return history.push(`/comidas/${comidasIn
         .map((obj) => obj.idMeal)}`);
     }
@@ -53,13 +63,23 @@ const RecipesProvider = ({ children }) => {
   const caseName = async () => {
     if (locationName === '/bebidas') {
       const bebidasName = await urlNameBebidas(valueInputSearch);
+      if (bebidasName === null) {
+        return global.alert(`Sinto muito, não encontramos nenhuma 
+          receita para esses filtros.`);
+      }
       if (bebidasName.length === 1) {
+        setStateGlobal({ ...state, drinkName: bebidasName });
         return history.push(`/bebidas/${bebidasName.map((obj) => obj.idDrink)}`);
       }
-      return setStateGlobal({ ...state, drinkName: bebidasName });
+      setStateGlobal({ ...state, drinkName: bebidasName });
     }
     const comidasName = await urlNames(valueInputSearch);
+    if (comidasName === null) {
+      return global.alert(`Sinto muito, não encontramos nenhuma 
+        receita para esses filtros.`);
+    }
     if (comidasName.length === 1) {
+      setStateGlobal({ ...state, foodName: comidasName });
       return history.push(`/comidas/${comidasName.map((obj) => obj.idMeal)}`);
     }
     return setStateGlobal({ ...state, foodName: comidasName });
@@ -71,13 +91,23 @@ const RecipesProvider = ({ children }) => {
     }
     if (locationName === '/bebidas') {
       const bebidasLetter = await urlPBebidas(valueInputSearch);
+      if (bebidasLetter === null) {
+        return global.alert(`Sinto muito, não encontramos nenhuma 
+          receita para esses filtros.`);
+      }
       if (bebidasLetter.length === 1) {
+        setStateGlobal({ ...state, drinkLetter: bebidasLetter });
         return history.push(`/bebidas/${bebidasLetter.map((obj) => obj.idDrink)}`);
       }
       return setStateGlobal({ ...state, drinkLetter: bebidasLetter });
     }
     const comidasLetter = await urlPs(valueInputSearch);
+    if (comidasLetter === null) {
+      return global.alert(`Sinto muito, não encontramos nenhuma 
+        receita para esses filtros.`);
+    }
     if (comidasLetter.length === 1) {
+      setStateGlobal({ ...state, foodLetter: comidasLetter });
       return history.push(`/comidas/${comidasLetter.map((obj) => obj.idMeal)}`);
     }
     return setStateGlobal({ ...state, foodLetter: comidasLetter });
@@ -133,7 +163,8 @@ const RecipesProvider = ({ children }) => {
     onClickButtonSearch,
     handleClickSearch,
     handleChangeSearch,
-    setStateGlobal };
+    setStateGlobal,
+    foodName };
 
   return (
     <RecipesContext.Provider value={ context }>
