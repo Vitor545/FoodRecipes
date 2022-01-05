@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../CSS/footer.css';
 import drinkIcon from '../images/drinkIcon.svg';
 import exporeIcon from '../images/exploreIcon.svg';
 import mealIcon from '../images/mealIcon.svg';

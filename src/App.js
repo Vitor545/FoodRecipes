@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import { useLocation } from 'react-router';
 import Header from './components/Header';
 import Routes from './components/Routes';
@@ -18,10 +19,12 @@ function App() {
     return getNumberRegex.test(pathname);
   };
   return (
-    <div>
-      <Routes />
-      { !verifyUrl() && <Header /> }
-    </div>
+    <body>
+      <div className="main-content">
+        { !verifyUrl() && <Header /> }
+        <Routes />
+      </div>
+    </body>
   );
 }
 

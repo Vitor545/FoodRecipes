@@ -8,10 +8,8 @@ export default function FoodPage() {
 
   const requestAPI = async () => {
     const food = await foodRecipesAPI();
-    const foodFiltered = food.filter((food, index) => {
-      if (index <= 12) {
-        return food;
-      }
+    const foodFiltered = food.filter((el, index) => {
+      if (index <= 12) return el;
     });
     console.log(foodFiltered);
     setStateGlobal({ ...state, foodRecipes: foodFiltered });
