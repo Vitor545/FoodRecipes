@@ -29,6 +29,7 @@ function FoodCard() {
       {foodRecipes && foodRecipes.map((el, index) => ((
         <div
           key={ el.idMeal }
+          data-testid={ `${index}-recipe-card` }
         >
           <img
             src={ el.strMealThumb }

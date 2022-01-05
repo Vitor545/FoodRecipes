@@ -21,6 +21,7 @@ const RecipesProvider = ({ children }) => {
     foodName: [],
     foodRecipes: [],
     drinkRecipes: [],
+    drinkRecipesBtns: [],
     drinkIng: [],
     drinkLetter: [],
     drinkName: [],
@@ -31,7 +32,8 @@ const RecipesProvider = ({ children }) => {
   });
   const history = useHistory();
   const { email, password,
-    valueInputSearch, valueClickSearch, foodRecipes, drinkRecipes } = state;
+    valueInputSearch, valueClickSearch,
+    foodRecipes, drinkRecipes, drinkRecipesBtns } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
@@ -128,6 +130,7 @@ const RecipesProvider = ({ children }) => {
     password,
     foodRecipes,
     drinkRecipes,
+    drinkRecipesBtns,
     handleChange,
     isSubmitButtonDisabled,
     onClickButtonSearch,

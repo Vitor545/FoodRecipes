@@ -71,3 +71,10 @@ export const drinkRecipesAPI = async () => {
   const responseJson = await responseRaw.json();
   return responseJson.drinks;
 };
+
+export const drinkRecipesCategoryAPI = async () => {
+  const urlName = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.drinks;
+};

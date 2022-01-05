@@ -1,23 +1,34 @@
 import React, { useEffect, useContext } from 'react';
 import Footer from './Footer';
 import { RecipesContext } from '../contexts/RecipesContext';
-import { drinkRecipesAPI } from '../fetchApi/fetchApi';
+import { drinkRecipesAPI, drinkRecipesCategoryAPI } from '../fetchApi/fetchApi';
 
 function DrinkCard() {
-  const { state, setStateGlobal, drinkRecipes } = useContext(RecipesContext);
+  const { state, setStateGlobal,
+    drinkRecipes, drinkRecipesBtns } = useContext(RecipesContext);
 
-  const AMOUNT_NUMBER = 12;
+  const AMOUNT_RECIPES_NUMBER = 12;
+  const AMOUNT_CATEGORT_NUMBER = 5;
 
   const requestAPI = async () => {
     const drinks = await drinkRecipesAPI();
+    const drinksBtns = await drinkRecipesCategoryAPI();
+    const categoryBtns = drinksBtns.filter((btn, index) => {
+      if (index < AMOUNT_CATEGORT_NUMBER) {
+        return btn;
+      }
+      return null;
+    });
+    console.log(categoryBtns);
     const drinksFiltered = drinks.filter((el, index) => {
-      if (index < AMOUNT_NUMBER) {
+      if (index < AMOUNT_RECIPES_NUMBER) {
         return el;
       }
       return null;
     });
-    console.log(drinksFiltered);
-    setStateGlobal({ ...state, drinkRecipes: drinksFiltered });
+    setStateGlobal({ ...state,
+      drinkRecipes: drinksFiltered,
+      drinkRecipesBtns: categoryBtns });
   };
 
   useEffect(() => {
@@ -26,9 +37,19 @@ function DrinkCard() {
 
   return (
     <div>
+      { drinkRecipesBtns && drinkRecipesBtns.map(({ strCategory }) => ((
+        <button
+          key={ strCategory }
+          type="submit"
+          data-testid={ `${strCategory}-category-filter` }
+        >
+          { strCategory }
+        </button>
+      )))}
       {drinkRecipes && drinkRecipes.map((el, index) => ((
         <div
           key={ el.idDrink }
+          data-testid={ `${index}-recipe-card` }
         >
           <img
             src={ el.strDrinkThumb }
