@@ -6,12 +6,17 @@ import { drinkRecipesAPI } from '../fetchApi/fetchApi';
 export default function DrinksPage() {
   const { state, setStateGlobal, drinkRecipes } = useContext(RecipesContext);
 
-  const LENGHT = 12;
+  const AMOUNT_NUMBER = 12;
+
   const requestAPI = async () => {
     const drinks = await drinkRecipesAPI();
     const drinksFiltered = drinks.filter((el, index) => {
-      if (index <= LENGHT) return el;
+      if (index <= AMOUNT_NUMBER) {
+        return el;
+      }
     });
+    console.log(drinksFiltered);
+    setStateGlobal({ ...state, drinkRecipes: drinksFiltered });
   };
 
   useEffect(() => {
@@ -20,7 +25,27 @@ export default function DrinksPage() {
 
   return (
     <div>
-      Drinks Page
+      {drinkRecipes && drinkRecipes.map((el, index) => ((
+        <div
+          key={ el.idDrink }
+        >
+          <img
+            src={ el.strDrinkThumb }
+            alt=""
+            data-testid={ `${index}-card-img` }
+          />
+          <h3 data-testid={ `${index}-card-name` }>
+            {el.strDrink}
+
+          </h3>
+          <p
+            data-testid={ `${index}-recipe-card` }
+          >
+            {el.strInstructions}
+
+          </p>
+        </div>)
+      ))}
       <Footer />
     </div>
   );

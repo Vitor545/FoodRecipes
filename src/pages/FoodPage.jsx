@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from 'react';
 import Footer from '../components/Footer';
-import Header from '../components/Header';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { foodRecipesAPI } from '../fetchApi/fetchApi';
 
@@ -12,10 +11,11 @@ export default function FoodPage() {
   const requestAPI = async () => {
     const food = await foodRecipesAPI();
     console.log(food);
-    const foodFiltered = food.filter((food, index) => {
+    const foodFiltered = food.filter((el, index) => {
       if (index < AMOUNT_NUMBER) {
-        return food;
+        return el;
       }
+      return null;
     });
     console.log(foodFiltered);
     setStateGlobal({ ...state, foodRecipes: foodFiltered });
@@ -28,7 +28,6 @@ export default function FoodPage() {
   return (
 
     <div>
-      <Header />
       {foodRecipes && foodRecipes.map((el, index) => ((
         <div
           key={ el.idMeal }
