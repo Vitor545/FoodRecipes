@@ -11,7 +11,7 @@ export default function DrinksPage() {
   const requestAPI = async () => {
     const drinks = await drinkRecipesAPI();
     const drinksFiltered = drinks.filter((el, index) => {
-      if (index <= AMOUNT_NUMBER) {
+      if (index < AMOUNT_NUMBER) {
         return el;
       }
       return null;
