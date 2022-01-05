@@ -1,6 +1,8 @@
 import React, { useEffect, useContext } from 'react';
 import { RecipesContext } from '../contexts/RecipesContext';
-import { foodRecipesAPI, foodRecipesCategoryAPI } from '../fetchApi/fetchApi';
+import { fetchFoodCategory,
+  foodRecipesAPI,
+  foodRecipesCategoryAPI } from '../fetchApi/fetchApi';
 
 function FoodCard() {
   const { state,
@@ -32,6 +34,12 @@ function FoodCard() {
       foodRecipesBTN: btnFiltered });
   };
 
+  async function handleCategory(e) {
+    const { id } = e.target;
+    const filterCategory = await fetchFoodCategory(id);
+    setStateGlobal({ ...state, foodRecipes: filterCategory });
+  }
+
   useEffect(() => {
     requestAPI();
   }, []);
@@ -43,6 +51,8 @@ function FoodCard() {
           key={ el.strCategory }
           type="button"
           data-testid={ `${el.strCategory}-category-filter` }
+          onClick={ handleCategory }
+          id={ el.strCategory }
         >
           {el.strCategory}
           {' '}
