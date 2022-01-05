@@ -7,6 +7,8 @@ import { fetchFoodCategory,
 function FoodCard() {
   const { state,
     setStateGlobal,
+    saveFoodRecipes,
+    toggleFood,
     foodRecipes,
     foodRecipesBTN } = useContext(RecipesContext);
 
@@ -55,12 +57,13 @@ function FoodCard() {
 
   return (
     <div>
+      {console.log(toggleFood)}
       {foodRecipesBTN && foodRecipesBTN.map((el) => ((
         <button
           key={ el.strCategory }
           type="button"
           data-testid={ `${el.strCategory}-category-filter` }
-          onClick={ handleCategory }
+          onClick={ () => setStateGlobal({ ...state, toggleFood:  }) }
           id={ el.strCategory }
         >
           {el.strCategory}
