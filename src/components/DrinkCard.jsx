@@ -33,7 +33,7 @@ function DrinkCard() {
 
   const handleCategory = async ({ target }) => {
     const { name } = target;
-    console.log(name);
+    setStateGlobal({ ...state });
     const drinks = await drinkFilterCategory(name);
     const drinksFilter = drinks.filter((drink, index) => {
       if (index < AMOUNT_RECIPES_NUMBER) {
