@@ -39,12 +39,6 @@ function FoodCard() {
             {el.strMeal}
 
           </h3>
-          <p
-            data-testid={ `${index}-recipe-card` }
-          >
-            {el.strSource}
-
-          </p>
         </div>)
       ))}
     </div>
