@@ -143,7 +143,6 @@ const RecipesProvider = ({ children }) => {
     saveDrinkRecipes,
     drinkRecipesBtns,
     toggleFood,
-    saveDrinkToggle,
     toggleDrink,
     handleChange,
     isSubmitButtonDisabled,

@@ -75,7 +75,7 @@ function FoodCard() {
       <button
         data-testid="All-category-filter"
         type="button"
-        onClick={ () => setStateGlobal({ foodRecipes: saveFoodRecipes }) }
+        onClick={ () => setStateGlobal({ ...state, foodRecipes: saveFoodRecipes }) }
       >
         All Recipes
       </button>
