@@ -2,9 +2,10 @@ import React, { useEffect, useContext } from 'react';
 import Footer from '../components/Footer';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { drinkRecipesAPI } from '../fetchApi/fetchApi';
+import SearchDrinks from '../components/SearchCard';
 
 export default function DrinksPage() {
-  const { state, setStateGlobal, drinkRecipes } = useContext(RecipesContext);
+  const { state, setStateGlobal, drinkRecipes, busca } = useContext(RecipesContext);
 
   const AMOUNT_NUMBER = 12;
 
@@ -24,14 +25,16 @@ export default function DrinksPage() {
     requestAPI();
   }, []);
 
-  return (
+  const initialDrinks = () => (
     <div>
       {drinkRecipes && drinkRecipes.map((el, index) => ((
         <div
           key={ el.idDrink }
+          className="card-drink"
         >
           <img
             src={ el.strDrinkThumb }
+            className="drink-teste"
             alt=""
             data-testid={ `${index}-card-img` }
           />
@@ -49,5 +52,8 @@ export default function DrinksPage() {
       ))}
       <Footer />
     </div>
+  );
+  return (
+    busca === true ? <SearchDrinks /> : initialDrinks()
   );
 }

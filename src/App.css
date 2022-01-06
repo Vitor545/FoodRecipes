@@ -61,3 +61,41 @@ body {
   height: 80px;
   width: 50px;
 }
+
+
+@media screen and (max-width: 360px) {
+  .drink-teste{
+    width: 50px;
+  
+  }
+  .card-drink{
+    background-color: rgb(0, 0, 0);
+    width: 100px;
+    height:200px;
+    overflow: hidden;
+    margin: 15px auto;
+    padding: 10px;
+  }
+  .page-title{
+    display:none
+  }
+  .button-header {
+    display:none
+  }
+
+  .button_search{
+    width: 20px;
+    height: 20px;
+  }
+  .search{
+    font-size: 12px;
+    display: flex;
+    margin: 0 auto;
+  }
+  .search input{
+    font-size: 5px;
+  }
+  .header{
+    padding: 100px;
+  }
+}

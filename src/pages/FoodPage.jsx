@@ -31,10 +31,12 @@ export default function FoodPage() {
       {foodRecipes && foodRecipes.map((el, index) => ((
         <div
           key={ el.idMeal }
+          className="card-drink"
         >
           <img
             src={ el.strMealThumb }
             alt=""
+            className="drink-teste"
             data-testid={ `${index}-card-img` }
           />
           <h3 data-testid={ `${index}-card-name` }>

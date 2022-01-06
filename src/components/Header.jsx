@@ -33,7 +33,7 @@ export default function Header() {
   };
   // Função que renderiza os inputs
   const renderInputsSearch = () => (
-    <div>
+    <div className="search">
       <label htmlFor="search-input">
         <input
           type="text"
@@ -49,6 +49,7 @@ export default function Header() {
             id="ingredientFilter"
             name="radio"
             type="radio"
+            className="ing_search"
             data-testid="ingredient-search-radio"
             onClick={ handleClickSearch }
           />
@@ -60,6 +61,7 @@ export default function Header() {
             id="nameFilter"
             type="radio"
             name="radio"
+            className="name_search"
             data-testid="name-search-radio"
             onClick={ handleClickSearch }
           />
@@ -72,6 +74,7 @@ export default function Header() {
             type="radio"
             name="radio"
             data-testid="first-letter-search-radio"
+            className="letter_search"
             onClick={ handleClickSearch }
           />
           Primeira Letra
@@ -81,6 +84,7 @@ export default function Header() {
         type="button"
         data-testid="exec-search-btn"
         onClick={ onClickButtonSearch }
+        className="button_search"
       >
         Buscar
       </button>
@@ -92,10 +96,11 @@ export default function Header() {
       <button
         type="button"
         onClick={ handleProfilePic }
+        className="button-header"
       >
         <img data-testid="profile-top-btn" src={ ProfilePic } alt="Profile" />
       </button>
-      <h1 data-testid="page-title">{handleTitle(pathname)}</h1>
+      <h1 data-testid="page-title" className="page-title">{handleTitle(pathname)}</h1>
       { !verifySearchIcon() && (
         <button
           type="button"
