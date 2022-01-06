@@ -39,14 +39,13 @@ const RecipesProvider = ({ children }) => {
     toggleFood: '',
     busca: false,
   });
-  
+
   const history = useHistory();
   const { email, password,
     valueInputSearch, valueClickSearch,
     foodRecipes, drinkRecipes, drinkRecipesBtns, foodRecipesBTN,
     toggleFood, saveDrinkRecipes, saveFoodRecipes, toggleDrink, busca, foodName } = state;
-  });
-  
+
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
       try {
@@ -173,6 +172,7 @@ const RecipesProvider = ({ children }) => {
     const MIN_LENGTH = 6;
     return !(emailValidation.test(email) && password.length > MIN_LENGTH);
   };
+
   const handleChange = ({ target }) => {
     const { name } = target;
     const { value } = target;
@@ -205,7 +205,6 @@ const RecipesProvider = ({ children }) => {
     </RecipesContext.Provider>
   );
 };
-
 RecipesProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
