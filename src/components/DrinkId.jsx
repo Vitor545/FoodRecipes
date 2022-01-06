@@ -21,7 +21,7 @@ export default function DrinkId() {
 
   return (
     <div>
-      { drinkDetails && drinkDetails.map((element, index) => (
+      { drinkDetails && drinkDetails.map((element) => (
         <div key={ element.idDrink }>
           <h3 data-testid="recipe-title">{element.strDrink}</h3>
           <h4 data-testid="recipe-category">{`Categoria: ${element.strCategory}`}</h4>
@@ -30,16 +30,18 @@ export default function DrinkId() {
             alt={ `${element.strDrink}` }
             data-testid="recipe-photo"
           />
-          <ul>
-            <li
-              key={ ing }
-              data-testid={ `${index}-ingredient-name-and-measure` }
-            >
-              {element.strIngredient}
-            </li>
-          </ul>
         </div>
       ))}
+      <ul>
+        {ingredients.map((ing, index) => (
+          <li
+            key={ ing }
+            data-testid={ `${index}-ingredient-name-and-measure` }
+          >
+            {ing}
+          </li>
+        ))}
+      </ul>
       <p data-testid="instructions">
         {element.strInstructions}
       </p>
