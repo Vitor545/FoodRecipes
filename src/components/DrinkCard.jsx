@@ -89,10 +89,11 @@ function DrinkCard() {
         )))}
       </div>
       {drinkRecipes && drinkRecipes.map((el, index) => ((
-        <Link to={ `/bebidas/${el.idDrink}` } key={ el.drink }>
+        <Link to={ `/bebidas/${el.idDrink}` } key={ index }>
           <div
             data-testid={ `${index}-recipe-card` }
             className="card"
+            key={ el.drink }
           >
             <img
               src={ el.strDrinkThumb }
