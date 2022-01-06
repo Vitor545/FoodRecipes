@@ -30,9 +30,12 @@ export default function DrinkId() {
             alt={ `${element.strDrink}` }
             data-testid="recipe-photo"
           />
+          <p data-testid="instructions">
+            {element.strInstructions}
+          </p>
         </div>
       ))}
-      <ul>
+      {/* <ul>
         {ingredients.map((ing, index) => (
           <li
             key={ ing }
@@ -41,15 +44,12 @@ export default function DrinkId() {
             {ing}
           </li>
         ))}
-      </ul>
-      <p data-testid="instructions">
-        {element.strInstructions}
-      </p>
+      </ul> */}
       <div>
         <button type="button" data-testid="favorite-btn">Favoritar</button>
         <button type="button" data-testid="start-recipe-btn">Iniciar Receita</button>
       </div>
-      <div className="recommended-recipes">
+      <div className="recommended-recipes ">
         <DrinksRecommended />
       </div>
     </div>
