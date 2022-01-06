@@ -71,7 +71,6 @@ export default function Header() {
           <input
             value="first-letter"
             id="firstLetter"
-            name="radio"
             type="radio"
             name="radio"
             data-testid="first-letter-search-radio"
