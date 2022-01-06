@@ -1,68 +1,104 @@
-.meals {
-  align-items: center;
-  background: #0fa36b;
-  color: #464646;
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap') ;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #444;
+  font-family: Lato , sans-serif;
+  height: 1vh;
+}
+
+/* .container {
   display: flex;
-  flex-direction: column;
-  font-family: sans-serif;
-  height: 100vh;
   justify-content: center;
+} */
+
+.login-page {
+  border: solid 1px black;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  text-align: center;
+  width: 200px;
+}
+
+.header {
+  background-color: rgba(196, 196, 196, 0.75);
+  display: flex;
+  font-size: 24px;
+  font-weight: 700;
+  height: 80px;
+  justify-content: space-evenly;
+}
+
+.header button {
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+}
+
+.footer {
+  background-color: rgb(196, 196, 196, 0.75);
+  border: 2px groove black;
+  bottom: 0;
+  height: 80px;
+  position: fixed;
+  text-align: center;
   width: 100%;
 }
 
-.rocksGlass {
-  animation: shake 1s infinite ease;
-  max-height: 80vh;
+.footerBtns {
+  display: flex;
+  justify-content: space-evenly;
 }
 
-/*
-#iceLeft {
-  animation: clink .8s infinite ease;
-  opacity: 0.6;
-  transform-origin: 36px 66px;
+.footerImg {
+  height: 80px;
+  width: 50px;
 }
 
-#iceRight {
-  animation: clink .8s .2s infinite ease;
-  opacity: 0.6;
-  transform-origin: 60px 78px;
-}
-*/
 
-.meals > .logo {
-  animation: shake 1.5s infinite ease;
-  color: aliceblue;
-  font-family: Montserrat , sans-serif;
-  font-size: 3em;
-  font-weight: 900;
-}
+@media screen and ( max-width : 360px ) {
 
-@keyframes shake {
+  .drink-teste {
+    width: 50px;
 
-  0% {
-    transform: rotate(5deg);
   }
 
-  50% {
-    transform: rotate(-5deg);
+  .card-drink {
+    background-color: rgb(201, 179, 253);
+    height: 200px;
+    margin: 15px auto;
+    overflow: hidden;
+    padding: 10px;
+    width: 100px;
   }
 
-  100% {
-    transform: rotate(5deg);
-  }
-}
-
-@keyframes clink {
-
-  0% {
-    transform: rotate(-10deg);
+  .page-title {
+    display: none;
   }
 
-  50% {
-    transform: rotate(20deg);
+  .button_search {
+    height: 20px;
+    width: 20px;
   }
 
-  100% {
-    transform: rotate(-10deg);
+  .search {
+    display: flex;
+    font-size: 12px;
+    margin: 0 auto;
+  }
+
+  .search input {
+    font-size: 5px;
+  }
+
+  .header {
+    padding: 100px;
   }
 }
