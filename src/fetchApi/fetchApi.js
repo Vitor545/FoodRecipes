@@ -52,7 +52,7 @@ export const allUrls = async () => {
 };
 
 export const allUrlsCocks = async () => {
-  const allUrlCock = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s';
+  const allUrlCock = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
   const response = await fetch(allUrlCock);
   const userData = await response.json();
   return userData.drinks;
