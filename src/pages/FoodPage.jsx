@@ -1,10 +1,12 @@
 import React from 'react';
+import FoodCard from '../components/FoodCard';
 import Footer from '../components/Footer';
 
 export default function FoodPage() {
   return (
+
     <div>
-      Food Page
+      <FoodCard />
       <Footer />
     </div>
   );
