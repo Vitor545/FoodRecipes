@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import { RecipesContext } from '../contexts/RecipesContext';
+import React/* , { useContext }  */from 'react';
+// import { RecipesContext } from '../contexts/RecipesContext';
 
 export default function FoodId() {
-  const { foodName } = useContext(RecipesContext);
+  // const { foodName } = useContext(RecipesContext);
   return (
     <div>
-      {foodName[0].idMeal}
+      {/* {foodName[0].idMeal} */}
     </div>
   );
 }
