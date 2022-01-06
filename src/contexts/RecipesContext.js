@@ -33,18 +33,13 @@ const RecipesProvider = ({ children }) => {
   });
   const history = useHistory();
   const { email, password,
-    valueInputSearch, valueClickSearch, foodRecipes,
-    drinkRecipes, foodName, busca } = state;
+    valueInputSearch, valueClickSearch, foodName,
+    foodIng, foodLetter, drinkIng, drinkLetter, drinkName, busca } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
       try {
         const bebidasIn = await urlIBebidas(valueInputSearch);
-        if (!bebidasIn) {
-          return (
-            global.alert(messageErro)
-          );
-        }
         if (bebidasIn.length === 1) {
           setStateGlobal({ ...state, drinkIng: bebidasIn });
           return history.push(`/bebidas/${bebidasIn
@@ -52,7 +47,7 @@ const RecipesProvider = ({ children }) => {
         }
         return setStateGlobal({ ...state, drinkIng: bebidasIn, busca: true });
       } catch (e) {
-        console.log('deu bom');
+        global.alert(messageErro);
       }
     } else {
       const comidasIn = await urlIs(valueInputSearch);
@@ -82,19 +77,20 @@ const RecipesProvider = ({ children }) => {
         setStateGlobal({ ...state, drinkName: bebidasName });
         return history.push(`/bebidas/${bebidasName.map((obj) => obj.idDrink)}`);
       }
-      setStateGlobal({ ...state, drinkName: bebidasName, busca: true });
+      setStateGlobal({ ...state, drinkName: await bebidasName, busca: true });
+    } else {
+      const comidasName = await urlNames(valueInputSearch);
+      if (comidasName === null) {
+        return (
+          global.alert(messageErro)
+        );
+      }
+      if (comidasName.length === 1) {
+        setStateGlobal({ ...state, foodName: comidasName });
+        return history.push(`/comidas/${comidasName.map((obj) => obj.idMeal)}`);
+      }
+      return setStateGlobal({ ...state, foodName: comidasName, busca: true });
     }
-    const comidasName = await urlNames(valueInputSearch);
-    if (comidasName === null) {
-      return (
-        global.alert(messageErro)
-      );
-    }
-    if (comidasName.length === 1) {
-      setStateGlobal({ ...state, foodName: comidasName });
-      return history.push(`/comidas/${comidasName.map((obj) => obj.idMeal)}`);
-    }
-    return setStateGlobal({ ...state, foodName: comidasName, busca: true });
   };
 
   const caseLetter = async () => {
@@ -170,8 +166,6 @@ const RecipesProvider = ({ children }) => {
 
   const context = { email,
     password,
-    foodRecipes,
-    drinkRecipes,
     handleChange,
     isSubmitButtonDisabled,
     onClickButtonSearch,
@@ -179,6 +173,12 @@ const RecipesProvider = ({ children }) => {
     handleChangeSearch,
     setStateGlobal,
     foodName,
+    foodIng,
+    foodLetter,
+    drinkIng,
+    drinkLetter,
+    drinkName,
+    valueClickSearch,
     busca };
 
   return (

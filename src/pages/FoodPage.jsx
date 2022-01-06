@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Footer from '../components/Footer';
 import { foodRecipesAPI } from '../fetchApi/fetchApi';
+import SearchDrinks from '../components/SearchCard';
+import { RecipesContext } from '../contexts/RecipesContext';
 
 export default function FoodPage() {
+  const { busca } = useContext(RecipesContext);
   const [teste, setTeste] = useState('');
   useEffect(() => {
     const funcTst = async () => {
@@ -21,8 +24,7 @@ export default function FoodPage() {
     funcTst();
   }, []);
 
-  return (
-
+  const initialFoods = () => (
     <div>
       {teste && teste.map((el, index) => ((
         <div
@@ -50,5 +52,8 @@ export default function FoodPage() {
       Food Page
       <Footer />
     </div>
+  );
+  return (
+    busca === true ? <SearchDrinks /> : initialFoods()
   );
 }
