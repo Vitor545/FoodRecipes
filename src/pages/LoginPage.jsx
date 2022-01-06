@@ -18,7 +18,8 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className="login-page">
+      <h2>Login</h2>
       <form onSubmit={ onSubmit }>
         <input
           name="email"
@@ -41,6 +42,7 @@ function Login() {
         >
           Entrar
         </button>
+
       </form>
     </div>
 
