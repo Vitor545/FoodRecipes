@@ -1,34 +1,30 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
-import { RecipesContext } from '../contexts/RecipesContext';
 import { foodRecipesAPI } from '../fetchApi/fetchApi';
 
 export default function FoodPage() {
-  const { state, setStateGlobal, foodRecipes } = useContext(RecipesContext);
-
-  const AMOUNT_NUMBER = 12;
-
-  const requestAPI = async () => {
-    const food = await foodRecipesAPI();
-    console.log(food);
-    const foodFiltered = food.filter((el, index) => {
-      if (index < AMOUNT_NUMBER) {
-        return el;
-      }
-      return null;
-    });
-    console.log(foodFiltered);
-    setStateGlobal({ ...state, foodRecipes: foodFiltered });
-  };
-
+  const [teste, setTeste] = useState('');
   useEffect(() => {
-    requestAPI();
+    const funcTst = async () => {
+      const AMOUNT_NUMBER = 12;
+      const food = await foodRecipesAPI();
+      console.log(food);
+      const foodFiltered = food.filter((el, index) => {
+        if (index < AMOUNT_NUMBER) {
+          return el;
+        }
+        return null;
+      });
+      console.log(foodFiltered);
+      setTeste(foodFiltered);
+    };
+    funcTst();
   }, []);
 
   return (
 
     <div>
-      {foodRecipes && foodRecipes.map((el, index) => ((
+      {teste && teste.map((el, index) => ((
         <div
           key={ el.idMeal }
           className="card-drink"

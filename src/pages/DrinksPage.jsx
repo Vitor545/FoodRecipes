@@ -1,33 +1,32 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import Footer from '../components/Footer';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { drinkRecipesAPI } from '../fetchApi/fetchApi';
 import SearchDrinks from '../components/SearchCard';
 
 export default function DrinksPage() {
-  const { state, setStateGlobal, drinkRecipes, busca } = useContext(RecipesContext);
-
-  const AMOUNT_NUMBER = 12;
-
-  const requestAPI = async () => {
-    const drinks = await drinkRecipesAPI();
-    const drinksFiltered = drinks.filter((el, index) => {
-      if (index < AMOUNT_NUMBER) {
-        return el;
-      }
-      return null;
-    });
-    console.log(drinksFiltered);
-    setStateGlobal({ ...state, drinkRecipes: drinksFiltered });
-  };
+  const { busca } = useContext(RecipesContext);
+  const [teste, setTeste] = useState('');
 
   useEffect(() => {
-    requestAPI();
+    const funcTst = async () => {
+      const AMOUNT_NUMBER = 12;
+      const drinks = await drinkRecipesAPI();
+      const drinksFiltered = drinks.filter((el, index) => {
+        if (index < AMOUNT_NUMBER) {
+          return el;
+        }
+        return null;
+      });
+      console.log(drinksFiltered);
+      setTeste(drinksFiltered);
+    };
+    funcTst();
   }, []);
 
   const initialDrinks = () => (
     <div>
-      {drinkRecipes && drinkRecipes.map((el, index) => ((
+      {teste && teste.map((el, index) => ((
         <div
           key={ el.idDrink }
           className="card-drink"
