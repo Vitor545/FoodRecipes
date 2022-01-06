@@ -1,8 +1,10 @@
 import React, { useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { fetchFoodCategory,
   foodRecipesAPI,
   foodRecipesCategoryAPI } from '../fetchApi/fetchApi';
+import Footer from './Footer';
 
 function FoodCard() {
   const { state,
@@ -93,20 +95,25 @@ function FoodCard() {
       )))}
 
       {foodRecipes && foodRecipes.map((el, index) => ((
-        <div
+        <Link
           key={ el.idMeal }
-          data-testid={ `${index}-recipe-card` }
+          to={ `/comidas/${el.idMeal}` }
         >
-          <img
-            src={ el.strMealThumb }
-            alt=""
-            data-testid={ `${index}-card-img` }
-          />
-          <h3 data-testid={ `${index}-card-name` }>
-            {el.strMeal}
-          </h3>
-        </div>)
+          <div
+            data-testid={ `${index}-recipe-card` }
+          >
+            <img
+              src={ el.strMealThumb }
+              alt=""
+              data-testid={ `${index}-card-img` }
+            />
+            <h3 data-testid={ `${index}-card-name` }>
+              {el.strMeal}
+            </h3>
+          </div>
+        </Link>)
       ))}
+      <Footer />
     </div>
   );
 }
