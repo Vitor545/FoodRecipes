@@ -1,11 +1,17 @@
 import React, { useContext } from 'react';
 import { RecipesContext } from '../contexts/RecipesContext';
+import Footer from './Footer';
 
-export default function FoodId() {
+const SearchDrinks = () => {
   const { foodName } = useContext(RecipesContext);
+
   return (
     <div>
-      {foodName[0].idMeal}
+      {console.log(foodName)}
+      <div>teste</div>
+      <Footer />
     </div>
   );
-}
+};
+
+export default SearchDrinks;
