@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Footer from './Footer';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { drinkFilterCategory,
   drinkRecipesAPI, drinkRecipesCategoryAPI } from '../fetchApi/fetchApi';
@@ -103,7 +102,6 @@ function DrinkCard() {
           </div>
         </Link>)
       ))}
-      <Footer />
     </div>
   );
 }
