@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { drinkFilterCategory,
@@ -87,19 +88,20 @@ function DrinkCard() {
         </button>
       )))}
       {drinkRecipes && drinkRecipes.map((el, index) => ((
-        <div
-          key={ el.idDrink }
-          data-testid={ `${index}-recipe-card` }
-        >
-          <img
-            src={ el.strDrinkThumb }
-            alt=""
-            data-testid={ `${index}-card-img` }
-          />
-          <h3 data-testid={ `${index}-card-name` }>
-            {el.strDrink}
-          </h3>
-        </div>)
+        <Link to={ `/bebidas/${el.idDrink}` } key={ el.drink }>
+          <div
+            data-testid={ `${index}-recipe-card` }
+          >
+            <img
+              src={ el.strDrinkThumb }
+              alt=""
+              data-testid={ `${index}-card-img` }
+            />
+            <h3 data-testid={ `${index}-card-name` }>
+              {el.strDrink}
+            </h3>
+          </div>
+        </Link>)
       ))}
       <Footer />
     </div>
