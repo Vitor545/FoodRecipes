@@ -19,8 +19,8 @@ function App() {
   };
   return (
     <div>
-      <Routes />
       { !verifyUrl() && <Header /> }
+      <Routes />
     </div>
   );
 }
