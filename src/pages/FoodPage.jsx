@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 
 export default function FoodPage() {
   return (
-    <div>
+    <div className="food-card">
       <FoodCard />
       <Footer />
     </div>

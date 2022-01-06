@@ -72,27 +72,28 @@ function FoodCard() {
   }, []);
 
   return (
-    <div>
-      <button
-        data-testid="All-category-filter"
-        type="button"
-        onClick={ () => setStateGlobal({ ...state, foodRecipes: saveFoodRecipes }) }
-      >
-        All Recipes
-      </button>
-      {foodRecipesBTN && foodRecipesBTN.map((el) => ((
+    <div className="card-container">
+      <div className="card-btns">
         <button
-          key={ el.strCategory }
+          data-testid="All-category-filter"
           type="button"
-          data-testid={ `${el.strCategory}-category-filter` }
-          onClick={ handleCategory }
-          id={ el.strCategory }
+          onClick={ () => setStateGlobal({ ...state, foodRecipes: saveFoodRecipes }) }
         >
-          {el.strCategory}
-          {' '}
+          All Recipes
         </button>
-      )))}
-
+        {foodRecipesBTN && foodRecipesBTN.map((el) => ((
+          <button
+            key={ el.strCategory }
+            type="button"
+            data-testid={ `${el.strCategory}-category-filter` }
+            onClick={ handleCategory }
+            id={ el.strCategory }
+          >
+            {el.strCategory}
+            {' '}
+          </button>
+        )))}
+      </div>
       {foodRecipes && foodRecipes.map((el, index) => ((
         <Link
           key={ el.idMeal }
@@ -100,6 +101,7 @@ function FoodCard() {
         >
           <div
             data-testid={ `${index}-recipe-card` }
+            className="card"
           >
             <img
               src={ el.strMealThumb }
