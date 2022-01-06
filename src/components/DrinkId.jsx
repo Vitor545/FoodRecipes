@@ -30,21 +30,32 @@ export default function DrinkId() {
             alt={ `${element.strDrink}` }
             data-testid="recipe-photo"
           />
+          <ul>
+            {Object.keys(drinkDetails[0])
+              .filter((ingr) => ingr.includes('Ingredient'))
+              .map((strIngre, index) => (
+                <li
+                  key={ strIngre }
+                  data-testid={ `${index}-ingredient-name-and-measure` }
+                >
+                  {strIngre}
+                </li>
+              ))}
+            {/* {drinkDetails.filter((ing, index) => (
+
+              <li
+                key={ ing }
+                data-testid={ `${index}-ingredient-name-and-measure` }
+              >
+                {ing}
+              </li>
+            ))} */}
+          </ul>
+          <p data-testid="instructions">
+            {element.strInstructions}
+          </p>
         </div>
       ))}
-      <ul>
-        {ingredients.map((ing, index) => (
-          <li
-            key={ ing }
-            data-testid={ `${index}-ingredient-name-and-measure` }
-          >
-            {ing}
-          </li>
-        ))}
-      </ul>
-      <p data-testid="instructions">
-        {element.strInstructions}
-      </p>
       <div>
         <button type="button" data-testid="favorite-btn">Favoritar</button>
         <button type="button" data-testid="start-recipe-btn">Iniciar Receita</button>
