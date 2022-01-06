@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { createContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { urlIBebidas, urlNameBebidas, urlPBebidas, urlIs, urlNames, urlPs, allUrls,
+import { urlIBebidas, urlNameBebidas,
+  urlPBebidas, urlIs, urlNames, urlPs, allUrls,
   allUrlsCocks }
   from '../fetchApi/fetchApi';
 
@@ -21,7 +22,12 @@ const RecipesProvider = ({ children }) => {
     foodLetter: [],
     foodName: [],
     foodRecipes: [],
+    foodRecipesBTN: [],
     drinkRecipes: [],
+    saveDrinkRecipes: [],
+    saveFoodRecipes: [],
+    saveDrinkToggle: [],
+    drinkRecipesBtns: [],
     drinkIng: [],
     drinkLetter: [],
     drinkName: [],
@@ -29,12 +35,16 @@ const RecipesProvider = ({ children }) => {
     foodAll: [],
     valueInputSearch: '',
     valueClickSearch: '',
+    toggleDrink: '',
+    toggleFood: '',
     busca: false,
   });
+
   const history = useHistory();
   const { email, password,
-    valueInputSearch, valueClickSearch, foodRecipes,
-    drinkRecipes, foodName, busca } = state;
+    valueInputSearch, valueClickSearch,
+    foodRecipes, drinkRecipes, drinkRecipesBtns, foodRecipesBTN,
+    toggleFood, saveDrinkRecipes, saveFoodRecipes, toggleDrink, busca, foodName } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
@@ -162,16 +172,24 @@ const RecipesProvider = ({ children }) => {
     const MIN_LENGTH = 6;
     return !(emailValidation.test(email) && password.length > MIN_LENGTH);
   };
+
   const handleChange = ({ target }) => {
     const { name } = target;
     const { value } = target;
     setStateGlobal({ ...state, [name]: value });
   };
 
-  const context = { email,
+  const context = { state,
+    email,
     password,
     foodRecipes,
+    foodRecipesBTN,
+    saveFoodRecipes,
     drinkRecipes,
+    saveDrinkRecipes,
+    drinkRecipesBtns,
+    toggleFood,
+    toggleDrink,
     handleChange,
     isSubmitButtonDisabled,
     onClickButtonSearch,
@@ -187,7 +205,6 @@ const RecipesProvider = ({ children }) => {
     </RecipesContext.Provider>
   );
 };
-
 RecipesProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
