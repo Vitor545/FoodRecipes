@@ -4,7 +4,6 @@ import { RecipesContext } from '../contexts/RecipesContext';
 import { fetchFoodCategory,
   foodRecipesAPI,
   foodRecipesCategoryAPI } from '../fetchApi/fetchApi';
-import Footer from './Footer';
 
 function FoodCard() {
   const { state,
@@ -113,7 +112,6 @@ function FoodCard() {
           </div>
         </Link>)
       ))}
-      <Footer />
     </div>
   );
 }

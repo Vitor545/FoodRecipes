@@ -73,6 +73,7 @@ export default function Header() {
             id="firstLetter"
             name="radio"
             type="radio"
+            name="radio"
             data-testid="first-letter-search-radio"
             className="letter_search"
             onClick={ handleClickSearch }
