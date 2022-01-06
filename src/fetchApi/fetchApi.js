@@ -99,3 +99,10 @@ export const drinkFilterCategory = async (drink) => {
   const responseJson = await responseRaw.json();
   return responseJson.drinks;
 };
+
+export const drinkDetailsRequest = async (id) => {
+  const urlName = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.drinks;
+};

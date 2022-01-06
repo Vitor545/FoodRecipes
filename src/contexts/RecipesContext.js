@@ -23,10 +23,11 @@ const RecipesProvider = ({ children }) => {
     foodName: [],
     foodRecipes: [],
     foodRecipesBTN: [],
+    saveFoodRecipes: [],
     drinkRecipes: [],
     saveDrinkRecipes: [],
-    saveFoodRecipes: [],
     saveDrinkToggle: [],
+    drinkDetails: [],
     drinkRecipesBtns: [],
     drinkIng: [],
     drinkLetter: [],
@@ -44,7 +45,9 @@ const RecipesProvider = ({ children }) => {
   const { email, password,
     valueInputSearch, valueClickSearch,
     foodRecipes, drinkRecipes, drinkRecipesBtns, foodRecipesBTN,
-    toggleFood, saveDrinkRecipes, saveFoodRecipes, toggleDrink, busca, foodName } = state;
+    toggleFood, saveDrinkRecipes,
+    saveFoodRecipes, toggleDrink,
+    busca, foodName, drinkDetails } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
@@ -188,6 +191,7 @@ const RecipesProvider = ({ children }) => {
     drinkRecipes,
     saveDrinkRecipes,
     drinkRecipesBtns,
+    drinkDetails,
     toggleFood,
     toggleDrink,
     handleChange,
