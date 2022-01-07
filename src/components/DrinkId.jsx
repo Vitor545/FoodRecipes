@@ -41,7 +41,7 @@ export default function DrinkId() {
     <div>
       { drinkDetails
       && drinkDetails.map((
-        { idDrink, strDrink, strCategory, strDrinkThumb, strInstructions, strVideo },
+        { idDrink, strDrink, strCategory, strDrinkThumb, strInstructions },
       ) => (
         <div key={ idDrink }>
           <h3 data-testid="recipe-title">{strDrink}</h3>
