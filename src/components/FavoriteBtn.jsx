@@ -20,12 +20,11 @@ export default function FavoriteBtn() {
   return (
     <button
       type="button"
-      data-testid="favorite-btn"
       className="favorite-btn"
       onClick={ handleFavoriteIcon }
-      src={ isFavorited ? blackFavoriteIcon : whiteFavoriteIcon }
     >
       <img
+        data-testid="favorite-btn"
         className="favorite-icon"
         src={ isFavorited ? blackFavoriteIcon : whiteFavoriteIcon }
         alt="favorite icon"
