@@ -27,9 +27,8 @@ export default function FoodId() {
     // Fazendo um map pelas chaves e pegando os valores dessas chaves em foodDetails
     const values = ingr.map((ingredient) => foodDetails[0][ingredient])
       .filter((el) => el !== '');
-    const valuesMeasure = ingr.map((qty) => foodDetails[0][qty])
+    const valuesMeasure = measure.map((qty) => foodDetails[0][qty])
       .filter((el) => el !== '');
-    console.log(valuesMeasure);
     return (
       values.map((ing, i) => (
         <li

@@ -21,16 +21,20 @@ export default function DrinkId() {
     // Pegando todas as chaves de drinkDetails que contenham Ingredient no nome
     const ingr = Object.keys(drinkDetails[0])
       .filter((key) => key.includes('Ingredient'));
+    const measure = Object.keys(drinkDetails[0])
+      .filter((key) => key.includes('Measure'));
     // Fazendo um map pelas chaves e pegando os valores dessas chaves em drinkDetails
     const values = ingr.map((ingredient) => drinkDetails[0][ingredient])
       .filter((el) => el !== null);
+    const valuesMeasure = measure.map((qty) => drinkDetails[0][qty])
+      .filter((el) => el !== '');
     return (
       values.map((ing, i) => (
         <li
           key={ ing }
           data-testid={ `${i}-ingredient-name-and-measure` }
         >
-          {ing}
+          {`${ing} - ${valuesMeasure[i]}`}
         </li>
       ))
     );
