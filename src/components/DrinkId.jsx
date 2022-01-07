@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { drinkDetailsRequest } from '../fetchApi/fetchApi';
 import DrinksRecommended from './DrinksRecommended';
+import FavoriteBtn from './FavoriteBtn';
+import ShareBtn from './ShareBtn';
+import StartRecipeBtn from './StartRecipeBtn';
 
 export default function DrinkId() {
   const { state, drinkDetails, setStateGlobal } = useContext(RecipesContext);
@@ -66,8 +69,9 @@ export default function DrinkId() {
         </div>
       ))}
       <div>
-        <button type="button" data-testid="favorite-btn">Favoritar</button>
-        <button type="button" data-testid="start-recipe-btn">Iniciar Receita</button>
+        <FavoriteBtn />
+        <ShareBtn />
+        <StartRecipeBtn />
       </div>
       <div className="recommended-recipes ">
         <DrinksRecommended />
