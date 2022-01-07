@@ -6,16 +6,11 @@
   padding: 0;
 }
 
-body {
+.body {
   color: #444;
   font-family: Lato , sans-serif;
   height: 1vh;
 }
-
-/* .container {
-  display: flex;
-  justify-content: center;
-} */
 
 .login-page {
   border: solid 1px black;
@@ -40,6 +35,38 @@ body {
   border-radius: 50%;
   height: 80px;
   width: 80px;
+}
+
+.card-container:any-link {
+  border: 1px green solid;
+  display: inline;
+}
+
+.card-btns {
+  align-items: center;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  width: 1500px;
+}
+
+.drink-card {
+  width: 200px;
+}
+
+.card {
+  border: 1px solid black;
+  padding: 15px;
+  text-align: center;
+  width: 200px;
+}
+
+.card:any-link {
+  display: inline-block;
+}
+
+.card img {
+  width: 150px;
 }
 
 .footer {

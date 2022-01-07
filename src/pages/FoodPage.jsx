@@ -7,7 +7,7 @@ import SearchDrinks from '../components/SearchCard';
 export default function FoodPage() {
   const { busca } = useContext(RecipesContext);
   const foods = () => (
-    <div>
+    <div className="food-card">
       <FoodCard />
       <Footer />
     </div>

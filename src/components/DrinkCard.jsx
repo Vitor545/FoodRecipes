@@ -67,29 +67,33 @@ function DrinkCard() {
   }, []);
 
   return (
-    <div>
-      <button
-        type="submit"
-        data-testid="All-category-filter"
-        onClick={ handleAll }
-      >
-        All
-      </button>
-      { drinkRecipesBtns && drinkRecipesBtns.map(({ strCategory }) => ((
+    <div className="card-container">
+      <div className="card-btns">
         <button
-          key={ strCategory }
           type="submit"
-          name={ strCategory }
-          data-testid={ `${strCategory}-category-filter` }
-          onClick={ handleCategory }
+          data-testid="All-category-filter"
+          onClick={ handleAll }
         >
-          { strCategory }
+          All
         </button>
-      )))}
+        { drinkRecipesBtns && drinkRecipesBtns.map(({ strCategory }) => ((
+          <button
+            key={ strCategory }
+            type="submit"
+            name={ strCategory }
+            data-testid={ `${strCategory}-category-filter` }
+            onClick={ handleCategory }
+          >
+            { strCategory }
+          </button>
+        )))}
+      </div>
       {drinkRecipes && drinkRecipes.map((el, index) => ((
-        <Link to={ `/bebidas/${el.idDrink}` } key={ el.drink }>
+        <Link to={ `/bebidas/${el.idDrink}` } key={ index }>
           <div
             data-testid={ `${index}-recipe-card` }
+            className="card"
+            key={ el.drink }
           >
             <img
               src={ el.strDrinkThumb }
