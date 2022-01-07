@@ -29,6 +29,7 @@ export default function FoodId() {
       .filter((el) => el !== '');
     const valuesMeasure = ingr.map((qty) => foodDetails[0][qty])
       .filter((el) => el !== '');
+    console.log(valuesMeasure);
     return (
       values.map((ing, i) => (
         <li
