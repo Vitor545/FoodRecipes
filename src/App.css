@@ -127,6 +127,10 @@
   position: fixed;
 }
 
+.favorite-btn span {
+  display: block;
+}
+
 
 @media screen and ( max-width : 360px ) {
 
