@@ -71,11 +71,11 @@ export default function DrinkId() {
             <ShareBtn />
             <StartRecipeBtn />
           </div>
+          <div className="recommended-recipes ">
+            <DrinksRecommended />
+          </div>
         </div>
       ))}
-      <div className="recommended-recipes ">
-        <DrinksRecommended />
-      </div>
     </div>
   );
 }
