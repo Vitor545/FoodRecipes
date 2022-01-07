@@ -13,6 +13,41 @@ const locationName = document.location.pathname;
 const messageErro = 'Sinto muito, não encontramos nenhuma receita para esses filtros.';
 
 const RecipesContext = createContext();
+// Chaves para o Local Storage
+const mealsToken = 1;
+const cocktailsToken = 1;
+const user = { email: '' };
+const doneRecipes = [{
+  id: '',
+  type: '',
+  area: '',
+  category: '',
+  alcoholicOrNot: '',
+  name: '',
+  image: '',
+  doneDate: '',
+  tags: '',
+}];
+const favoriteRecipes = [{
+  id: '',
+  type: '',
+  area: '',
+  category: '',
+  alcoholicOrNot: '',
+  name: '',
+  image: '',
+}];
+const inProgressRecipes = {
+  cocktails: {},
+  meals: {},
+};
+// Salvando chaves no Local Storage
+localStorage.setItem('mealsToken', mealsToken);
+localStorage.setItem('cocktailsToken', cocktailsToken);
+localStorage.setItem('user', JSON.stringify(user));
+localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
+localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
 
 const RecipesProvider = ({ children }) => {
   const [state, setStateGlobal] = useState({
@@ -35,6 +70,7 @@ const RecipesProvider = ({ children }) => {
     drinkName: [],
     drinkAll: [],
     foodAll: [],
+    isStarted: false,
     valueInputSearch: '',
     valueClickSearch: '',
     toggleDrink: '',
@@ -50,7 +86,8 @@ const RecipesProvider = ({ children }) => {
     saveFoodRecipes, toggleDrink,
     busca, foodName, drinkDetails,
     foodIng, foodLetter, drinkIng,
-    drinkLetter, drinkName, foodDetails } = state;
+    drinkLetter, drinkName, foodDetails,
+    isStarted } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
@@ -212,6 +249,7 @@ const RecipesProvider = ({ children }) => {
     drinkLetter,
     drinkName,
     foodDetails,
+    isStarted,
     busca };
 
   return (
