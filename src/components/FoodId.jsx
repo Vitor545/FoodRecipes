@@ -33,7 +33,7 @@ export default function FoodId() {
     return (
       values.map((ing, i) => (
         <li
-          key={ ing }
+          key={ i }
           data-testid={ `${i}-ingredient-name-and-measure` }
         >
           {`${ing} - ${valuesMeasure[i]}`}
