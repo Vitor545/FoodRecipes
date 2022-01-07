@@ -28,14 +28,16 @@ export default function DrinkId() {
     const values = ingr.map((ingredient) => drinkDetails[0][ingredient])
       .filter((el) => el !== null);
     const valuesMeasure = measure.map((qty) => drinkDetails[0][qty])
-      .filter((el) => el !== null);
+      .map((el) => (el === null ? '' : el));
+
     return (
       values.map((ing, i) => (
         <li
           key={ ing }
           data-testid={ `${i}-ingredient-name-and-measure` }
         >
-          {`${ing} - ${valuesMeasure[i]}`}
+          {valuesMeasure[i] === ''
+            ? `${ing} ${valuesMeasure[i]}` : `${ing} - ${valuesMeasure[i]}`}
         </li>
       ))
     );
@@ -49,11 +51,12 @@ export default function DrinkId() {
     <div>
       { drinkDetails
       && drinkDetails.map((
-        { idDrink, strDrink, strCategory, strDrinkThumb, strInstructions },
+        { idDrink, strDrink, strCategory, strDrinkThumb, strInstructions, strAlcoholic },
       ) => (
         <div key={ idDrink } className="recipes-card">
           <h3 data-testid="recipe-title">{strDrink}</h3>
           <h4 data-testid="recipe-category">{`Categoria: ${strCategory}`}</h4>
+          <h4 data-testid="recipe-alcohol">{strAlcoholic}</h4>
           <img
             src={ strDrinkThumb }
             alt={ `${strDrink}` }
