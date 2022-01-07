@@ -18,7 +18,7 @@ export default function StartRecipeBtn() {
       className="start-btn"
       onClick={ handleClick }
     >
-      { isStarted ? 'Continuar Receita' : 'Iniciar Receita' }
+      { isStarted ? 'Continue Recipe' : 'Start Recipe' }
     </button>
   );
 }
