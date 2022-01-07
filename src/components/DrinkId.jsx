@@ -46,7 +46,7 @@ export default function DrinkId() {
       && drinkDetails.map((
         { idDrink, strDrink, strCategory, strDrinkThumb, strInstructions, strVideo },
       ) => (
-        <div key={ idDrink }>
+        <div key={ idDrink } className="recipes-card">
           <h3 data-testid="recipe-title">{strDrink}</h3>
           <h4 data-testid="recipe-category">{`Categoria: ${strCategory}`}</h4>
           <img
@@ -66,13 +66,13 @@ export default function DrinkId() {
             <source src="movie.ogg" type="video/ogg" />
             Your browser does not support the video tag.
           </video>
+          <div>
+            <FavoriteBtn />
+            <ShareBtn />
+            <StartRecipeBtn />
+          </div>
         </div>
       ))}
-      <div>
-        <FavoriteBtn />
-        <ShareBtn />
-        <StartRecipeBtn />
-      </div>
       <div className="recommended-recipes ">
         <DrinksRecommended />
       </div>
