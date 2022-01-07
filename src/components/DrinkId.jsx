@@ -27,7 +27,7 @@ export default function DrinkId() {
     const values = ingr.map((ingredient) => drinkDetails[0][ingredient])
       .filter((el) => el !== null);
     const valuesMeasure = measure.map((qty) => drinkDetails[0][qty])
-      .filter((el) => el !== '');
+      .filter((el) => el !== null);
     return (
       values.map((ing, i) => (
         <li
