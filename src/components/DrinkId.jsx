@@ -50,7 +50,7 @@ export default function DrinkId() {
               data-testid="recipe-photo"
             />
             <ul>
-              {drinkDetails && renderIngredients()}
+              {renderIngredients()}
             </ul>
             <p data-testid="instructions">
               {strInstructions}
