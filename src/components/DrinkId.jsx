@@ -39,24 +39,26 @@ export default function DrinkId() {
 
   return (
     <div>
-      { drinkDetails && drinkDetails
-        .map(({ idDrink, strDrink, strCategory, strDrinkThumb, strInstructions }) => (
-          <div key={ idDrink }>
-            <h3 data-testid="recipe-title">{strDrink}</h3>
-            <h4 data-testid="recipe-category">{`Categoria: ${strCategory}`}</h4>
-            <img
-              src={ strDrinkThumb }
-              alt={ `${strDrink}` }
-              data-testid="recipe-photo"
-            />
-            <ul>
-              {renderIngredients()}
-            </ul>
-            <p data-testid="instructions">
-              {strInstructions}
-            </p>
-          </div>
-        ))}
+      { drinkDetails
+      && drinkDetails.map((
+        { idDrink, strDrink, strCategory, strDrinkThumb, strInstructions, strVideo },
+      ) => (
+        <div key={ idDrink }>
+          <h3 data-testid="recipe-title">{strDrink}</h3>
+          <h4 data-testid="recipe-category">{`Categoria: ${strCategory}`}</h4>
+          <img
+            src={ strDrinkThumb }
+            alt={ `${strDrink}` }
+            data-testid="recipe-photo"
+          />
+          <ul>
+            {renderIngredients()}
+          </ul>
+          <p data-testid="instructions">
+            {strInstructions}
+          </p>
+        </div>
+      ))}
       <div>
         <button type="button" data-testid="favorite-btn">Favoritar</button>
         <button type="button" data-testid="start-recipe-btn">Iniciar Receita</button>
