@@ -14,7 +14,7 @@ export default function DrinkId() {
 
   const requestApi = async () => {
     const drink = await drinkDetailsRequest(id);
-    const recomendedFoods = await foodRecipesAPI();
+    // const recomendedFoods = await foodRecipesAPI();
     setStateGlobal({ ...state, drinkDetails: drink });
   };
 

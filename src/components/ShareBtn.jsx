@@ -3,14 +3,18 @@ import clipboardCopy from 'clipboard-copy';
 import shareIcon from '../images/shareIcon.svg';
 
 export default function ShareBtn() {
-  const [state, setState] = useState(false);
+  const [state, setState] = useState({
+    copyLink: false,
+  });
+  const { copyLink } = state;
 
+  const TWO_SECONDS = 2000;
   const shareLink = () => {
     clipboardCopy(window.location.href);
-    setState(true);
+    setState({ ...state, copyLink: true });
     setTimeout(() => {
-      setState(false);
-    }, 2000);
+      setState({ ...state, copyLink: false });
+    }, TWO_SECONDS);
   };
 
   return (
@@ -23,7 +27,7 @@ export default function ShareBtn() {
       >
         <img className="share-icon" src={ shareIcon } alt="favorite icon" />
       </button>
-      <span>{state ? 'Link copiado!' : null}</span>
+      <span>{copyLink ? 'Link copiado!' : null}</span>
     </div>
   );
 }
