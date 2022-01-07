@@ -36,7 +36,8 @@ export default function DrinkId() {
           key={ ing }
           data-testid={ `${i}-ingredient-name-and-measure` }
         >
-          {`${ing} ${valuesMeasure[i]}`}
+          {valuesMeasure[i] === ''
+            ? `${ing} ${valuesMeasure[i]}` : `${ing} - ${valuesMeasure[i]}`}
         </li>
       ))
     );
