@@ -28,14 +28,15 @@ export default function DrinkId() {
     const values = ingr.map((ingredient) => drinkDetails[0][ingredient])
       .filter((el) => el !== null);
     const valuesMeasure = measure.map((qty) => drinkDetails[0][qty])
-      .filter((el) => el !== null);
+      .map((el) => (el === null ? '' : el));
+
     return (
       values.map((ing, i) => (
         <li
           key={ ing }
           data-testid={ `${i}-ingredient-name-and-measure` }
         >
-          {`${ing} - ${valuesMeasure[i]}`}
+          {`${ing} ${valuesMeasure[i]}`}
         </li>
       ))
     );
