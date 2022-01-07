@@ -122,6 +122,11 @@
   width: 50px;
 }
 
+.start-btn {
+  position: fixed;
+  bottom: 0px;
+}
+
 
 @media screen and ( max-width : 360px ) {
 
@@ -160,5 +165,10 @@
 
   .header {
     padding: 100px;
+  }
+
+  .start-btn {
+    position: fixed;
+    bottom: 0px;
   }
 }

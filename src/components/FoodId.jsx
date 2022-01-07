@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import { foodDetailsRequest } from '../fetchApi/fetchApi';
+import { drinkRecipesAPI, foodDetailsRequest } from '../fetchApi/fetchApi';
 import FoodsRecommended from './FoodsRecommended';
 import FavoriteBtn from './FavoriteBtn';
 import ShareBtn from './ShareBtn';
@@ -15,6 +15,7 @@ export default function FoodId() {
 
   const requestApi = async () => {
     const food = await foodDetailsRequest(id);
+    const recomendedDrinks = await drinkRecipesAPI();
     setStateGlobal({ ...state, foodDetails: food });
   };
 
@@ -27,7 +28,7 @@ export default function FoodId() {
     // Fazendo um map pelas chaves e pegando os valores dessas chaves em foodDetails
     const values = ingr.map((ingredient) => foodDetails[0][ingredient])
       .filter((el) => el !== '');
-    const valuesMeasure = ingr.map((qty) => foodDetails[0][qty])
+    const valuesMeasure = measure.map((qty) => foodDetails[0][qty])
       .filter((el) => el !== '');
     return (
       values.map((ing, i) => (

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { RecipesContext } from '../contexts/RecipesContext';
-import { drinkDetailsRequest } from '../fetchApi/fetchApi';
+import { drinkDetailsRequest, foodRecipesAPI } from '../fetchApi/fetchApi';
 import DrinksRecommended from './DrinksRecommended';
 import FavoriteBtn from './FavoriteBtn';
 import ShareBtn from './ShareBtn';
@@ -14,6 +14,7 @@ export default function DrinkId() {
 
   const requestApi = async () => {
     const drink = await drinkDetailsRequest(id);
+    const recomendedFoods = await foodRecipesAPI();
     setStateGlobal({ ...state, drinkDetails: drink });
   };
 
@@ -21,8 +22,12 @@ export default function DrinkId() {
     // Pegando todas as chaves de drinkDetails que contenham Ingredient no nome
     const ingr = Object.keys(drinkDetails[0])
       .filter((key) => key.includes('Ingredient'));
+    const measure = Object.keys(drinkDetails[0])
+      .filter((key) => key.includes('Measure'));
     // Fazendo um map pelas chaves e pegando os valores dessas chaves em drinkDetails
     const values = ingr.map((ingredient) => drinkDetails[0][ingredient])
+      .filter((el) => el !== null);
+    const valuesMeasure = measure.map((qty) => drinkDetails[0][qty])
       .filter((el) => el !== null);
     return (
       values.map((ing, i) => (
@@ -30,7 +35,7 @@ export default function DrinkId() {
           key={ ing }
           data-testid={ `${i}-ingredient-name-and-measure` }
         >
-          {ing}
+          {`${ing} - ${valuesMeasure[i]}`}
         </li>
       ))
     );
