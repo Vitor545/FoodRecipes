@@ -68,7 +68,7 @@ export default function DrinkId() {
           <div>
             <FavoriteBtn />
             <ShareBtn />
-            <StartRecipeBtn />
+            {/* <StartRecipeBtn /> */}
           </div>
           <div className="recommended-recipes">
             <DrinksRecommended />
