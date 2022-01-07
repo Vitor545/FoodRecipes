@@ -10,9 +10,27 @@ export default function DrinkId() {
   const { id } = useParams();
 
   const requestApi = async () => {
-    const drinks = await drinkDetailsRequest(id);
-    console.log(drinks);
-    setStateGlobal({ ...state, drinkDetails: drinks });
+    const drink = await drinkDetailsRequest(id);
+    setStateGlobal({ ...state, drinkDetails: drink });
+  };
+
+  const renderIngredients = () => {
+    // Pegando todas as chaves de drinkDetails que contenham Ingredient no nome
+    const ingr = Object.keys(drinkDetails[0])
+      .filter((key) => key.includes('Ingredient'));
+    // Fazendo um map pelas chaves e pegando os valores dessas chaves em drinkDetails
+    const values = ingr.map((ingredient) => drinkDetails[0][ingredient])
+      .filter((el) => el !== null);
+    return (
+      values.map((ing, i) => (
+        <li
+          key={ ing }
+          data-testid={ `${i}-ingredient-name-and-measure` }
+        >
+          {ing}
+        </li>
+      ))
+    );
   };
 
   useEffect(() => {
@@ -21,41 +39,24 @@ export default function DrinkId() {
 
   return (
     <div>
-      { drinkDetails && drinkDetails.map((element) => (
-        <div key={ element.idDrink }>
-          <h3 data-testid="recipe-title">{element.strDrink}</h3>
-          <h4 data-testid="recipe-category">{`Categoria: ${element.strCategory}`}</h4>
-          <img
-            src={ element.strDrinkThumb }
-            alt={ `${element.strDrink}` }
-            data-testid="recipe-photo"
-          />
-          <ul>
-            {Object.keys(drinkDetails[0])
-              .filter((ingr) => ingr.includes('Ingredient'))
-              .map((strIngre, index) => (
-                <li
-                  key={ strIngre }
-                  data-testid={ `${index}-ingredient-name-and-measure` }
-                >
-                  {element[strIngre]}
-                </li>
-              ))}
-            {/* {drinkDetails.filter((ing, index) => (
-
-              <li
-                key={ ing }
-                data-testid={ `${index}-ingredient-name-and-measure` }
-              >
-                {ing}
-              </li>
-            ))} */}
-          </ul>
-          <p data-testid="instructions">
-            {element.strInstructions}
-          </p>
-        </div>
-      ))}
+      { drinkDetails && drinkDetails
+        .map(({ idDrink, strDrink, strCategory, strDrinkThumb, strInstructions }) => (
+          <div key={ idDrink }>
+            <h3 data-testid="recipe-title">{strDrink}</h3>
+            <h4 data-testid="recipe-category">{`Categoria: ${strCategory}`}</h4>
+            <img
+              src={ strDrinkThumb }
+              alt={ `${strDrink}` }
+              data-testid="recipe-photo"
+            />
+            <ul>
+              {drinkDetails && renderIngredients()}
+            </ul>
+            <p data-testid="instructions">
+              {strInstructions}
+            </p>
+          </div>
+        ))}
       <div>
         <button type="button" data-testid="favorite-btn">Favoritar</button>
         <button type="button" data-testid="start-recipe-btn">Iniciar Receita</button>
