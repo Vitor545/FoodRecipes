@@ -42,7 +42,7 @@ export default function FoodId() {
     <div>
       { foodDetails && foodDetails
         .map(({ idMeal, strMeal, strCategory, strMealThumb, strInstructions }) => (
-          <div key={ idMeal }>
+          <div key={ idMeal } className="recipes-card">
             <h3 data-testid="recipe-title">{strMeal}</h3>
             <h4 data-testid="recipe-category">{`Categoria: ${strCategory}`}</h4>
             <img
@@ -58,10 +58,6 @@ export default function FoodId() {
             </p>
           </div>
         ))}
-      <div>
-        <button type="button" data-testid="favorite-btn">Favoritar</button>
-        <button type="button" data-testid="start-recipe-btn">Iniciar Receita</button>
-      </div>
       <div className="recommended-recipes ">
         <FoodsRecommended />
       </div>

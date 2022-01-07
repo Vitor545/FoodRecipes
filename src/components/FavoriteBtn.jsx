@@ -6,7 +6,7 @@ export default function FavoriteBtn() {
       type="button"
       data-testid="favorite-btn"
     >
-      Compartilhar
+      Favoritar
     </button>
   );
 }
