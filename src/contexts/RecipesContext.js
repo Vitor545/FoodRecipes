@@ -47,7 +47,9 @@ const RecipesProvider = ({ children }) => {
     foodRecipes, drinkRecipes, drinkRecipesBtns, foodRecipesBTN,
     toggleFood, saveDrinkRecipes,
     saveFoodRecipes, toggleDrink,
-    busca, foodName, drinkDetails } = state;
+    busca, foodName, drinkDetails,
+    foodIng, foodLetter, drinkIng,
+    drinkLetter, drinkName } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
@@ -96,18 +98,19 @@ const RecipesProvider = ({ children }) => {
         return history.push(`/bebidas/${bebidasName.map((obj) => obj.idDrink)}`);
       }
       setStateGlobal({ ...state, drinkName: bebidasName, busca: true });
+    } else {
+      const comidasName = await urlNames(valueInputSearch);
+      if (comidasName === null) {
+        return (
+          global.alert(messageErro)
+        );
+      }
+      if (comidasName.length === 1) {
+        setStateGlobal({ ...state, foodName: comidasName });
+        return history.push(`/comidas/${comidasName.map((obj) => obj.idMeal)}`);
+      }
+      return setStateGlobal({ ...state, foodName: comidasName, busca: true });
     }
-    const comidasName = await urlNames(valueInputSearch);
-    if (comidasName === null) {
-      return (
-        global.alert(messageErro)
-      );
-    }
-    if (comidasName.length === 1) {
-      setStateGlobal({ ...state, foodName: comidasName });
-      return history.push(`/comidas/${comidasName.map((obj) => obj.idMeal)}`);
-    }
-    return setStateGlobal({ ...state, foodName: comidasName, busca: true });
   };
 
   const caseLetter = async () => {
@@ -201,6 +204,12 @@ const RecipesProvider = ({ children }) => {
     handleChangeSearch,
     setStateGlobal,
     foodName,
+    valueClickSearch,
+    foodIng,
+    foodLetter,
+    drinkIng,
+    drinkLetter,
+    drinkName,
     busca };
 
   return (

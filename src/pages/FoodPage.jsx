@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import FoodCard from '../components/FoodCard';
 import Footer from '../components/Footer';
+import { RecipesContext } from '../contexts/RecipesContext';
+import SearchDrinks from '../components/SearchCard';
 
 export default function FoodPage() {
-  return (
+  const { busca } = useContext(RecipesContext);
+  const foods = () => (
     <div className="food-card">
       <FoodCard />
       <Footer />
     </div>
+  );
+  return (
+    busca === true ? <SearchDrinks /> : foods()
   );
 }

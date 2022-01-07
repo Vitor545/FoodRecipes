@@ -10,8 +10,13 @@ export const urlIBebidas = async (digitado) => {
 export const urlNameBebidas = async (digitado) => {
   const urlNameBebida = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${digitado}`;
   const response = await fetch(urlNameBebida);
-  const userData = await response.json();
-  return userData.drinks;
+  try {
+    const userData = await response.json();
+    return userData.drinks;
+  } catch (e) {
+    return global.alert(`Sinto muito, não encontramos nenhuma 
+        receita para esses filtros.`);
+  }
 };
 
 export const urlPBebidas = async (digitado) => {
