@@ -4,7 +4,7 @@ import { RecipesContext } from '../contexts/RecipesContext';
 import '@splidejs/splide/dist/css/themes/splide-skyblue.min.css';
 
 export default function DrinksRecommended() {
-  const { drinkRecipes } = useContext(RecipesContext);
+  const { drinkRecom } = useContext(RecipesContext);
   return (
     <Splide
       options={ {
@@ -14,10 +14,10 @@ export default function DrinksRecommended() {
 
       } }
     >
-      {drinkRecipes.filter((el, i) => i < Number('6')).map((obj, index) => (
-        <SplideSlide key={ index }>
-          <img src={ obj.strDrinkThumb } alt=" 1" />
-          <h5>{obj.strDrink}</h5>
+      {drinkRecom.filter((el, i) => i < Number('6')).map((obj, index) => (
+        <SplideSlide key={ index } data-testid={ `${index}-recomendation-card` }>
+          <div data-testid={ `${index}-recomendation-title` }>{obj.strMeal}</div>
+          <img src={ obj.strMealThumb } alt=" 1" />
         </SplideSlide>
       ))}
     </Splide>

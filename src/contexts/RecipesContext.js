@@ -55,6 +55,7 @@ const RecipesProvider = ({ children }) => {
     foodIng: [],
     foodLetter: [],
     foodName: [],
+    foodRecom: [],
     foodRecipes: [],
     foodRecipesBTN: [],
     saveFoodRecipes: [],
@@ -65,6 +66,7 @@ const RecipesProvider = ({ children }) => {
     foodDetails: [],
     drinkRecipesBtns: [],
     drinkIng: [],
+    drinkRecom: [],
     drinkLetter: [],
     drinkName: [],
     isStarted: false,
@@ -79,7 +81,7 @@ const RecipesProvider = ({ children }) => {
   const { email, password, valueInputSearch, valueClickSearch, foodRecipes, drinkRecipes,
     drinkRecipesBtns, foodRecipesBTN, toggleFood, saveDrinkRecipes, saveFoodRecipes,
     toggleDrink, busca, foodName, drinkDetails, foodIng, foodLetter, drinkIng,
-    drinkLetter, drinkName, foodDetails, isStarted } = state;
+    drinkLetter, drinkName, foodDetails, isStarted, foodRecom, drinkRecom } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
@@ -210,7 +212,9 @@ const RecipesProvider = ({ children }) => {
     drinkName,
     foodDetails,
     isStarted,
-    busca };
+    busca,
+    foodRecom,
+    drinkRecom };
 
   return (
     <RecipesContext.Provider value={ context }>
