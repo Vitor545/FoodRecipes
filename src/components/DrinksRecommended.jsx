@@ -4,7 +4,7 @@ import { RecipesContext } from '../contexts/RecipesContext';
 import '@splidejs/splide/dist/css/themes/splide-skyblue.min.css';
 
 export default function DrinksRecommended() {
-  const { drinkDetails } = useContext(RecipesContext);
+  const { drinkRecipes } = useContext(RecipesContext);
   return (
     <Splide
       options={ {
@@ -14,24 +14,12 @@ export default function DrinksRecommended() {
 
       } }
     >
-      <SplideSlide>
-        <img src="https://garagem360.com.br/wp-content/uploads/2021/08/ALTA20-1.jpeg" alt=" 1" />
-      </SplideSlide>
-      <SplideSlide>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUw8YgGgDIffvTTiIB4VCtRkTIV1sF7brzBw&usqp=CAU" alt=" 2" />
-      </SplideSlide>
-      <SplideSlide>
-        <img src="https://www.thecocktaildb.com/images/media/drink/vyxwut1468875960.jpg" alt=" 3" />
-      </SplideSlide>
-      <SplideSlide>
-        <img src="https://garagem360.com.br/wp-content/uploads/2021/08/ALTA20-1.jpeg" alt=" 1" />
-      </SplideSlide>
-      <SplideSlide>
-        <img src="https://www.thecocktaildb.com/images/media/drink/vyxwut1468875960.jpg" alt=" 3" />
-      </SplideSlide>
-      <SplideSlide>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUw8YgGgDIffvTTiIB4VCtRkTIV1sF7brzBw&usqp=CAU" alt=" 2" />
-      </SplideSlide>
+      {drinkRecipes.filter((el, i) => i < Number('6')).map((obj, index) => (
+        <SplideSlide key={ index }>
+          <img src={ obj.strDrinkThumb } alt=" 1" />
+          <h5>{obj.strDrink}</h5>
+        </SplideSlide>
+      ))}
     </Splide>
   );
 }

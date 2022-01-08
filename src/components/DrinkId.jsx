@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { RecipesContext } from '../contexts/RecipesContext';
-import { drinkDetailsRequest, foodRecipesAPI } from '../fetchApi/fetchApi';
+import { drinkDetailsRequest } from '../fetchApi/fetchApi';
 import DrinksRecommended from './DrinksRecommended';
 import FavoriteBtn from './FavoriteBtn';
 import ShareBtn from './ShareBtn';

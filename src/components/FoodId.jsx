@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import { drinkRecipesAPI, foodDetailsRequest } from '../fetchApi/fetchApi';
+import { foodDetailsRequest } from '../fetchApi/fetchApi';
 import FoodsRecommended from './FoodsRecommended';
 import FavoriteBtn from './FavoriteBtn';
 import ShareBtn from './ShareBtn';
@@ -15,7 +15,7 @@ export default function FoodId() {
 
   const requestApi = async () => {
     const food = await foodDetailsRequest(id);
-    const recomendedDrinks = await drinkRecipesAPI();
+    // const recomendedDrinks = await drinkRecipesAPI();
     setStateGlobal({ ...state, foodDetails: food });
   };
 
