@@ -75,7 +75,7 @@ export default function FoodId() {
           </video>
           <div>
             <ShareBtn />
-            <FavoriteBtn />
+            <FavoriteBtn currentRecipe={ foodDetails } />
             <StartRecipeBtn />
           </div>
           <div className="recommended-recipes ">

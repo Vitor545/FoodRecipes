@@ -125,7 +125,7 @@
 .start-btn {
   bottom: 0;
   position: fixed;
-  z-index: 2;
+  z-index: 10;
 }
 
 .favorite-btn span {
@@ -175,6 +175,6 @@
   .start-btn {
     bottom: 0;
     position: fixed;
-    z-index: 2;
+    z-index: 10;
   }
 }

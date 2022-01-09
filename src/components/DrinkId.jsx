@@ -70,7 +70,7 @@ export default function DrinkId() {
             {strInstructions}
           </p>
           <div>
-            <FavoriteBtn />
+            <FavoriteBtn currentRecipe={ drinkDetails } />
             <ShareBtn />
             <StartRecipeBtn />
           </div>

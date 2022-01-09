@@ -13,18 +13,18 @@ const doneRecipes = [{
   doneDate: '',
   tags: '',
 }];
-const favoriteRecipes = [{
-  id: '',
-  type: '',
-  area: '',
-  category: '',
-  alcoholicOrNot: '',
-  name: '',
-  image: '',
-}];
+// const favoriteRecipes = [{
+//   id: '',
+//   type: '',
+//   area: '',
+//   category: '',
+//   alcoholicOrNot: '',
+//   name: '',
+//   image: '',
+// }];
 // Salvando chaves no Local Storage
 localStorage.setItem('mealsToken', mealsToken);
 localStorage.setItem('cocktailsToken', cocktailsToken);
 localStorage.setItem('user', JSON.stringify(user));
 localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
-localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
+// localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));

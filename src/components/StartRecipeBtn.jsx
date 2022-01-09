@@ -57,10 +57,8 @@ export default function StartRecipeBtn() {
   };
 
   useEffect(() => {
-    console.log(infoFromLocal.meals);
     const isSaved = Object.keys(infoFromLocal.meals).includes(id)
       || Object.keys(infoFromLocal.cocktails).includes(id);
-    console.log(isSaved);
     if (isSaved) {
       setStateGlobal({ ...state, isStarted: true });
     } else {
