@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { fetchFoodAreas, fetchFoodFromOrigin } from '../fetchApi/fetchApi';
@@ -39,7 +40,7 @@ export default function ExploreFoodFromOrigin() {
     <div>
       Explore Food From Origin
       <select data-testid="explore-by-area-dropdown" onChange={ handleChange }>
-        <option>All</option>
+        <option data-testid="All-option">All</option>
         { foodAreas && foodAreas.map(({ strArea }) => {
           if (strArea === 'American') {
             return (
@@ -52,11 +53,13 @@ export default function ExploreFoodFromOrigin() {
         })}
       </select>
 
-      {foodFromAreas && foodFromAreas.map(({ strMeal, strMealThumb }, index) => (
-        <div key={ strMeal } data-testid={ `${index}-recipe-card` }>
-          <img src={ strMealThumb } alt="" data-testid={ `${index}-card-img` } />
-          <h2 data-testid={ `${index}-card-name` }>{strMeal}</h2>
-        </div>
+      {foodFromAreas && foodFromAreas.map(({ strMeal, strMealThumb, idMeal }, index) => (
+        <Link key={ strMeal } to={ `/comidas/${idMeal}` }>
+          <div data-testid={ `${index}-recipe-card` }>
+            <img src={ strMealThumb } alt="" data-testid={ `${index}-card-img` } />
+            <h2 data-testid={ `${index}-card-name` }>{strMeal}</h2>
+          </div>
+        </Link>
       ))}
       <Footer />
     </div>
