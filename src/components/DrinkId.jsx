@@ -7,7 +7,7 @@ import FavoriteBtn from './FavoriteBtn';
 import ShareBtn from './ShareBtn';
 import StartRecipeBtn from './StartRecipeBtn';
 
-export default function DrinkId() {
+export default function DrinkId({ history }) {
   const { state, drinkDetails, setStateGlobal } = useContext(RecipesContext);
   const [bugButton, setBugButton] = useState(false);
 
@@ -114,7 +114,7 @@ export default function DrinkId() {
           </div>
         </div>
       ))}
-      <StartRecipeBtn bugBtn={ bugButton } />
+      <StartRecipeBtn bugBtn={ bugButton } history={ history } />
     </div>
   );
 }

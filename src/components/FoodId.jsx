@@ -7,7 +7,7 @@ import ShareBtn from './ShareBtn';
 import StartRecipeBtn from './StartRecipeBtn';
 import { RecipesContext } from '../contexts/RecipesContext';
 
-export default function FoodId() {
+export default function FoodId({ history }) {
   // const { foodName } = useContext(RecipesContext);
   const { state, foodDetails, setStateGlobal } = useContext(RecipesContext);
   const [bugButton, setBugButton] = useState(false);
@@ -95,11 +95,11 @@ export default function FoodId() {
           <div>
             <ShareBtn />
             <FavoriteBtn currentRecipe={ foodDetails } />
-            <StartRecipeBtn bugbtn={ bugButton } />
           </div>
           <div className="recommended-recipes ">
             <FoodsRecommended />
           </div>
+          <StartRecipeBtn bugBtn={ bugButton } history={ history } />
         </div>
       ))}
     </div>

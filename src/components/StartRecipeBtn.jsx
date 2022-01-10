@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useHistory, useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
-export default function StartRecipeBtn(props) {
+export default function StartRecipeBtn({ bugBtn, history }) {
   const { id } = useParams();
-  const history = useHistory();
   const { pathname } = useLocation();
 
   const inProgressPage = async () => {
@@ -14,8 +13,6 @@ export default function StartRecipeBtn(props) {
       history.push(`/bebidas/${id}/in-progress`);
     }
   };
-
-  const { bugBtn } = props;
 
   return (
     <button
@@ -31,4 +28,7 @@ export default function StartRecipeBtn(props) {
 
 StartRecipeBtn.propTypes = {
   bugBtn: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
