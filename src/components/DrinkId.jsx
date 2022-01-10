@@ -1,5 +1,4 @@
-import React, { useContext, useEffect } from 'react';
-import { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { drinkDetailsRequest, urlNames } from '../fetchApi/fetchApi';
@@ -107,13 +106,13 @@ export default function DrinkId() {
           <div>
             <FavoriteBtn currentRecipe={ drinkDetails } />
             <ShareBtn />
-            <StartRecipeBtn bugBtn={ bugButton } />
           </div>
           <div className="recommended-recipes">
             <DrinksRecommended />
           </div>
         </div>
       ))}
+      <StartRecipeBtn bugBtn={ bugButton } />
     </div>
   );
 }

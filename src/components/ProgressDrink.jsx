@@ -11,6 +11,7 @@ export default function ProgressDrink() {
       meals: {},
     };
   }
+
   const gettingDrink = async () => {
     const fillDrink = await drinkDetailsRequest(id);
     console.log(fillDrink);

@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types';
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { RecipesContext } from '../contexts/RecipesContext';
