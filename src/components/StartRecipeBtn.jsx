@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { drinkDetailsRequest } from '../fetchApi/fetchApi';
 
-export default function StartRecipeBtn() {
+export default function StartRecipeBtn(props) {
   const { state, isStarted, setStateGlobal } = useContext(RecipesContext);
   const { id } = useParams();
   const history = useHistory();
@@ -43,36 +43,13 @@ export default function StartRecipeBtn() {
   const inProgressPage = async () => {
     const some = await drinkDetailsRequest(id);
     if (some) {
-      console.log(history);
       history.push(`/bebidas/${id}/in-progress`);
     } else {
-      console.log(history);
       history.push(`/comidas/${id}/in-progress`);
     }
   };
 
-  useEffect(() => {
-    let infoFromLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (!infoFromLocal) {
-      infoFromLocal = {
-        cocktails: {},
-        meals: {},
-      };
-    }
-    console.log(infoFromLocal);
-    const isSaved = Object.keys(infoFromLocal.meals).includes(id)
-      || Object.keys(infoFromLocal.cocktails).includes(id);
-    console.log(Object.keys(infoFromLocal.meals).includes(id));
-    console.log(Object.keys(infoFromLocal.cocktails).includes(id));
-    console.log(isSaved);
-    if (isSaved) {
-      setStateGlobal({ ...state, isStarted: true });
-    } else {
-      setStateGlobal({ ...state, isStarted: false });
-    }
-  }, []);
-
-  console.log('teste');
+  const { bugBtn } = props;
 
   return (
     <button
@@ -81,7 +58,7 @@ export default function StartRecipeBtn() {
       className="start-btn"
       onClick={ inProgressPage }
     >
-      { isStarted ? 'Continuar Receita' : 'Iniciar Receita' }
+      { bugBtn ? 'Continuar Receita' : 'Iniciar Receita' }
     </button>
   );
 }
