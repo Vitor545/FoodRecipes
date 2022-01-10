@@ -108,13 +108,13 @@ export default function DrinkId() {
           <div>
             <FavoriteBtn currentRecipe={ drinkDetails } />
             <ShareBtn />
-            <StartRecipeBtn bugBtn={ bugButton } />
           </div>
           <div className="recommended-recipes">
             <DrinksRecommended />
           </div>
         </div>
       ))}
+      <StartRecipeBtn bugBtn={ bugButton } />
     </div>
   );
 }

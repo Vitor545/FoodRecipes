@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { useHistory, useParams, useLocation } from 'react-router-dom';
-import { RecipesContext } from '../contexts/RecipesContext';
 
 export default function StartRecipeBtn(props) {
-  const { state, isStarted, setStateGlobal } = useContext(RecipesContext);
   const { id } = useParams();
   const history = useHistory();
   const { pathname } = useLocation();
@@ -29,3 +28,7 @@ export default function StartRecipeBtn(props) {
     </button>
   );
 }
+
+StartRecipeBtn.propTypes = {
+  bugBtn: PropTypes.bool.isRequired,
+};
