@@ -10,7 +10,7 @@ import { RecipesContext } from '../contexts/RecipesContext';
 export default function FoodId() {
   // const { foodName } = useContext(RecipesContext);
   const { state, foodDetails, setStateGlobal } = useContext(RecipesContext);
-  // const [currentRecipe, setCurrent] = useState([]);
+  const [bugButton, setBugButton] = useState(false);
 
   const { id } = useParams();
 
@@ -47,6 +47,22 @@ export default function FoodId() {
 
   useEffect(() => {
     requestApi();
+    let infoFromLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (!infoFromLocal) {
+      infoFromLocal = {
+        cocktails: {},
+        meals: {},
+      };
+    }
+    const isSaved = Object.keys(infoFromLocal.meals).includes(id)
+      || Object.keys(infoFromLocal.cocktails).includes(id);
+    if (isSaved) {
+      setBugButton(true);
+      // setStateGlobal({ ...state, isStarted: true });
+    } else {
+      setBugButton(false);
+      // setStateGlobal({ ...state, isStarted: false });
+    }
   }, []);
 
   return (
@@ -78,7 +94,7 @@ export default function FoodId() {
           <div>
             <ShareBtn />
             <FavoriteBtn currentRecipe={ foodDetails } />
-            <StartRecipeBtn />
+            <StartRecipeBtn bugbtn={ bugButton } />
           </div>
           <div className="recommended-recipes ">
             <FoodsRecommended />
