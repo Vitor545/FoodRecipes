@@ -29,6 +29,7 @@
   font-weight: 700;
   height: 80px;
   justify-content: space-evenly;
+  width: 100%;
 }
 
 .header button {
