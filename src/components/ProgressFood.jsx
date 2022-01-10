@@ -1,10 +1,8 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import { RecipesContext } from '../contexts/RecipesContext';
 import { foodDetailsRequest } from '../fetchApi/fetchApi';
 
 export default function ProgressFood() {
-  const { state, foodDetails, setStateGlobal } = useContext(RecipesContext);
   const { id } = useParams();
   let infoFromLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
   if (!infoFromLocal) {

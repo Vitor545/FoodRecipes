@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { foodDetailsRequest, urlNameBebidas } from '../fetchApi/fetchApi';
 import FoodsRecommended from './FoodsRecommended';
@@ -10,12 +10,14 @@ import { RecipesContext } from '../contexts/RecipesContext';
 export default function FoodId() {
   // const { foodName } = useContext(RecipesContext);
   const { state, foodDetails, setStateGlobal } = useContext(RecipesContext);
+  // const [currentRecipe, setCurrent] = useState([]);
 
   const { id } = useParams();
 
   const requestApi = async () => {
     const foodRecommended = await urlNameBebidas('');
     const food = await foodDetailsRequest(id);
+    // setCurrent(food);
     // const recomendedDrinks = await drinkRecipesAPI();
     setStateGlobal({ ...state, foodRecom: foodRecommended, foodDetails: food });
   };

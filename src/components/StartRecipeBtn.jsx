@@ -7,13 +7,6 @@ export default function StartRecipeBtn() {
   const { state, isStarted, setStateGlobal } = useContext(RecipesContext);
   const { id } = useParams();
   const history = useHistory();
-  let infoFromLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  if (!infoFromLocal) {
-    infoFromLocal = {
-      cocktails: {},
-      meals: {},
-    };
-  }
 
   // const ingr = Object.keys(foodDetails[0])
   //   .filter((key) => key.includes('Ingredient'));
@@ -49,22 +42,37 @@ export default function StartRecipeBtn() {
 
   const inProgressPage = async () => {
     const some = await drinkDetailsRequest(id);
-    if (some !== null) {
+    if (some) {
+      console.log(history);
       history.push(`/bebidas/${id}/in-progress`);
     } else {
+      console.log(history);
       history.push(`/comidas/${id}/in-progress`);
     }
   };
 
   useEffect(() => {
+    let infoFromLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (!infoFromLocal) {
+      infoFromLocal = {
+        cocktails: {},
+        meals: {},
+      };
+    }
+    console.log(infoFromLocal);
     const isSaved = Object.keys(infoFromLocal.meals).includes(id)
       || Object.keys(infoFromLocal.cocktails).includes(id);
+    console.log(Object.keys(infoFromLocal.meals).includes(id));
+    console.log(Object.keys(infoFromLocal.cocktails).includes(id));
+    console.log(isSaved);
     if (isSaved) {
       setStateGlobal({ ...state, isStarted: true });
     } else {
       setStateGlobal({ ...state, isStarted: false });
     }
   }, []);
+
+  console.log('teste');
 
   return (
     <button

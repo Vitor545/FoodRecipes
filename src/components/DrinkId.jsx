@@ -52,12 +52,12 @@ export default function DrinkId() {
     <div>
       { drinkDetails
       && drinkDetails.map((
-        { idDrink, strDrink, strCategory, strDrinkThumb, strInstructions, strAlcoholic },
+        { idDrink, strDrink, strDrinkThumb, strInstructions, strAlcoholic },
       ) => (
+        // Problema com key única
         <div key={ idDrink } className="recipes-card">
           <h3 data-testid="recipe-title">{strDrink}</h3>
-          <h4 data-testid="recipe-category">{`Categoria: ${strCategory}`}</h4>
-          <h4 data-testid="recipe-alcohol">{strAlcoholic}</h4>
+          <h4 data-testid="recipe-category">{`Categoria: ${strAlcoholic}`}</h4>
           <img
             src={ strDrinkThumb }
             alt={ `${strDrink}` }
