@@ -16,6 +16,7 @@ import DrinkId from './DrinkId';
 import FavoritesRecipes from '../pages/FavoritesRecipes';
 import ProgressFood from './ProgressFood';
 import ProgressDrink from './ProgressDrink';
+import NotFound from '../pages/NotFound';
 
 export default function Routes() {
   return (
@@ -44,6 +45,7 @@ export default function Routes() {
       <Route exact path="/explorar/comidas/area" component={ ExploreFoodFromOrigin } />
       <Route exact path="/receitas-feitas" component={ RecipeMadePage } />
       <Route exact path="/receitas-favoritas" component={ FavoritesRecipes } />
+      <Route path="*" component={ NotFound } />
     </Switch>
   );
 }
