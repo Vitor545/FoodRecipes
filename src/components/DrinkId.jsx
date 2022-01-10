@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { RecipesContext } from '../contexts/RecipesContext';
@@ -7,7 +8,7 @@ import FavoriteBtn from './FavoriteBtn';
 import ShareBtn from './ShareBtn';
 import StartRecipeBtn from './StartRecipeBtn';
 
-export default function DrinkId() {
+export default function DrinkId({ history }) {
   const { state, drinkDetails, setStateGlobal } = useContext(RecipesContext);
 
   const { id } = useParams();
@@ -44,20 +45,39 @@ export default function DrinkId() {
     );
   };
 
+  // useEffect(() => {
+  //   let infoFromLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  //   if (!infoFromLocal) {
+  //     infoFromLocal = {
+  //       cocktails: {},
+  //       meals: {},
+  //     };
+  //   }
+  //   const isSaved = Object.keys(infoFromLocal.meals).includes(id)
+  //     || Object.keys(infoFromLocal.cocktails).includes(id);
+  //   if (isSaved) {
+  //     setStateGlobal({ ...state, isStarted: true });
+  //   } else {
+  //     setStateGlobal({ ...state, isStarted: false });
+  //   }
+  // }, []);
+
   useEffect(() => {
     requestApi();
   }, []);
+
+  console.log('teste');
 
   return (
     <div>
       { drinkDetails
       && drinkDetails.map((
-        { idDrink, strDrink, strCategory, strDrinkThumb, strInstructions, strAlcoholic },
+        { idDrink, strDrink, strDrinkThumb, strInstructions, strAlcoholic },
       ) => (
+        // Problema com key única
         <div key={ idDrink } className="recipes-card">
           <h3 data-testid="recipe-title">{strDrink}</h3>
-          <h4 data-testid="recipe-category">{`Categoria: ${strCategory}`}</h4>
-          <h4 data-testid="recipe-alcohol">{strAlcoholic}</h4>
+          <h4 data-testid="recipe-category">{`Categoria: ${strAlcoholic}`}</h4>
           <img
             src={ strDrinkThumb }
             alt={ `${strDrink}` }
@@ -70,15 +90,19 @@ export default function DrinkId() {
             {strInstructions}
           </p>
           <div>
-            <FavoriteBtn />
+            <FavoriteBtn currentRecipe={ drinkDetails } />
             <ShareBtn />
-            <StartRecipeBtn />
           </div>
           <div className="recommended-recipes">
             <DrinksRecommended />
           </div>
         </div>
       ))}
+      <StartRecipeBtn history={ history } />
     </div>
   );
 }
+
+DrinkId.propTypes = {
+  history: PropTypes.string.isRequired,
+};

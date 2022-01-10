@@ -12,42 +12,6 @@ const locationName = document.location.pathname;
 const messageErro = 'Sinto muito, não encontramos nenhuma receita para esses filtros.';
 
 const RecipesContext = createContext();
-// Chaves para o Local Storage
-// const mealsToken = 1;
-// const cocktailsToken = 1;
-// const user = { email: '' };
-// const doneRecipes = [{
-//   id: '',
-//   type: '',
-//   area: '',
-//   category: '',
-//   alcoholicOrNot: '',
-//   name: '',
-//   image: '',
-//   doneDate: '',
-//   tags: '',
-// }];
-// const favoriteRecipes = [{
-//   id: '',
-//   type: '',
-//   area: '',
-//   category: '',
-//   alcoholicOrNot: '',
-//   name: '',
-//   image: '',
-// }];
-// const inProgressRecipes = {
-//   cocktails: {},
-//   meals: {},
-// };
-// // Salvando chaves no Local Storage
-// localStorage.setItem('mealsToken', mealsToken);
-// localStorage.setItem('cocktailsToken', cocktailsToken);
-// localStorage.setItem('user', JSON.stringify(user));
-// localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
-// localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
-// localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
-
 const RecipesProvider = ({ children }) => {
   const [state, setStateGlobal] = useState({
     email: '',
@@ -76,15 +40,18 @@ const RecipesProvider = ({ children }) => {
     valueClickSearch: '',
     toggleDrink: '',
     toggleFood: '',
+    foodIngrList: [],
     busca: false,
   });
 
   const history = useHistory();
-  const { email, password, valueInputSearch, valueClickSearch, foodRecipes, drinkRecipes,
-    drinkRecipesBtns, foodRecipesBTN, toggleFood, saveDrinkRecipes, saveFoodRecipes,
-    toggleDrink, busca, foodName, drinkDetails, foodIng, foodLetter, drinkIng,
-    drinkLetter, drinkName,
-    foodDetails, isStarted, foodRecom, drinkRecom, foodAreas, foodFromAreas } = state;
+  const { email, password, valueInputSearch, valueClickSearch,
+    foodRecipes, drinkRecipes, drinkRecipesBtns, foodRecipesBTN,
+    toggleFood, saveDrinkRecipes, saveFoodRecipes, toggleDrink,
+    busca, foodName, drinkDetails, foodIng,
+    foodLetter, drinkIng, drinkLetter, drinkName,
+    foodDetails, isStarted, foodIngrList, foodRecom, drinkRecom,
+    foodAreas, foodFromAreas } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
@@ -217,9 +184,10 @@ const RecipesProvider = ({ children }) => {
     drinkName,
     foodDetails,
     isStarted,
-    busca,
+    foodIngrList,
     foodRecom,
-    drinkRecom };
+    drinkRecom,
+    busca };
 
   return (
     <RecipesContext.Provider value={ context }>

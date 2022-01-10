@@ -14,6 +14,8 @@ import RecipeMadePage from '../pages/RecipeMadePage';
 import FoodId from './FoodId';
 import DrinkId from './DrinkId';
 import FavoritesRecipes from '../pages/FavoritesRecipes';
+import ProgressFood from './ProgressFood';
+import ProgressDrink from './ProgressDrink';
 import NotFound from '../pages/NotFound';
 
 export default function Routes() {
@@ -21,10 +23,12 @@ export default function Routes() {
     <Switch>
       <Route exact path="/" component={ LoginPage } />
       <Route exact path="/bebidas" component={ DrinksPage } />
-      <Route path="/bebidas/:id" component={ DrinkId } />
+      <Route exact path="/bebidas/:id/in-progress" component={ ProgressDrink } />
+      <Route exact path="/bebidas/:id" component={ DrinkId } />
       <Route exact path="/explorar" component={ ExplorePage } />
       <Route exact path="/comidas" component={ FoodPage } />
-      <Route path="/comidas/:id" component={ FoodId } />
+      <Route exact path="/comidas/:id/in-progress" component={ ProgressFood } />
+      <Route exact path="/comidas/:id" component={ FoodId } />
       <Route exact path="/perfil" component={ Perfil } />
       <Route exact path="/explorar/comidas" component={ FoodExplorePage } />
       <Route exact path="/explorar/bebidas" component={ DrinksExplorePage } />
