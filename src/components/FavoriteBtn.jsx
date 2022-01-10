@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { RecipesContext } from '../contexts/RecipesContext';
+// import { RecipesContext } from '../contexts/RecipesContext';
 import blackFavoriteIcon from '../images/blackHeartIcon.svg';
 import whiteFavoriteIcon from '../images/whiteHeartIcon.svg';
 import favoriteRecipes from '../services/localStorage';
 
 export default function FavoriteBtn(props) {
-  const { state, drinkDetails, foodDetails, setStateGlobal } = useContext(RecipesContext);
+  // const { state, drinkDetails, foodDetails, setStateGlobal } = useContext(RecipesContext);
   const [isClicked, setState] = useState({ isFavorited: false });
   const gettingFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
   const { id } = useParams();
