@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 
-export default function StartRecipeBtn({ bugBtn, history }) {
+const locationName = document.location.pathname;
+
+export default function StartRecipeBtn({ history }) {
   const { id } = useParams();
   const { pathname } = useLocation();
+  const [bugButton, setBugButton] = useState(false);
 
   const inProgressPage = async () => {
     if (pathname.includes('comidas')) {
@@ -14,6 +17,26 @@ export default function StartRecipeBtn({ bugBtn, history }) {
     }
   };
 
+  useEffect(() => {
+    let infoFromLocal = localStorage.getItem('inProgressRecipes');
+    if (infoFromLocal) {
+      infoFromLocal = JSON.parse(infoFromLocal);
+      const isSaved = (locationName.includes('/comidas')
+      && Object.keys(infoFromLocal.meals).includes(id))
+      || (locationName.includes('/bebidas')
+      && Object.keys(infoFromLocal.cocktails).includes(id));
+      console.log(infoFromLocal);
+      if (isSaved) {
+        setBugButton(true);
+        console.log('teste');
+        // setStateGlobal({ ...state, isStarted: true });
+      } else {
+        setBugButton(false);
+        // setStateGlobal({ ...state, isStarted: false });
+      }
+    }
+  }, []);
+
   return (
     <button
       type="button"
@@ -21,13 +44,12 @@ export default function StartRecipeBtn({ bugBtn, history }) {
       className="start-btn"
       onClick={ inProgressPage }
     >
-      { bugBtn ? 'Continuar Receita' : 'Iniciar Receita' }
+      { bugButton ? 'Continuar Receita' : 'Iniciar Receita' }
     </button>
   );
 }
 
 StartRecipeBtn.propTypes = {
-  bugBtn: PropTypes.bool.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,

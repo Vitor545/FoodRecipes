@@ -18,7 +18,6 @@ export default function FavoriteBtn(props) {
   const alreadyFavorite = () => {
     if (gettingFavorites) {
       const bool = gettingFavorites.some((obj) => obj.id === id);
-      console.log(bool);
       return bool;
     }
     return false;
@@ -48,11 +47,13 @@ export default function FavoriteBtn(props) {
     if (gettingFavorites) {
       if (alreadyFavorite()) {
         setState({ ...isClicked, isFavorited: true });
+      } else {
+        setState({ ...isClicked, isFavorited: false });
       }
+    } else {
+      localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
       setState({ ...isClicked, isFavorited: false });
     }
-    localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
-    setState({ ...isClicked, isFavorited: false });
   }, []);
 
   return (

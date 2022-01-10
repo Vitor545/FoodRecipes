@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { drinkDetailsRequest, urlNames } from '../fetchApi/fetchApi';
@@ -10,7 +10,6 @@ import StartRecipeBtn from './StartRecipeBtn';
 
 export default function DrinkId({ history }) {
   const { state, drinkDetails, setStateGlobal } = useContext(RecipesContext);
-  const [bugButton, setBugButton] = useState(false);
 
   const { id } = useParams();
 
@@ -65,22 +64,6 @@ export default function DrinkId({ history }) {
 
   useEffect(() => {
     requestApi();
-    let infoFromLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (!infoFromLocal) {
-      infoFromLocal = {
-        cocktails: {},
-        meals: {},
-      };
-    }
-    const isSaved = Object.keys(infoFromLocal.meals).includes(id)
-      || Object.keys(infoFromLocal.cocktails).includes(id);
-    if (isSaved) {
-      setBugButton(true);
-      // setStateGlobal({ ...state, isStarted: true });
-    } else {
-      setBugButton(false);
-      // setStateGlobal({ ...state, isStarted: false });
-    }
   }, []);
 
   console.log('teste');
@@ -115,7 +98,7 @@ export default function DrinkId({ history }) {
           </div>
         </div>
       ))}
-      <StartRecipeBtn bugBtn={ bugButton } history={ history } />
+      <StartRecipeBtn history={ history } />
     </div>
   );
 }
