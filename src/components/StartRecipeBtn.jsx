@@ -1,10 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { RecipesContext } from '../contexts/RecipesContext';
+import PropTypes from 'prop-types';
 import { drinkDetailsRequest } from '../fetchApi/fetchApi';
 
 export default function StartRecipeBtn(props) {
-  const { state, isStarted, setStateGlobal } = useContext(RecipesContext);
   const { id } = useParams();
   const history = useHistory();
 
@@ -62,3 +61,7 @@ export default function StartRecipeBtn(props) {
     </button>
   );
 }
+
+StartRecipeBtn.propTypes = {
+  bugBtn: PropTypes.bool,
+}.isRequerid;
