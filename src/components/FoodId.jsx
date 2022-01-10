@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { foodDetailsRequest, urlNameBebidas } from '../fetchApi/fetchApi';
@@ -105,3 +106,7 @@ export default function FoodId({ history }) {
     </div>
   );
 }
+
+FoodId.propTypes = {
+  history: PropTypes.func.isRequired,
+};
