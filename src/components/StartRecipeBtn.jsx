@@ -1,19 +1,18 @@
 import React, { useContext } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, useLocation } from 'react-router-dom';
 import { RecipesContext } from '../contexts/RecipesContext';
-import { drinkDetailsRequest } from '../fetchApi/fetchApi';
 
 export default function StartRecipeBtn(props) {
   const { state, isStarted, setStateGlobal } = useContext(RecipesContext);
   const { id } = useParams();
   const history = useHistory();
+  const { pathname } = useLocation();
 
   const inProgressPage = async () => {
-    const some = await drinkDetailsRequest(id);
-    if (some) {
-      history.push(`/bebidas/${id}/in-progress`);
-    } else {
+    if (pathname.includes('comidas')) {
       history.push(`/comidas/${id}/in-progress`);
+    } else {
+      history.push(`/bebidas/${id}/in-progress`);
     }
   };
 

@@ -58,6 +58,7 @@ export default function FoodId() {
       || Object.keys(infoFromLocal.cocktails).includes(id);
     if (isSaved) {
       setBugButton(true);
+      console.log('teste');
       // setStateGlobal({ ...state, isStarted: true });
     } else {
       setBugButton(false);

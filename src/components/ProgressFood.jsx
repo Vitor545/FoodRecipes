@@ -13,7 +13,6 @@ export default function ProgressFood() {
   }
   const gettingFood = async () => {
     const fillFood = await foodDetailsRequest(id);
-    console.log(fillFood);
     const ingr = Object.keys(fillFood[0])
       .filter((key) => key.includes('Ingredient'));
     const values = ingr.map((ingredient) => fillFood[0][ingredient])

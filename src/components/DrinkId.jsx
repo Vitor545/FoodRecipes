@@ -82,6 +82,8 @@ export default function DrinkId() {
     }
   }, []);
 
+  console.log('teste');
+
   return (
     <div>
       { drinkDetails
