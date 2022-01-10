@@ -21,7 +21,7 @@ export default function Routes() {
       <Route exact path="/" component={ LoginPage } />
       <Route exact path="/bebidas" component={ DrinksPage } />
       <Route path="/bebidas/:id" component={ DrinkId } />
-      <Route path="/explorar" component={ ExplorePage } />
+      <Route exact path="/explorar" component={ ExplorePage } />
       <Route exact path="/comidas" component={ FoodPage } />
       <Route path="/comidas/:id" component={ FoodId } />
       <Route path="/perfil" component={ Perfil } />
