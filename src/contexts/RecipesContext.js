@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 import React, { createContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { urlIBebidas, urlNameBebidas,
-  urlPBebidas, urlIs, urlNames, urlPs, allUrls,
-  allUrlsCocks }
+  urlPBebidas, urlIs, urlNames, urlPs }
   from '../fetchApi/fetchApi';
 
 // Source useHistory - https://dev.to/ino_gu/utilizando-usehistory-no-react-bgf
@@ -13,7 +12,6 @@ const locationName = document.location.pathname;
 const messageErro = 'Sinto muito, não encontramos nenhuma receita para esses filtros.';
 
 const RecipesContext = createContext();
-
 const RecipesProvider = ({ children }) => {
   const [state, setStateGlobal] = useState({
     email: '',
@@ -21,44 +19,48 @@ const RecipesProvider = ({ children }) => {
     foodIng: [],
     foodLetter: [],
     foodName: [],
+    foodRecom: [],
     foodRecipes: [],
     foodRecipesBTN: [],
+    saveFoodRecipes: [],
+    foodAreas: [],
+    foodFromAreas: [],
     drinkRecipes: [],
     saveDrinkRecipes: [],
-    saveFoodRecipes: [],
     saveDrinkToggle: [],
+    drinkDetails: [],
+    foodDetails: [],
     drinkRecipesBtns: [],
     drinkIng: [],
+    drinkRecom: [],
     drinkLetter: [],
     drinkName: [],
-    drinkAll: [],
-    foodAll: [],
+    isStarted: false,
     valueInputSearch: '',
     valueClickSearch: '',
     toggleDrink: '',
     toggleFood: '',
+    foodIngrList: [],
     busca: false,
   });
 
   const history = useHistory();
-  const { email, password,
-    valueInputSearch, valueClickSearch,
+  const { email, password, valueInputSearch, valueClickSearch,
     foodRecipes, drinkRecipes, drinkRecipesBtns, foodRecipesBTN,
-    toggleFood, saveDrinkRecipes, saveFoodRecipes, toggleDrink, busca, foodName } = state;
+    toggleFood, saveDrinkRecipes, saveFoodRecipes, toggleDrink,
+    busca, foodName, drinkDetails, foodIng,
+    foodLetter, drinkIng, drinkLetter, drinkName,
+    foodDetails, isStarted, foodIngrList, foodRecom, drinkRecom,
+    foodAreas, foodFromAreas } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
       try {
         const bebidasIn = await urlIBebidas(valueInputSearch);
-        if (!bebidasIn) {
-          return (
-            global.alert(messageErro)
-          );
-        }
+        if (!bebidasIn) return (global.alert(messageErro));
         if (bebidasIn.length === 1) {
           setStateGlobal({ ...state, drinkIng: bebidasIn });
-          return history.push(`/bebidas/${bebidasIn
-            .map((obj) => obj.idDrink)}`);
+          return history.push(`/bebidas/${bebidasIn.map((obj) => obj.idDrink)}`);
         }
         return setStateGlobal({ ...state, drinkIng: bebidasIn, busca: true });
       } catch (e) {
@@ -66,15 +68,10 @@ const RecipesProvider = ({ children }) => {
       }
     } else {
       const comidasIn = await urlIs(valueInputSearch);
-      if (comidasIn === null) {
-        return (
-          global.alert(messageErro)
-        );
-      }
+      if (comidasIn === null) return (global.alert(messageErro));
       if (comidasIn.length === 1) {
         setStateGlobal({ ...state, foodIng: comidasIn });
-        return history.push(`/comidas/${comidasIn
-          .map((obj) => obj.idMeal)}`);
+        return history.push(`/comidas/${comidasIn.map((obj) => obj.idMeal)}`);
       }
       return setStateGlobal({ ...state, foodIng: comidasIn, busca: true });
     }
@@ -83,28 +80,21 @@ const RecipesProvider = ({ children }) => {
   const caseName = async () => {
     if (locationName === '/bebidas') {
       const bebidasName = await urlNameBebidas(valueInputSearch);
-      if (bebidasName === null) {
-        return (
-          global.alert(messageErro)
-        );
-      }
+      if (bebidasName === null) return (global.alert(messageErro));
       if (bebidasName.length === 1) {
         setStateGlobal({ ...state, drinkName: bebidasName });
         return history.push(`/bebidas/${bebidasName.map((obj) => obj.idDrink)}`);
       }
       setStateGlobal({ ...state, drinkName: bebidasName, busca: true });
+    } else {
+      const comidasName = await urlNames(valueInputSearch);
+      if (comidasName === null) return (global.alert(messageErro));
+      if (comidasName.length === 1) {
+        setStateGlobal({ ...state, foodName: comidasName });
+        return history.push(`/comidas/${comidasName.map((obj) => obj.idMeal)}`);
+      }
+      return setStateGlobal({ ...state, foodName: comidasName, busca: true });
     }
-    const comidasName = await urlNames(valueInputSearch);
-    if (comidasName === null) {
-      return (
-        global.alert(messageErro)
-      );
-    }
-    if (comidasName.length === 1) {
-      setStateGlobal({ ...state, foodName: comidasName });
-      return history.push(`/comidas/${comidasName.map((obj) => obj.idMeal)}`);
-    }
-    return setStateGlobal({ ...state, foodName: comidasName, busca: true });
   };
 
   const caseLetter = async () => {
@@ -113,11 +103,7 @@ const RecipesProvider = ({ children }) => {
     }
     if (locationName === '/bebidas') {
       const bebidasLetter = await urlPBebidas(valueInputSearch);
-      if (bebidasLetter === null) {
-        return (
-          global.alert(messageErro)
-        );
-      }
+      if (bebidasLetter === null) return (global.alert(messageErro));
       if (bebidasLetter.length === 1) {
         setStateGlobal({ ...state, drinkLetter: bebidasLetter });
         return history.push(`/bebidas/${bebidasLetter.map((obj) => obj.idDrink)}`);
@@ -125,11 +111,7 @@ const RecipesProvider = ({ children }) => {
       return setStateGlobal({ ...state, drinkLetter: bebidasLetter, busca: true });
     }
     const comidasLetter = await urlPs(valueInputSearch);
-    if (comidasLetter === null) {
-      return (
-        global.alert(messageErro)
-      );
-    }
+    if (comidasLetter === null) return (global.alert(messageErro));
     if (comidasLetter.length === 1) {
       setStateGlobal({ ...state, foodLetter: comidasLetter });
       return history.push(`/comidas/${comidasLetter.map((obj) => obj.idMeal)}`);
@@ -157,13 +139,7 @@ const RecipesProvider = ({ children }) => {
       await caseLetter();
       break;
     default:
-      if (locationName === '/bebidas') {
-        const allbebidas = await allUrlsCocks();
-        setStateGlobal({ ...state, drinkAll: allbebidas });
-      } else {
-        const allcomidas = await allUrls();
-        setStateGlobal({ ...state, foodAll: allcomidas });
-      }
+      console.log('Default');
     }
   };
 
@@ -185,9 +161,12 @@ const RecipesProvider = ({ children }) => {
     foodRecipes,
     foodRecipesBTN,
     saveFoodRecipes,
+    foodAreas,
+    foodFromAreas,
     drinkRecipes,
     saveDrinkRecipes,
     drinkRecipesBtns,
+    drinkDetails,
     toggleFood,
     toggleDrink,
     handleChange,
@@ -197,6 +176,17 @@ const RecipesProvider = ({ children }) => {
     handleChangeSearch,
     setStateGlobal,
     foodName,
+    valueClickSearch,
+    foodIng,
+    foodLetter,
+    drinkIng,
+    drinkLetter,
+    drinkName,
+    foodDetails,
+    isStarted,
+    foodIngrList,
+    foodRecom,
+    drinkRecom,
     busca };
 
   return (
