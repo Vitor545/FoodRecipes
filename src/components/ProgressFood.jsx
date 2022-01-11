@@ -114,7 +114,7 @@ export default function ProgressFood() {
           </div>
         </div>
       ))}
-      <FinishRecipeBtn />
+      <FinishRecipeBtn recipeControl={ currentFood } />
     </div>
   );
 }

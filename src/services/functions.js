@@ -13,3 +13,11 @@ export const updateLocalDrink = (list, id) => {
     localStorage.setItem('inProgressRecipes', JSON.stringify(newInfoFromLocal));
   }
 };
+
+export const verification = (arrLocal, arrFunc, id) => {
+  if (arrLocal.meals[id].length
+    === arrFunc.length || arrLocal.cocktails[id].length === arrFunc.length) {
+    return false;
+  }
+  return true;
+};

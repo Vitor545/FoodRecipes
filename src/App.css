@@ -130,6 +130,13 @@
   z-index: 12;
 }
 
+.finish-btn {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  z-index: 12;
+}
+
 .favorite-btn span {
   display: block;
 }
@@ -186,6 +193,13 @@
   }
 
   .start-btn {
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    z-index: 12;
+  }
+  
+  .finish-btn {
     bottom: 0;
     left: 0;
     position: fixed;
