@@ -66,8 +66,6 @@ export default function DrinkId({ history }) {
     requestApi();
   }, []);
 
-  console.log('teste');
-
   return (
     <div>
       { drinkDetails
