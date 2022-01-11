@@ -12,7 +12,6 @@ const locationName = document.location.pathname;
 const messageErro = 'Sinto muito, não encontramos nenhuma receita para esses filtros.';
 
 const RecipesContext = createContext();
-
 const RecipesProvider = ({ children }) => {
   const [state, setStateGlobal] = useState({
     email: '',
@@ -24,6 +23,8 @@ const RecipesProvider = ({ children }) => {
     foodRecipes: [],
     foodRecipesBTN: [],
     saveFoodRecipes: [],
+    foodAreas: [],
+    foodFromAreas: [],
     drinkRecipes: [],
     saveDrinkRecipes: [],
     saveDrinkToggle: [],
@@ -49,7 +50,8 @@ const RecipesProvider = ({ children }) => {
     toggleFood, saveDrinkRecipes, saveFoodRecipes, toggleDrink,
     busca, foodName, drinkDetails, foodIng,
     foodLetter, drinkIng, drinkLetter, drinkName,
-    foodDetails, isStarted, foodIngrList, foodRecom, drinkRecom } = state;
+    foodDetails, isStarted, foodIngrList, foodRecom, drinkRecom,
+    foodAreas, foodFromAreas } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
@@ -159,6 +161,8 @@ const RecipesProvider = ({ children }) => {
     foodRecipes,
     foodRecipesBTN,
     saveFoodRecipes,
+    foodAreas,
+    foodFromAreas,
     drinkRecipes,
     saveDrinkRecipes,
     drinkRecipesBtns,
