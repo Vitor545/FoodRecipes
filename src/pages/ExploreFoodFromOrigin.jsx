@@ -83,6 +83,7 @@ export default function ExploreFoodFromOrigin() {
             </div>
           </Link>
         ))}
+
       <Footer />
     </div>
   );

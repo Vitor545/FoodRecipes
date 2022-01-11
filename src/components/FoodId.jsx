@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { foodDetailsRequest, urlNameBebidas } from '../fetchApi/fetchApi';
@@ -7,8 +8,7 @@ import ShareBtn from './ShareBtn';
 import StartRecipeBtn from './StartRecipeBtn';
 import { RecipesContext } from '../contexts/RecipesContext';
 
-export default function FoodId() {
-  // const { foodName } = useContext(RecipesContext);
+export default function FoodId({ history }) {
   const { state, foodDetails, setStateGlobal } = useContext(RecipesContext);
 
   const { id } = useParams();
@@ -16,7 +16,6 @@ export default function FoodId() {
   const requestApi = async () => {
     const foodRecommended = await urlNameBebidas('');
     const food = await foodDetailsRequest(id);
-    // const recomendedDrinks = await drinkRecipesAPI();
     setStateGlobal({ ...state, foodRecom: foodRecommended, foodDetails: food });
   };
 
@@ -34,7 +33,7 @@ export default function FoodId() {
     return (
       values.map((ing, i) => (
         <li
-          key={ ing }
+          key={ i }
           data-testid={ `${i}-ingredient-name-and-measure` }
         >
           {`${ing} - ${valuesMeasure[i]}`}
@@ -75,14 +74,18 @@ export default function FoodId() {
           </video>
           <div>
             <ShareBtn />
-            <FavoriteBtn />
-            <StartRecipeBtn />
+            <FavoriteBtn currentRecipe={ foodDetails } />
           </div>
           <div className="recommended-recipes ">
             <FoodsRecommended />
           </div>
+          <StartRecipeBtn history={ history } />
         </div>
       ))}
     </div>
   );
 }
+
+FoodId.propTypes = {
+  history: PropTypes.func.isRequired,
+};

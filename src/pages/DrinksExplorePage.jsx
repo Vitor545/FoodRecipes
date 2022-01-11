@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ExploreFromOriginBtn from '../components/ExploreFromOriginBtn';
 import { Link } from 'react-router-dom';
+import ExploreFromOriginBtn from '../components/ExploreFromOriginBtn';
 import Footer from '../components/Footer';
 
 export default function DrinksExplorePage() {
