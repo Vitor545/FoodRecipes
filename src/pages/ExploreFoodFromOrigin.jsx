@@ -58,7 +58,7 @@ export default function ExploreFoodFromOrigin() {
 
   return (
     <div>
-      Explore Food From Origin
+      <p>Explore Food From Origin</p>
       <select data-testid="explore-by-area-dropdown" onChange={ handleChange }>
         <option data-testid="All-option">All</option>
         {foodAreas
