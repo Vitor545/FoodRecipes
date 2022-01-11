@@ -9,13 +9,13 @@ export default function ExploreFromOriginBtn() {
     if (pathname === '/explorar/comidas') {
       history.push('/explorar/comidas/area');
     } else {
-      history.push('/explorar/bebeidas/area');
+      history.push('/explorar/bebidas/area');
     }
   };
 
   return (
     <div>
-      <button type="button" onClick={ handleClick }>
+      <button type="button" onClick={ handleClick } data-testid="explore-by-area">
         Por Origem
       </button>
     </div>
