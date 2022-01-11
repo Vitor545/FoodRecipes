@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@sheerun/mutationobserver-shim": "^0.3.3",
+    "@splidejs/react-splide": "^0.6.17",
+    "@splidejs/splide": "^3.6.9",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",

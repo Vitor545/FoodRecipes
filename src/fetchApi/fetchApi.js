@@ -104,3 +104,31 @@ export const drinkFilterCategory = async (drink) => {
   const responseJson = await responseRaw.json();
   return responseJson.drinks;
 };
+
+export const drinkDetailsRequest = async (id) => {
+  const urlName = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.drinks;
+};
+
+export const foodDetailsRequest = async (id) => {
+  const urlName = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.meals;
+};
+
+export const fetchFoodAreas = async () => {
+  const urlName = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.meals;
+};
+
+export const fetchFoodFromOrigin = async (local) => {
+  const urlName = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${local}`;
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.meals;
+};
