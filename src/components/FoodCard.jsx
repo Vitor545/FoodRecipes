@@ -1,17 +1,21 @@
 import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { RecipesContext } from '../contexts/RecipesContext';
-import { fetchFoodCategory,
+import {
+  fetchFoodCategory,
   foodRecipesAPI,
-  foodRecipesCategoryAPI } from '../fetchApi/fetchApi';
+  foodRecipesCategoryAPI,
+} from '../fetchApi/fetchApi';
 
 function FoodCard() {
-  const { state,
+  const {
+    state,
     setStateGlobal,
     saveFoodRecipes,
     toggleFood,
     foodRecipes,
-    foodRecipesBTN } = useContext(RecipesContext);
+    foodRecipesBTN,
+  } = useContext(RecipesContext);
 
   const AMOUNT_NUMBER = 12;
   const AMOUNT_NUMBER_BTN = 5;
@@ -32,10 +36,12 @@ function FoodCard() {
       }
       return null;
     });
-    setStateGlobal({ ...state,
+    setStateGlobal({
+      ...state,
       foodRecipes: foodFiltered,
       foodRecipesBTN: btnFiltered,
-      saveFoodRecipes: foodFiltered });
+      saveFoodRecipes: foodFiltered,
+    });
   };
 
   async function handleCategory({ target }) {
@@ -52,7 +58,11 @@ function FoodCard() {
 
       setStateGlobal({ ...state, foodRecipes: categoryFilter, toggleFood: id });
     } else if (toggleFood === id) {
-      setStateGlobal({ ...state, toggleFood: '', foodRecipes: saveFoodRecipes });
+      setStateGlobal({
+        ...state,
+        toggleFood: '',
+        foodRecipes: saveFoodRecipes,
+      });
     } else {
       const filterCategory = await fetchFoodCategory(id);
 
@@ -81,39 +91,33 @@ function FoodCard() {
         >
           All Recipes
         </button>
-        {foodRecipesBTN && foodRecipesBTN.map((el) => ((
-          <button
-            key={ el.strCategory }
-            type="button"
-            data-testid={ `${el.strCategory}-category-filter` }
-            onClick={ handleCategory }
-            id={ el.strCategory }
-          >
-            {el.strCategory}
-            {' '}
-          </button>
-        )))}
+        {foodRecipesBTN
+          && foodRecipesBTN.map((el) => (
+            <button
+              key={ el.strCategory }
+              type="button"
+              data-testid={ `${el.strCategory}-category-filter` }
+              onClick={ handleCategory }
+              id={ el.strCategory }
+            >
+              {el.strCategory}
+              {' '}
+            </button>
+          ))}
       </div>
-      {foodRecipes && foodRecipes.map((el, index) => ((
-        <Link
-          key={ el.idMeal }
-          to={ `/comidas/${el.idMeal}` }
-        >
-          <div
-            data-testid={ `${index}-recipe-card` }
-            className="card"
-          >
-            <img
-              src={ el.strMealThumb }
-              alt=""
-              data-testid={ `${index}-card-img` }
-            />
-            <h3 data-testid={ `${index}-card-name` }>
-              {el.strMeal}
-            </h3>
-          </div>
-        </Link>)
-      ))}
+      {foodRecipes
+        && foodRecipes.map((el, index) => (
+          <Link key={ el.idMeal } to={ `/comidas/${el.idMeal}` }>
+            <div data-testid={ `${index}-recipe-card` } className="card">
+              <img
+                src={ el.strMealThumb }
+                alt=""
+                data-testid={ `${index}-card-img` }
+              />
+              <h3 data-testid={ `${index}-card-name` }>{el.strMeal}</h3>
+            </div>
+          </Link>
+        ))}
     </div>
   );
 }
