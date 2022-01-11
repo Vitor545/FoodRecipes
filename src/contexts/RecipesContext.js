@@ -25,6 +25,8 @@ const RecipesProvider = ({ children }) => {
     saveFoodRecipes: [],
     foodAreas: [],
     foodFromAreas: [],
+    exploreIngredients: [],
+    exploreImgIngredients: [],
     drinkRecipes: [],
     saveDrinkRecipes: [],
     saveDrinkToggle: [],
@@ -51,7 +53,7 @@ const RecipesProvider = ({ children }) => {
     busca, foodName, drinkDetails, foodIng,
     foodLetter, drinkIng, drinkLetter, drinkName,
     foodDetails, isStarted, foodIngrList, foodRecom, drinkRecom,
-    foodAreas, foodFromAreas } = state;
+    foodAreas, foodFromAreas, exploreIngredients, exploreImgIngredients } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
@@ -163,6 +165,8 @@ const RecipesProvider = ({ children }) => {
     saveFoodRecipes,
     foodAreas,
     foodFromAreas,
+    exploreIngredients,
+    exploreImgIngredients,
     drinkRecipes,
     saveDrinkRecipes,
     drinkRecipesBtns,

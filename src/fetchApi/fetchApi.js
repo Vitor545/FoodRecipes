@@ -132,3 +132,19 @@ export const fetchFoodFromOrigin = async (local) => {
   const responseJson = await responseRaw.json();
   return responseJson.meals;
 };
+
+export const fetchIngredients = async () => {
+  const urlName = `https://www.themealdb.com/api/json/v1/1/list.php?i=list`;
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  console.log(responseJson);
+  return responseJson.meals;
+};
+
+export const fetchImgIngredients = async (ingredientIMG) => {
+  const urlName = `www.themealdb.com/images/ingredients/${ingredientIMG}.png`;
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  console.log(responseJson);
+  return responseJson.meals;
+};
