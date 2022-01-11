@@ -4,23 +4,22 @@ import { foodDetailsRequest } from '../fetchApi/fetchApi';
 import FavoriteBtn from './FavoriteBtn';
 import ShareBtn from './ShareBtn';
 import FinishRecipeBtn from './FinishRecipeBtn';
+import { updateLocalFood } from '../services/functions';
 
 export default function ProgressFood() {
   const [currentFood, setCurrentFood] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [ingrList, setIngrList] = useState([]);
   const { id } = useParams();
-  let infoFromLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  if (!infoFromLocal) {
-    infoFromLocal = {
-      cocktails: {},
-      meals: {},
-    };
-  }
 
-  const handleDoneIngredient = ({ target }) => {
-    if (target.checked) {
-      console.log(target.content);
+  const handleChange = ({ target }) => {
+    if (ingrList.includes(target.name)) {
+      const filteredList = ingrList.filter((el) => el !== target.name);
+      // console.log(filteredList);
+      setIngrList(filteredList);
     } else {
-      console.log('saiu');
+      const newArr = [...ingrList, target.name];
+      setIngrList(newArr);
     }
   };
 
@@ -44,8 +43,10 @@ export default function ProgressFood() {
         >
           <input
             className="input-ingredient"
+            name={ ing }
             type="checkbox"
-            onClick={ handleDoneIngredient }
+            checked={ ingrList.includes(ing) }
+            onChange={ handleChange }
           />
           {`${ing} - ${valuesMeasure[i] ? valuesMeasure[i] : ''}`}
         </label>
@@ -54,23 +55,41 @@ export default function ProgressFood() {
   };
 
   const gettingFood = async () => {
+    let infoFromLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (!infoFromLocal) {
+      infoFromLocal = {
+        cocktails: {},
+        meals: {},
+      };
+    }
     const fillFood = await foodDetailsRequest(id);
     setCurrentFood(fillFood);
-    const ingr = Object.keys(fillFood[0])
-      .filter((key) => key.includes('Ingredient'));
-    const values = ingr.map((ingredient) => fillFood[0][ingredient])
-      .filter((el) => el !== '' && el !== null);
-    infoFromLocal.meals = { ...infoFromLocal.meals, [id]: values };
-    localStorage.setItem('inProgressRecipes', JSON.stringify(infoFromLocal));
+    if (!infoFromLocal.meals[id]) {
+      infoFromLocal.meals = { ...infoFromLocal.meals,
+        [id]: [] };
+      setIngrList(infoFromLocal.meals[id]);
+      localStorage.setItem('inProgressRecipes', JSON.stringify(infoFromLocal));
+    }
+    setIngrList(infoFromLocal.meals[id]);
+    setIsLoading(false);
   };
 
   useEffect(() => {
     gettingFood();
+    // inProgressIngredients();
   }, []);
 
+  useEffect(() => {
+    updateLocalFood(ingrList, id);
+  }, [ingrList]);
+
+  if (isLoading) {
+    return (
+      <h1>LOADING...</h1>
+    );
+  }
   return (
     <div>
-      { console.log(currentFood) }
       { currentFood
       && currentFood.map((
         { idMeal, strMeal, strCategory, strMealThumb, strInstructions },

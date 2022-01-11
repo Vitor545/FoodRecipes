@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { drinkDetailsRequest } from '../fetchApi/fetchApi';
+import { updateLocalDrink } from '../services/functions';
 import FavoriteBtn from './FavoriteBtn';
 import FinishRecipeBtn from './FinishRecipeBtn';
 import ShareBtn from './ShareBtn';
 
 export default function ProgressDrink() {
-  const { id } = useParams();
   const [currentDrink, setCurrentDrink] = useState([]);
-  let infoFromLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  if (!infoFromLocal) {
-    infoFromLocal = {
-      cocktails: {},
-      meals: {},
-    };
-  }
+  const [isLoading, setIsLoading] = useState(true);
+  const [ingrList, setIngrList] = useState([]);
+  const { id } = useParams();
+
+  const handleChange = ({ target }) => {
+    if (ingrList.includes(target.name)) {
+      const filteredList = ingrList.filter((el) => el !== target.name);
+      // console.log(filteredList);
+      setIngrList(filteredList);
+    } else {
+      const newArr = [...ingrList, target.name];
+      setIngrList(newArr);
+    }
+  };
 
   const renderProgressDrink = () => {
     // Pegando todas as chaves de foodDetails que contenham Ingredient no nome
@@ -36,7 +43,10 @@ export default function ProgressDrink() {
         >
           <input
             className="input-ingredient"
+            name={ ing }
             type="checkbox"
+            checked={ ingrList.includes(ing) }
+            onChange={ handleChange }
           />
           {`${ing} - ${valuesMeasure[i] ? valuesMeasure[i] : ''}`}
         </label>
@@ -45,20 +55,38 @@ export default function ProgressDrink() {
   };
 
   const gettingDrink = async () => {
+    let infoFromLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (!infoFromLocal) {
+      infoFromLocal = {
+        cocktails: {},
+        meals: {},
+      };
+    }
     const fillDrink = await drinkDetailsRequest(id);
     setCurrentDrink(fillDrink);
-    const ingr = Object.keys(fillDrink[0])
-      .filter((key) => key.includes('Ingredient'));
-    const values = ingr.map((ingredient) => fillDrink[0][ingredient])
-      .filter((el) => el !== null);
-    infoFromLocal.cocktails = { ...infoFromLocal.cocktails, [id]: values };
-    localStorage.setItem('inProgressRecipes', JSON.stringify(infoFromLocal));
+    if (!infoFromLocal.cocktails[id]) {
+      infoFromLocal.cocktails = { ...infoFromLocal.cocktails,
+        [id]: [] };
+      setIngrList(infoFromLocal.cocktails[id]);
+      localStorage.setItem('inProgressRecipes', JSON.stringify(infoFromLocal));
+    }
+    setIngrList(infoFromLocal.cocktails[id]);
+    setIsLoading(false);
   };
 
   useEffect(() => {
     gettingDrink();
   }, []);
 
+  useEffect(() => {
+    updateLocalDrink(ingrList, id);
+  }, [ingrList]);
+
+  if (isLoading) {
+    return (
+      <h1>LOADING...</h1>
+    );
+  }
   return (
     <div>
       { currentDrink
