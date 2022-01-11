@@ -52,7 +52,6 @@ export default function ExploreFoodFromOrigin() {
           );
         })}
       </select>
-
       {foodFromAreas && foodFromAreas.map(({ strMeal, strMealThumb, idMeal }, index) => (
         <Link key={ strMeal } to={ `/comidas/${idMeal}` }>
           <div data-testid={ `${index}-recipe-card` }>
