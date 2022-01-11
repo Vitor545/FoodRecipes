@@ -16,6 +16,14 @@ export default function ProgressFood() {
     };
   }
 
+  const handleDoneIngredient = ({ target }) => {
+    if (target.checked) {
+      console.log(target.content);
+    } else {
+      console.log('saiu');
+    }
+  };
+
   const renderProgressFood = () => {
     // Pegando todas as chaves de foodDetails que contenham Ingredient no nome
     const ingr = Object.keys(currentFood[0])
@@ -29,12 +37,18 @@ export default function ProgressFood() {
       .filter((el) => el !== '' && el !== null);
     return (
       values.map((ing, i) => (
-        <li
+        <label
           key={ i }
+          htmlFor="input-ingredient"
           data-testid={ `${i}-ingredient-step` }
         >
-          {`${ing} - ${valuesMeasure[i]}`}
-        </li>
+          <input
+            className="input-ingredient"
+            type="checkbox"
+            onClick={ handleDoneIngredient }
+          />
+          {`${ing} - ${valuesMeasure[i] ? valuesMeasure[i] : ''}`}
+        </label>
       ))
     );
   };
@@ -46,7 +60,6 @@ export default function ProgressFood() {
       .filter((key) => key.includes('Ingredient'));
     const values = ingr.map((ingredient) => fillFood[0][ingredient])
       .filter((el) => el !== '' && el !== null);
-    console.log(values);
     infoFromLocal.meals = { ...infoFromLocal.meals, [id]: values };
     localStorage.setItem('inProgressRecipes', JSON.stringify(infoFromLocal));
   };
@@ -60,7 +73,7 @@ export default function ProgressFood() {
       { console.log(currentFood) }
       { currentFood
       && currentFood.map((
-        { idMeal, strMeal, strCategory, strMealThumb, strInstructions, strYoutube },
+        { idMeal, strMeal, strCategory, strMealThumb, strInstructions },
       ) => (
         <div key={ idMeal } className="recipes-card">
           <h3 data-testid="recipe-title">{strMeal}</h3>
@@ -70,9 +83,9 @@ export default function ProgressFood() {
             alt={ `${strMeal}` }
             data-testid="recipe-photo"
           />
-          <ul>
+          <div className="ingredients-container">
             {renderProgressFood()}
-          </ul>
+          </div>
           <p data-testid="instructions">
             {strInstructions}
           </p>

@@ -29,12 +29,17 @@ export default function ProgressDrink() {
       .filter((el) => el !== '' && el !== null);
     return (
       values.map((ing, i) => (
-        <li
+        <label
           key={ i }
+          htmlFor="input-ingredient"
           data-testid={ `${i}-ingredient-step` }
         >
-          {`${ing} - ${valuesMeasure[i]}`}
-        </li>
+          <input
+            className="input-ingredient"
+            type="checkbox"
+          />
+          {`${ing} - ${valuesMeasure[i] ? valuesMeasure[i] : ''}`}
+        </label>
       ))
     );
   };
@@ -69,9 +74,9 @@ export default function ProgressDrink() {
             alt={ `${strDrink}` }
             data-testid="recipe-photo"
           />
-          <ul>
+          <div className="ingredients-container">
             {renderProgressDrink()}
-          </ul>
+          </div>
           <p data-testid="instructions">
             {strInstructions}
           </p>

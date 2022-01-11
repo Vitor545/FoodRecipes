@@ -134,6 +134,13 @@
   display: block;
 }
 
+.ingredients-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
 
 @media screen and ( max-width : 360px ) {
 
@@ -179,5 +186,20 @@
     left: 0;
     position: fixed;
     z-index: 12;
+  }
+
+  .ingredients-container {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+  }
+
+  .undone {
+    text-decoration: none;
+  }
+
+  .done {
+    text-decoration: line-through;
   }
 }
