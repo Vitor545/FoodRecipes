@@ -41,13 +41,7 @@ export default function ExploreFoodFromOrigin() {
       setStateGlobal({ ...state, foodFromAreas: filteredFoodCard });
     } else {
       const meals = await foodRecipesAPI();
-      const filteredMeals = meals.filter((fod, index) => {
-        if (index < TWELVE_FIRSTS_FOODS) {
-          return fod;
-        }
-        return null;
-      });
-      setStateGlobal({ ...state, foodFromAreas: filteredMeals });
+      setStateGlobal({ ...state, foodFromAreas: meals });
     }
   };
 
@@ -79,7 +73,7 @@ export default function ExploreFoodFromOrigin() {
       {foodFromAreas
         && foodFromAreas.map(({ strMeal, strMealThumb, idMeal }, index) => (
           <Link key={ strMeal } to={ `/comidas/${idMeal}` }>
-            <div data-testid={ `${index}-recipe-card` }>
+            <div data-testid={ `${index}-recipe-card` } className="card">
               <img
                 src={ strMealThumb }
                 alt=""
