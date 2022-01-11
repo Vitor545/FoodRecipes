@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { fetchImgIngredients, fetchIngredients } from '../fetchApi/fetchApi';
@@ -35,16 +36,20 @@ export default function FoodExploreIngredients() {
       Food Explore Ingredients
 
       {exploreIngredients && exploreIngredients.map((ingredient, index) => ((
-      <div data-testid={`${index}-ingredient-card`}>
+      <Link /* to={`/comidas${}`}  */
+      data-testid={`${index}-ingredient-card`}>
       <h2 data-testid={`${index}-card-name`} >{ingredient.strIngredient}</h2>
       <img data-testid={`${index}-card-img`} 
       src={`www.themealdb.com/images/ingredients/${ingredient.strIngredient}.png`} />
-      </div>)
+      </Link>)
       ))}
-
+<img src="www.themealdb.com/images/ingredients/chicken.png"></img>
       
 
       <Footer />
     </div>
   );
 }
+// http://localhost:3000/explorar/comidas/ingredientes/www.themealdb.com/images/ingredients/$%7Bingredient.strIngredient%7D.png
+
+// http://localhost:3000/explorar/comidas/ingredientes/www.themealdb.com/images/ingredients/chicken.png
