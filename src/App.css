@@ -51,10 +51,6 @@
   width: 1500px;
 }
 
-.drink-card {
-  width: 200px;
-}
-
 .card {
   border: 1px solid black;
   display: inline-block;
