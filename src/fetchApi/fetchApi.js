@@ -133,18 +133,17 @@ export const fetchFoodFromOrigin = async (local) => {
   return responseJson.meals;
 };
 
-export const fetchIngredients = async () => {
+export const fetchFoodsIngredients = async () => {
   const urlName = `https://www.themealdb.com/api/json/v1/1/list.php?i=list`;
   const responseRaw = await fetch(urlName);
   const responseJson = await responseRaw.json();
-  console.log(responseJson);
   return responseJson.meals;
 };
 
-export const fetchImgIngredients = async (ingredientIMG) => {
-  const urlName = `www.themealdb.com/images/ingredients/${ingredientIMG}.png`;
+export const fetchDrinksIngredients = async () => {
+  const urlName = `https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list
+  `;
   const responseRaw = await fetch(urlName);
   const responseJson = await responseRaw.json();
-  console.log(responseJson);
-  return responseJson.meals;
+  return responseJson.drinks;
 };

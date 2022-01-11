@@ -9,9 +9,9 @@ function ExploreIngredientsBtn() {
 
   const handleChange = () => {
   if (pathname === '/explorar/comidas') {
-    history.push('/explorar/comidas/ingredientes/')
+    history.push('/explorar/comidas/ingredientes')
   } else {
-    history.push('/explorar/bebidas/ingredientes/')
+    history.push('/explorar/bebidas/ingredientes')
   }
   }
 
