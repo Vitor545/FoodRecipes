@@ -9,7 +9,6 @@ import StartRecipeBtn from './StartRecipeBtn';
 import { RecipesContext } from '../contexts/RecipesContext';
 
 export default function FoodId({ history }) {
-  // const { foodName } = useContext(RecipesContext);
   const { state, foodDetails, setStateGlobal } = useContext(RecipesContext);
 
   const { id } = useParams();
@@ -17,8 +16,6 @@ export default function FoodId({ history }) {
   const requestApi = async () => {
     const foodRecommended = await urlNameBebidas('');
     const food = await foodDetailsRequest(id);
-    // setCurrent(food);
-    // const recomendedDrinks = await drinkRecipesAPI();
     setStateGlobal({ ...state, foodRecom: foodRecommended, foodDetails: food });
   };
 
