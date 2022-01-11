@@ -41,7 +41,13 @@ export default function ExploreFoodFromOrigin() {
       setStateGlobal({ ...state, foodFromAreas: filteredFoodCard });
     } else {
       const meals = await foodRecipesAPI();
-      setStateGlobal({ ...state, foodFromAreas: meals });
+      const filteredMeals = meals.filter((fod, index) => {
+        if (index < TWELVE_FIRSTS_FOODS) {
+          return fod;
+        }
+        return null;
+      });
+      setStateGlobal({ ...state, foodFromAreas: filteredMeals });
     }
   };
 
@@ -83,7 +89,6 @@ export default function ExploreFoodFromOrigin() {
             </div>
           </Link>
         ))}
-
       <Footer />
     </div>
   );
