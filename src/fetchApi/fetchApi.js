@@ -134,15 +134,14 @@ export const fetchFoodFromOrigin = async (local) => {
 };
 
 export const fetchFoodsIngredients = async () => {
-  const urlName = `https://www.themealdb.com/api/json/v1/1/list.php?i=list`;
+  const urlName = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
   const responseRaw = await fetch(urlName);
   const responseJson = await responseRaw.json();
   return responseJson.meals;
 };
 
 export const fetchDrinksIngredients = async () => {
-  const urlName = `https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list
-  `;
+  const urlName = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
   const responseRaw = await fetch(urlName);
   const responseJson = await responseRaw.json();
   return responseJson.drinks;
