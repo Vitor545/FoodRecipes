@@ -18,6 +18,7 @@ const RecipesProvider = ({ children }) => {
     password: '',
     foodIng: [],
     foodLetter: [],
+    foodIngredientLink: '',
     foodName: [],
     foodRecom: [],
     foodRecipes: [],
@@ -58,7 +59,7 @@ const RecipesProvider = ({ children }) => {
     foodLetter, drinkIng, drinkLetter, drinkName,
     foodDetails, isStarted, foodIngrList, foodRecom, drinkRecom,
     foodAreas, foodFromAreas, exploreFoodsIngredients, exploreFoodsImgIngredients,
-    exploreDrinksIngredients,
+    exploreDrinksIngredients, foodIngredientLink,
     exploreDrinksImgIngredients, foodPrincipal, foodIngredient } = state;
 
   const caseIngredient = async () => {
@@ -180,6 +181,7 @@ const RecipesProvider = ({ children }) => {
     drinkRecipesBtns,
     drinkDetails,
     toggleFood,
+    foodIngredientLink,
     toggleDrink,
     handleChange,
     isSubmitButtonDisabled,

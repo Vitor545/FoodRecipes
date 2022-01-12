@@ -12,49 +12,48 @@ function FoodCard() {
     saveFoodRecipes,
     toggleFood,
     foodRecipes,
-    foodRecipesBTN, foodPrincipal, foodIngredient } = useContext(RecipesContext);
+    foodPrincipal,
+    foodIngredient,
+    foodIngredientLink,
+    foodRecipesBTN } = useContext(RecipesContext);
 
   const AMOUNT_NUMBER = 12;
   const AMOUNT_NUMBER_BTN = 5;
 
+  const requestAPIIngredients = async () => {
+    const recipesByIngredients = await fetchFoodIngredients(foodIngredientLink);
+    console.log(recipesByIngredients);
+    const btn = await foodRecipesCategoryAPI();
+    const btnFiltered = btn.filter((ele, index) => {
+      if (index < AMOUNT_NUMBER_BTN) {
+        return ele;
+      }
+      return null;
+    });
+    setStateGlobal({ ...state,
+      foodRecipes: recipesByIngredients,
+      foodRecipesBTN: btnFiltered });
+  };
+
   const requestAPI = async () => {
-    if (foodPrincipal && !foodIngredient) {
-      const food = await foodRecipesAPI();
-      const foodFiltered = food.filter((el, index) => {
-        if (index < AMOUNT_NUMBER) {
-          return el;
-        }
-        return null;
-      });
-      const btn = await foodRecipesCategoryAPI();
-      const btnFiltered = btn.filter((el, index) => {
-        if (index < AMOUNT_NUMBER_BTN) {
-          return el;
-        }
-        return null;
-      });
-      setStateGlobal({ ...state,
-        foodRecipes: foodFiltered,
-        saveFoodRecipes: foodFiltered,
-        foodPrincipal: false,
-        foodIngredient: true,
-        foodRecipesBTN: btnFiltered });
-    } else {
-      const recipesByIngredients = await fetchFoodIngredients();
-      console.log(recipesByIngredients);
-      const btn = await foodRecipesCategoryAPI();
-      const btnFiltered = btn.filter((ele, index) => {
-        if (index < AMOUNT_NUMBER_BTN) {
-          return ele;
-        }
-        return null;
-      });
-      setStateGlobal({ ...state,
-        foodRecipes: recipesByIngredients,
-        foodPrincipal: true,
-        foodIngredient: false,
-        foodRecipesBTN: btnFiltered });
-    }
+    const food = await foodRecipesAPI();
+    const foodFiltered = food.filter((el, index) => {
+      if (index < AMOUNT_NUMBER) {
+        return el;
+      }
+      return null;
+    });
+    const btn = await foodRecipesCategoryAPI();
+    const btnFiltered = btn.filter((el, index) => {
+      if (index < AMOUNT_NUMBER_BTN) {
+        return el;
+      }
+      return null;
+    });
+    setStateGlobal({ ...state,
+      foodRecipes: foodFiltered,
+      saveFoodRecipes: foodFiltered,
+      foodRecipesBTN: btnFiltered });
   };
 
   async function handleCategory({ target }) {
@@ -87,7 +86,8 @@ function FoodCard() {
   }
 
   useEffect(() => {
-    requestAPI();
+    if (foodIngredient) requestAPIIngredients();
+    if (foodPrincipal) requestAPI();
   }, []);
 
   return (
@@ -117,6 +117,12 @@ function FoodCard() {
         <Link
           key={ el.idMeal }
           to={ `/comidas/${el.idMeal}` }
+          onClick={ () => {
+            setStateGlobal({ ...state,
+              foodPrincipal: true,
+              foodIngredient: false,
+            });
+          } }
         >
           <div
             data-testid={ `${index}-recipe-card` }

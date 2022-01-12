@@ -37,6 +37,12 @@ export default function FoodExploreIngredients() {
           <Link
             to="/comidas"
             key={ strIngredient }
+            onClick={ () => {
+              setStateGlobal({ ...state,
+                foodPrincipal: false,
+                foodIngredient: true,
+                foodIngredientLink: strIngredient });
+            } }
           >
             <div className="card" data-testid={ `${index}-ingredient-card` }>
               <h2 data-testid={ `${index}-card-name` }>{strIngredient}</h2>
