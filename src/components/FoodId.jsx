@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import { foodDetailsRequest, urlIs, urlNameBebidas } from '../fetchApi/fetchApi';
+import { fetchFoodIngredients, foodDetailsRequest,
+  urlNameBebidas } from '../fetchApi/fetchApi';
 import FoodsRecommended from './FoodsRecommended';
 import FavoriteBtn from './FavoriteBtn';
 import ShareBtn from './ShareBtn';
@@ -9,20 +10,21 @@ import StartRecipeBtn from './StartRecipeBtn';
 import { RecipesContext } from '../contexts/RecipesContext';
 
 export default function FoodId({ history }) {
-  const { state, foodDetails, setStateGlobal, foodDetail } = useContext(RecipesContext);
+  const { state, foodDetails, setStateGlobal, foodDetail, foodIngredient } = useContext(RecipesContext);
 
   const { id } = useParams();
   const requestApi = async () => {
-    if (foodDetail) {
+    if (!foodDetail && !foodIngredient) {
       const foodRecommended = await urlNameBebidas('');
       const food = await foodDetailsRequest(id);
       setStateGlobal({ ...state,
         foodRecom: foodRecommended,
         foodDetails: food,
-        foodDetail: false });
+        foodDetail: true,
+        foodIngredient: true });
     } else {
-      const foodByIngredient = await urlIs(id);
-      setStateGlobal({ ...state, foodDetails: foodByIngredient, foodDetail: true });
+      const foodByIngredient = await fetchFoodIngredients(id);
+      setStateGlobal({ ...state, foodDetails: foodByIngredient, foodDetail: false, foodByIngredient: false });
     }
   };
 
