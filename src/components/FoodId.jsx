@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import { foodDetailsRequest, urlNameBebidas } from '../fetchApi/fetchApi';
+import { foodDetailsRequest, urlIs, urlNameBebidas } from '../fetchApi/fetchApi';
 import FoodsRecommended from './FoodsRecommended';
 import FavoriteBtn from './FavoriteBtn';
 import ShareBtn from './ShareBtn';
@@ -9,14 +9,21 @@ import StartRecipeBtn from './StartRecipeBtn';
 import { RecipesContext } from '../contexts/RecipesContext';
 
 export default function FoodId({ history }) {
-  const { state, foodDetails, setStateGlobal } = useContext(RecipesContext);
+  const { state, foodDetails, setStateGlobal, foodDetail } = useContext(RecipesContext);
 
   const { id } = useParams();
-
   const requestApi = async () => {
-    const foodRecommended = await urlNameBebidas('');
-    const food = await foodDetailsRequest(id);
-    setStateGlobal({ ...state, foodRecom: foodRecommended, foodDetails: food });
+    if (foodDetail) {
+      const foodRecommended = await urlNameBebidas('');
+      const food = await foodDetailsRequest(id);
+      setStateGlobal({ ...state,
+        foodRecom: foodRecommended,
+        foodDetails: food,
+        foodDetail: false });
+    } else {
+      const foodByIngredient = await urlIs(id);
+      setStateGlobal({ ...state, foodDetails: foodByIngredient, foodDetail: true });
+    }
   };
 
   const renderIngredients = () => {
@@ -42,11 +49,7 @@ export default function FoodId({ history }) {
     );
   };
 
-  useEffect(() => {
-    requestApi();
-  }, []);
-
-  return (
+  const renderCard = () => (
     <div>
       { foodDetails
       && foodDetails.map((
@@ -61,11 +64,12 @@ export default function FoodId({ history }) {
             data-testid="recipe-photo"
           />
           <ul>
-            {renderIngredients()}
+            { renderIngredients() }
           </ul>
           <p data-testid="instructions">
             {strInstructions}
           </p>
+
           <video width="320" height="240" controls data-testid="video">
             <track kind="captions" />
             <source src={ strYoutube } type="video/mp4" />
@@ -84,8 +88,36 @@ export default function FoodId({ history }) {
       ))}
     </div>
   );
+
+  const renderMealsByIngredient = () => (
+    <div>
+      { foodDetails
+  && foodDetails.map((
+    { idMeal, strMeal, strMealThumb }, index,
+  ) => (
+    <div key={ idMeal } className="recipes-card" data-testid={ `${index}-recipe-card` }>
+      <h3 data-testid="recipe-title">{strMeal}</h3>
+      <img
+        src={ strMealThumb }
+        alt={ `${strMeal}` }
+        data-testid="recipe-photo"
+      />
+    </div>
+  ))}
+    </div>
+  );
+
+  useEffect(() => {
+    requestApi();
+  }, []);
+
+  return (
+    <div>
+      { foodDetail ? renderCard() : renderMealsByIngredient() }
+    </div>
+  );
 }
 
-FoodId.propTypes = {
-  history: PropTypes.func.isRequired,
-};
+// FoodId.propTypes = {
+//   history: PropTypes.objectOf(PropTypes.object).isRequired,
+// };
