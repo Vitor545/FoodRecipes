@@ -73,8 +73,8 @@ export default function FoodId({ history }) {
             Your browser does not support the video tag.
           </video>
           <div>
-            <ShareBtn />
-            <FavoriteBtn currentRecipe={ foodDetails } />
+            <ShareBtn data="share-btn" />
+            <FavoriteBtn data-testid="favorite-btn" currentRecipe={ foodDetails } />
           </div>
           <div className="recommended-recipes ">
             <FoodsRecommended />

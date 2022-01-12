@@ -63,7 +63,7 @@ export default function FavoriteBtn(props) {
       onClick={ handleFavoriteIcon }
     >
       <img
-        data-testid="favorite-btn"
+        // data-testid="favorite-btn"
         className="favorite-icon"
         src={ isFavorited ? blackFavoriteIcon : whiteFavoriteIcon }
         alt="favorite icon"

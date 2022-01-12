@@ -21,7 +21,7 @@ export default function ShareBtn() {
     <div className="favorite-btn">
       <button
         type="button"
-        data-testid="share-btn"
+        // data-testid="share-btn"
         className="share-btn"
         onClick={ shareLink }
       >
