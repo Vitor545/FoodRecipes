@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import FavoriteRecipesCard from '../components/FavoriteRecipesCard';
+import { RecipesContext } from '../contexts/RecipesContext';
 
 export default function FavoriteRecipes() {
-  const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const { favoriteRecipes } = useContext(RecipesContext);
+  const handleClick = () => {
+    favoriteRecipes.filter((fav) => fav.type === 'comida');
+  };
   return (
     <div>
       <button
@@ -14,6 +18,7 @@ export default function FavoriteRecipes() {
       <button
         type="button"
         data-testid="filter-by-food-btn"
+        onClick={ () => handleClick() }
       >
         Food
       </button>

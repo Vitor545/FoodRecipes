@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 // import { allUrls } from '../fetchApi/fetchApi';
 
 export default function RecipeMadePage() {

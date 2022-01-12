@@ -1,20 +1,28 @@
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-// import { RecipesContext } from '../contexts/RecipesContext';
+import { RecipesContext } from '../contexts/RecipesContext';
 import blackFavoriteIcon from '../images/blackHeartIcon.svg';
 import whiteFavoriteIcon from '../images/whiteHeartIcon.svg';
 import builtObj from '../services/buildObjtoLocal';
 import favoriteRecipes from '../services/localStorage';
 
-export default function FavoriteBtn(props) {
-  // const { state, drinkDetails, foodDetails, setStateGlobal } = useContext(RecipesContext);
+const gettingFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
+
+const addToFavorites = (alreadyFavorite, currentRecipe) => {
+  if (alreadyFavorite()) {
+    return null;
+  }
+  gettingFavorites.push(builtObj(currentRecipe));
+  localStorage.setItem('favoriteRecipes', JSON.stringify(gettingFavorites));
+};
+
+export default function FavoriteBtn({ currentRecipe, dataTestId }) {
+  const { handleUpdate } = useContext(RecipesContext);
   const [isClicked, setState] = useState({ isFavorited: false });
-  const gettingFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
-  const { id } = useParams();
-
+  let { id } = useParams();
+  id = currentRecipe.id ? currentRecipe.id : id;
   const { isFavorited } = isClicked;
-
   const alreadyFavorite = () => {
     if (gettingFavorites) {
       const bool = gettingFavorites.some((obj) => obj.id === id);
@@ -22,27 +30,17 @@ export default function FavoriteBtn(props) {
     }
     return false;
   };
-
-  const addToFavorites = () => {
-    const { currentRecipe } = props;
-    if (alreadyFavorite()) {
-      return null;
-    }
-    gettingFavorites.push(builtObj(currentRecipe));
-    localStorage.setItem('favoriteRecipes', JSON.stringify(gettingFavorites));
-  };
-
   const handleFavoriteIcon = () => {
+    handleUpdate();
     if (!isFavorited) {
       setState({ ...isClicked, isFavorited: true });
-      addToFavorites();
+      addToFavorites(alreadyFavorite, currentRecipe);
     } else {
       setState({ ...isClicked, isFavorited: false });
       const filteredFavorites = gettingFavorites.filter((obj) => obj.id !== id);
       localStorage.setItem('favoriteRecipes', JSON.stringify(filteredFavorites));
     }
   };
-
   useEffect(() => {
     if (gettingFavorites) {
       if (alreadyFavorite()) {
@@ -63,7 +61,7 @@ export default function FavoriteBtn(props) {
       onClick={ handleFavoriteIcon }
     >
       <img
-        // data-testid="favorite-btn"
+        data-testid={ dataTestId || 'favorite-btn' }
         className="favorite-icon"
         src={ isFavorited ? blackFavoriteIcon : whiteFavoriteIcon }
         alt="favorite icon"
@@ -74,4 +72,5 @@ export default function FavoriteBtn(props) {
 
 FavoriteBtn.propTypes = {
   currentRecipe: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dataTestId: PropTypes.string.isRequired,
 };
