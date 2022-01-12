@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 
 export default function Perfil() {
-  const { email } = JSON.parse(localStorage.getItem('user'));
+  const email = JSON.stringify(localStorage.getItem('user'));
   return (
     <div>
       <h3 data-testid="profile-email">{email}</h3>
