@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import ExploreFromOriginBtn from '../components/ExploreFromOriginBtn';
 import { Link } from 'react-router-dom';
+import ExploreFromOriginBtn from '../components/ExploreFromOriginBtn';
+import ExploreIngredientsBtn from '../components/ExploreIngredientsBtn';
 import Footer from '../components/Footer';
 
 export default function FoodExplorePage() {
@@ -15,14 +16,7 @@ export default function FoodExplorePage() {
     <div>
 
       Food Explore Page
-      <Link to="/explorar/comidas/ingredientes">
-        <button
-          type="button"
-          data-testid="explore-by-ingredient"
-        >
-          Por Ingredientes
-        </button>
-      </Link>
+      <ExploreIngredientsBtn />
       <ExploreFromOriginBtn />
       <Link to={ `/comidas/${randomMealId}` }>
         <button

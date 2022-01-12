@@ -10,6 +10,7 @@ export default function ExploreFoodFromOrigin() {
   const TWELVE_FIRSTS_FOODS = 12;
   const requestApi = async () => {
     const foodOrigins = await fetchFoodAreas();
+    console.log(foodOrigins);
     const foodCard = await fetchFoodFromOrigin('American');
     const filteredFoodCard = foodCard.filter((food, index) => {
       if (index < TWELVE_FIRSTS_FOODS) {
