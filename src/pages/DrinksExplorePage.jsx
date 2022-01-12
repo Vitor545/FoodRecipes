@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import ExploreFromOriginBtn from '../components/ExploreFromOriginBtn';
 import ExploreIngredientsBtn from '../components/ExploreIngredientsBtn';
 import Footer from '../components/Footer';
 
@@ -15,7 +14,6 @@ export default function DrinksExplorePage() {
     <div>
       Drinks Explore Page
       <ExploreIngredientsBtn />
-      <ExploreFromOriginBtn />
       <Link to={ `/bebidas/${randomDrinkID}` }>
         <button
           type="button"

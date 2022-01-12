@@ -16,7 +16,7 @@ export default function ExploreFromOriginBtn() {
   return (
     <div>
       <button type="button" onClick={ handleClick } data-testid="explore-by-area">
-        Por Origem
+        Por Local de Origem
       </button>
     </div>
   );
