@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { createContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import { urlIBebidas, urlNameBebidas,
   urlPBebidas, urlIs, urlNames, urlPs }
   from '../fetchApi/fetchApi';
@@ -25,6 +25,10 @@ const RecipesProvider = ({ children }) => {
     saveFoodRecipes: [],
     foodAreas: [],
     foodFromAreas: [],
+    exploreFoodsIngredients: [],
+    exploreFoodsImgIngredients: [],
+    exploreDrinksIngredients: [],
+    exploreDrinksImgIngredients: [],
     drinkRecipes: [],
     saveDrinkRecipes: [],
     saveDrinkToggle: [],
@@ -51,7 +55,9 @@ const RecipesProvider = ({ children }) => {
     busca, foodName, drinkDetails, foodIng,
     foodLetter, drinkIng, drinkLetter, drinkName,
     foodDetails, isStarted, foodIngrList, foodRecom, drinkRecom,
-    foodAreas, foodFromAreas } = state;
+    foodAreas, foodFromAreas, exploreFoodsIngredients, exploreFoodsImgIngredients,
+    exploreDrinksIngredients,
+    exploreDrinksImgIngredients } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
@@ -163,6 +169,8 @@ const RecipesProvider = ({ children }) => {
     saveFoodRecipes,
     foodAreas,
     foodFromAreas,
+    exploreFoodsIngredients,
+    exploreFoodsImgIngredients,
     drinkRecipes,
     saveDrinkRecipes,
     drinkRecipesBtns,
@@ -187,7 +195,9 @@ const RecipesProvider = ({ children }) => {
     foodIngrList,
     foodRecom,
     drinkRecom,
-    busca };
+    busca,
+    exploreDrinksIngredients,
+    exploreDrinksImgIngredients };
 
   return (
     <RecipesContext.Provider value={ context }>
