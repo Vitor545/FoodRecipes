@@ -117,12 +117,6 @@ function FoodCard() {
         <Link
           key={ el.idMeal }
           to={ `/comidas/${el.idMeal}` }
-          onClick={ () => {
-            setStateGlobal({ ...state,
-              foodPrincipal: true,
-              foodIngredient: false,
-            });
-          } }
         >
           <div
             data-testid={ `${index}-recipe-card` }

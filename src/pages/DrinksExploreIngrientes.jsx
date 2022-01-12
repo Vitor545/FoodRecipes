@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import { RecipesContext } from '../contexts/RecipesContext';
-import { fetchDrinksIngredients, drinkRecipesAPI } from '../fetchApi/fetchApi';
+import { fetchDrinksIngredients } from '../fetchApi/fetchApi';
 
 export default function DrinksExploreIngrientes() {
   const { state, exploreDrinksIngredients, setStateGlobal } = useContext(RecipesContext);
@@ -21,16 +21,8 @@ export default function DrinksExploreIngrientes() {
     setStateGlobal({ ...state, exploreDrinksIngredients: filteredIngredients });
   };
 
-  const requestRecipesAPI = async () => {
-    const getRecipes = await drinkRecipesAPI();
-    console.log(getRecipes);
-    const filteredRecipes = getRecipes
-      .map((recipes) => recipes.strInstructions === exploreDrinksIngredients);
-  };
-
   useEffect(() => {
     requestAPI();
-    requestRecipesAPI();
   }, []);
 
   return (
@@ -40,8 +32,14 @@ export default function DrinksExploreIngrientes() {
       && exploreDrinksIngredients.map(({ strIngredient1 }, index) => (
         (
           <Link
-            to={ `/explorar/bebidas/${strIngredient1}` }
+            to="/bebidas"
             key={ strIngredient1 }
+            onClick={ () => {
+              setStateGlobal({ ...state,
+                drinkPrincipal: false,
+                drinkIngredient: true,
+                drinkIngredientLink: strIngredient1 });
+            } }
           >
             {index === 0 ? (
               <div data-testid={ `${index}-ingredient-card` } className="card">
