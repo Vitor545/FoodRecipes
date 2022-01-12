@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import { RecipesContext } from '../contexts/RecipesContext';
-import { fetchDrinksIngredients } from '../fetchApi/fetchApi';
+import { fetchDrinksIngredients, drinkRecipesAPI } from '../fetchApi/fetchApi';
 
 export default function DrinksExploreIngrientes() {
   const { state, exploreDrinksIngredients, setStateGlobal } = useContext(RecipesContext);
@@ -21,8 +21,16 @@ export default function DrinksExploreIngrientes() {
     setStateGlobal({ ...state, exploreDrinksIngredients: filteredIngredients });
   };
 
+  const requestRecipesAPI = async () => {
+    const getRecipes = await drinkRecipesAPI();
+    console.log(getRecipes);
+    const filteredRecipes = getRecipes.map((recipes) => recipes.strInstructions === exploreDrinksIngredients);
+    
+  };
+
   useEffect(() => {
     requestAPI();
+    requestRecipesAPI();
   }, []);
 
   return (

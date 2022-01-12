@@ -96,8 +96,9 @@ export default function FoodId({ history }) {
       { foodDetails
   && foodDetails.map((
     { idMeal, strMeal, strMealThumb }, index,
-  ) => (
-    <div key={ idMeal } className="recipes-card" data-testid={ `${index}-recipe-card` }>
+  ) => ( {
+    index === 0 ? (
+    <div key={ idMeal } className="recipes-card" data-testid={`0-recipe-card` }>
       <h3 data-testid="recipe-title">{strMeal}</h3>
       <img
         src={ strMealThumb }
@@ -105,8 +106,18 @@ export default function FoodId({ history }) {
         data-testid="recipe-photo"
       />
     </div>
-  ))}
+    ) : (
+      <div key={ idMeal } className="recipes-card" data-testid={ `${index}-recipe-card` }>
+      <h3 data-testid="recipe-title">{strMeal}</h3>
+      <img
+        src={ strMealThumb }
+        alt={ `${strMeal}` }
+        data-testid="recipe-photo"
+      />
     </div>
+    )
+  }
+  ))}
   );
 
   useEffect(() => {
@@ -115,7 +126,7 @@ export default function FoodId({ history }) {
 
   return (
     <div>
-      { foodDetail ? renderCard() : renderMealsByIngredient() }
+      { foodDetail ?  renderMealsByIngredient() : renderCard() }
     </div>
   );
 }
