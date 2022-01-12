@@ -23,7 +23,7 @@ const RecipesProvider = ({ children }) => {
     foodRecipes: [],
     foodRecipesBTN: [],
     saveFoodRecipes: [],
-    foodDetail: false,
+    foodPrincipal: true,
     foodIngredient: false,
     foodAreas: [],
     foodFromAreas: [],
@@ -59,7 +59,7 @@ const RecipesProvider = ({ children }) => {
     foodDetails, isStarted, foodIngrList, foodRecom, drinkRecom,
     foodAreas, foodFromAreas, exploreFoodsIngredients, exploreFoodsImgIngredients,
     exploreDrinksIngredients,
-    exploreDrinksImgIngredients, foodDetail, foodIngredient } = state;
+    exploreDrinksImgIngredients, foodPrincipal, foodIngredient } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
@@ -171,7 +171,7 @@ const RecipesProvider = ({ children }) => {
     saveFoodRecipes,
     foodAreas,
     foodFromAreas,
-    foodDetail,
+    foodPrincipal,
     foodIngredient,
     exploreFoodsIngredients,
     exploreFoodsImgIngredients,

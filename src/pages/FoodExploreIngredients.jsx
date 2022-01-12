@@ -35,7 +35,7 @@ export default function FoodExploreIngredients() {
       && exploreFoodsIngredients.map(({ strIngredient }, index) => (
         (
           <Link
-            to={ `/comidas/${strIngredient}` }
+            to="/comidas"
             key={ strIngredient }
           >
             <div className="card" data-testid={ `${index}-ingredient-card` }>

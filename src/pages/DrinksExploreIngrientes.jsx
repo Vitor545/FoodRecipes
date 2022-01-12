@@ -24,8 +24,8 @@ export default function DrinksExploreIngrientes() {
   const requestRecipesAPI = async () => {
     const getRecipes = await drinkRecipesAPI();
     console.log(getRecipes);
-    const filteredRecipes = getRecipes.map((recipes) => recipes.strInstructions === exploreDrinksIngredients);
-    
+    const filteredRecipes = getRecipes
+      .map((recipes) => recipes.strInstructions === exploreDrinksIngredients);
   };
 
   useEffect(() => {

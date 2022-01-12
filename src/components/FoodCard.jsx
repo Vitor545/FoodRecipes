@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { fetchFoodCategory,
+  fetchFoodIngredients,
   foodRecipesAPI,
   foodRecipesCategoryAPI } from '../fetchApi/fetchApi';
 
@@ -11,31 +12,49 @@ function FoodCard() {
     saveFoodRecipes,
     toggleFood,
     foodRecipes,
-    foodRecipesBTN } = useContext(RecipesContext);
+    foodRecipesBTN, foodPrincipal, foodIngredient } = useContext(RecipesContext);
 
   const AMOUNT_NUMBER = 12;
   const AMOUNT_NUMBER_BTN = 5;
 
   const requestAPI = async () => {
-    const food = await foodRecipesAPI();
-    const foodFiltered = food.filter((el, index) => {
-      if (index < AMOUNT_NUMBER) {
-        return el;
-      }
-      return null;
-    });
-
-    const btn = await foodRecipesCategoryAPI();
-    const btnFiltered = btn.filter((el, index) => {
-      if (index < AMOUNT_NUMBER_BTN) {
-        return el;
-      }
-      return null;
-    });
-    setStateGlobal({ ...state,
-      foodRecipes: foodFiltered,
-      foodRecipesBTN: btnFiltered,
-      saveFoodRecipes: foodFiltered });
+    if (foodPrincipal && !foodIngredient) {
+      const food = await foodRecipesAPI();
+      const foodFiltered = food.filter((el, index) => {
+        if (index < AMOUNT_NUMBER) {
+          return el;
+        }
+        return null;
+      });
+      const btn = await foodRecipesCategoryAPI();
+      const btnFiltered = btn.filter((el, index) => {
+        if (index < AMOUNT_NUMBER_BTN) {
+          return el;
+        }
+        return null;
+      });
+      setStateGlobal({ ...state,
+        foodRecipes: foodFiltered,
+        saveFoodRecipes: foodFiltered,
+        foodPrincipal: false,
+        foodIngredient: true,
+        foodRecipesBTN: btnFiltered });
+    } else {
+      const recipesByIngredients = await fetchFoodIngredients();
+      console.log(recipesByIngredients);
+      const btn = await foodRecipesCategoryAPI();
+      const btnFiltered = btn.filter((ele, index) => {
+        if (index < AMOUNT_NUMBER_BTN) {
+          return ele;
+        }
+        return null;
+      });
+      setStateGlobal({ ...state,
+        foodRecipes: recipesByIngredients,
+        foodPrincipal: true,
+        foodIngredient: false,
+        foodRecipesBTN: btnFiltered });
+    }
   };
 
   async function handleCategory({ target }) {
