@@ -1,19 +1,21 @@
 import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { RecipesContext } from '../contexts/RecipesContext';
-import { drinkFilterCategory,
-  drinkRecipesAPI, drinkRecipesCategoryAPI } from '../fetchApi/fetchApi';
+import { drinkFilterCategory, drinkRecipesAPI,
+  drinkRecipesCategoryAPI, fetchDrinkIngredients } from '../fetchApi/fetchApi';
 
 function DrinkCard() {
   const { state, setStateGlobal,
     drinkRecipes, drinkRecipesBtns, saveDrinkRecipes,
-    toggleDrink } = useContext(RecipesContext);
+    toggleDrink, drinkPrincipal,
+    drinkIngredient,
+    drinkIngredientLink } = useContext(RecipesContext);
 
   const AMOUNT_RECIPES_NUMBER = 12;
   const AMOUNT_CATEGORT_NUMBER = 5;
 
-  const requestAPI = async () => {
-    const drinks = await drinkRecipesAPI();
+  const requestAPIIngredients = async () => {
+    const drinks = await fetchDrinkIngredients(drinkIngredientLink);
     const drinksBtns = await drinkRecipesCategoryAPI();
     const categoryBtns = drinksBtns.filter((btn, index) => {
       if (index < AMOUNT_CATEGORT_NUMBER) {
@@ -25,6 +27,23 @@ function DrinkCard() {
       if (index < AMOUNT_RECIPES_NUMBER) {
         return el;
       }
+      return null;
+    });
+    setStateGlobal({ ...state,
+      drinkRecipes: drinksFiltered,
+      drinkRecipesBtns: categoryBtns,
+      saveDrinkRecipes: drinksFiltered });
+  };
+
+  const requestAPI = async () => {
+    const drinks = await drinkRecipesAPI();
+    const drinksBtns = await drinkRecipesCategoryAPI();
+    const categoryBtns = drinksBtns.filter((btn, index) => {
+      if (index < AMOUNT_CATEGORT_NUMBER) return btn;
+      return null;
+    });
+    const drinksFiltered = drinks.filter((el, index) => {
+      if (index < AMOUNT_RECIPES_NUMBER) return el;
       return null;
     });
     setStateGlobal({ ...state,
@@ -63,7 +82,8 @@ function DrinkCard() {
   };
 
   useEffect(() => {
-    requestAPI();
+    if (drinkPrincipal) requestAPI();
+    if (drinkIngredient) requestAPIIngredients();
   }, []);
 
   return (

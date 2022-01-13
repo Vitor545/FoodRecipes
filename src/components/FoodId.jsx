@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import { foodDetailsRequest, urlNameBebidas } from '../fetchApi/fetchApi';
+import { foodDetailsRequest,
+  urlNameBebidas } from '../fetchApi/fetchApi';
 import FoodsRecommended from './FoodsRecommended';
 import FavoriteBtn from './FavoriteBtn';
 import ShareBtn from './ShareBtn';
@@ -12,11 +13,14 @@ export default function FoodId({ history }) {
   const { state, foodDetails, setStateGlobal } = useContext(RecipesContext);
 
   const { id } = useParams();
-
   const requestApi = async () => {
     const foodRecommended = await urlNameBebidas('');
     const food = await foodDetailsRequest(id);
-    setStateGlobal({ ...state, foodRecom: foodRecommended, foodDetails: food });
+    setStateGlobal({ ...state,
+      foodRecom: foodRecommended,
+      foodDetails: food,
+      foodDetail: true,
+      foodIngredient: true });
   };
 
   const renderIngredients = () => {
@@ -42,11 +46,7 @@ export default function FoodId({ history }) {
     );
   };
 
-  useEffect(() => {
-    requestApi();
-  }, []);
-
-  return (
+  const renderCard = () => (
     <div>
       { foodDetails
       && foodDetails.map((
@@ -61,11 +61,12 @@ export default function FoodId({ history }) {
             data-testid="recipe-photo"
           />
           <ul>
-            {renderIngredients()}
+            { renderIngredients() }
           </ul>
           <p data-testid="instructions">
             {strInstructions}
           </p>
+
           <video width="320" height="240" controls data-testid="video">
             <track kind="captions" />
             <source src={ strYoutube } type="video/mp4" />
@@ -84,8 +85,53 @@ export default function FoodId({ history }) {
       ))}
     </div>
   );
+
+  // const renderMealsByIngredient = () => (
+  //   <div>
+  //     { foodDetails
+  // && foodDetails
+  //   .map(({ idMeal, strMeal, strMealThumb }, index) => (
+  //     <Link key={ idMeal } to="*">
+  //       { index === 0 ? (
+  //         <div key={ idMeal } className="recipes-card" data-testid="0-recipe-card">
+  //           <h3 data-testid="0-recipe-title">{strMeal}</h3>
+  //           <img
+  //             src={ strMealThumb }
+  //             alt={ `${strMeal}` }
+  //             data-testid="0-recipe-photo"
+  //           />
+  //         </div>
+  //       ) : (
+  //         <div
+  //           key={ idMeal }
+  //           className="recipes-card"
+  //           data-testid={ `${index}-recipe-card` }
+  //         >
+  //           <h3 data-testid="recipe-title">{strMeal}</h3>
+  //           <img
+  //             src={ strMealThumb }
+  //             alt={ `${strMeal}` }
+  //             data-testid="recipe-photo"
+  //           />
+  //         </div>)}
+  //     </Link>
+  //   ))}
+  //   </div>
+  // );
+
+  useEffect(() => {
+    requestApi();
+  }, []);
+
+  return (
+    <div>
+      { renderCard() }
+    </div>
+  );
 }
 
 FoodId.propTypes = {
-  history: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };

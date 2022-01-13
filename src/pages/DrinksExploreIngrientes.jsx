@@ -32,8 +32,14 @@ export default function DrinksExploreIngrientes() {
       && exploreDrinksIngredients.map(({ strIngredient1 }, index) => (
         (
           <Link
-            to={ `/explorar/bebidas/${strIngredient1}` }
+            to="/bebidas"
             key={ strIngredient1 }
+            onClick={ () => {
+              setStateGlobal({ ...state,
+                drinkPrincipal: false,
+                drinkIngredient: true,
+                drinkIngredientLink: strIngredient1 });
+            } }
           >
             {index === 0 ? (
               <div data-testid={ `${index}-ingredient-card` } className="card">

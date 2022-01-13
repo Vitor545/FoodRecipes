@@ -1,8 +1,8 @@
 import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { RecipesContext } from '../contexts/RecipesContext';
-import {
-  fetchFoodCategory,
+import { fetchFoodCategory,
+  fetchFoodIngredients,
   foodRecipesAPI,
   foodRecipesCategoryAPI,
 } from '../fetchApi/fetchApi';
@@ -14,11 +14,28 @@ function FoodCard() {
     saveFoodRecipes,
     toggleFood,
     foodRecipes,
-    foodRecipesBTN,
-  } = useContext(RecipesContext);
+    foodPrincipal,
+    foodIngredient,
+    foodIngredientLink,
+    foodRecipesBTN } = useContext(RecipesContext);
 
   const AMOUNT_NUMBER = 12;
   const AMOUNT_NUMBER_BTN = 5;
+
+  const requestAPIIngredients = async () => {
+    const recipesByIngredients = await fetchFoodIngredients(foodIngredientLink);
+    console.log(recipesByIngredients);
+    const btn = await foodRecipesCategoryAPI();
+    const btnFiltered = btn.filter((ele, index) => {
+      if (index < AMOUNT_NUMBER_BTN) {
+        return ele;
+      }
+      return null;
+    });
+    setStateGlobal({ ...state,
+      foodRecipes: recipesByIngredients,
+      foodRecipesBTN: btnFiltered });
+  };
 
   const requestAPI = async () => {
     const food = await foodRecipesAPI();
@@ -28,7 +45,6 @@ function FoodCard() {
       }
       return null;
     });
-
     const btn = await foodRecipesCategoryAPI();
     const btnFiltered = btn.filter((el, index) => {
       if (index < AMOUNT_NUMBER_BTN) {
@@ -39,9 +55,8 @@ function FoodCard() {
     setStateGlobal({
       ...state,
       foodRecipes: foodFiltered,
-      foodRecipesBTN: btnFiltered,
       saveFoodRecipes: foodFiltered,
-    });
+      foodRecipesBTN: btnFiltered });
   };
 
   async function handleCategory({ target }) {
@@ -78,7 +93,8 @@ function FoodCard() {
   }
 
   useEffect(() => {
-    requestAPI();
+    if (foodIngredient) requestAPIIngredients();
+    if (foodPrincipal) requestAPI();
   }, []);
 
   return (

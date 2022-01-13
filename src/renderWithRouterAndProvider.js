@@ -18,6 +18,7 @@ const renderWithRouterAndProvider = (
       <Provider>
         {component}
       </Provider>
+
     </Router>,
   ),
   history,
