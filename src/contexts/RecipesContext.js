@@ -18,11 +18,14 @@ const RecipesProvider = ({ children }) => {
     password: '',
     foodIng: [],
     foodLetter: [],
+    foodIngredientLink: '',
     foodName: [],
     foodRecom: [],
     foodRecipes: [],
     foodRecipesBTN: [],
     saveFoodRecipes: [],
+    foodPrincipal: true,
+    foodIngredient: false,
     foodAreas: [],
     foodFromAreas: [],
     exploreFoodsIngredients: [],
@@ -38,6 +41,9 @@ const RecipesProvider = ({ children }) => {
     drinkIng: [],
     drinkRecom: [],
     drinkLetter: [],
+    drinkPrincipal: true,
+    drinkIngredient: false,
+    drinkIngredientLink: '',
     drinkName: [],
     isStarted: false,
     valueInputSearch: '',
@@ -52,12 +58,13 @@ const RecipesProvider = ({ children }) => {
   const { email, password, valueInputSearch, valueClickSearch,
     foodRecipes, drinkRecipes, drinkRecipesBtns, foodRecipesBTN,
     toggleFood, saveDrinkRecipes, saveFoodRecipes, toggleDrink,
-    busca, foodName, drinkDetails, foodIng,
+    busca, foodName, drinkDetails, foodIng, drinkPrincipal,
+    drinkIngredient, drinkIngredientLink,
     foodLetter, drinkIng, drinkLetter, drinkName,
     foodDetails, isStarted, foodIngrList, foodRecom, drinkRecom,
     foodAreas, foodFromAreas, exploreFoodsIngredients, exploreFoodsImgIngredients,
-    exploreDrinksIngredients,
-    exploreDrinksImgIngredients } = state;
+    exploreDrinksIngredients, foodIngredientLink,
+    exploreDrinksImgIngredients, foodPrincipal, foodIngredient } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
@@ -70,7 +77,7 @@ const RecipesProvider = ({ children }) => {
         }
         return setStateGlobal({ ...state, drinkIng: bebidasIn, busca: true });
       } catch (e) {
-        console.log('deu bom');
+        global.alert(messageErro);
       }
     } else {
       const comidasIn = await urlIs(valueInputSearch);
@@ -180,6 +187,8 @@ const RecipesProvider = ({ children }) => {
     saveFoodRecipes,
     foodAreas,
     foodFromAreas,
+    foodPrincipal,
+    foodIngredient,
     exploreFoodsIngredients,
     exploreFoodsImgIngredients,
     drinkRecipes,
@@ -187,6 +196,10 @@ const RecipesProvider = ({ children }) => {
     drinkRecipesBtns,
     drinkDetails,
     toggleFood,
+    drinkPrincipal,
+    drinkIngredient,
+    drinkIngredientLink,
+    foodIngredientLink,
     toggleDrink,
     handleChange,
     isSubmitButtonDisabled,

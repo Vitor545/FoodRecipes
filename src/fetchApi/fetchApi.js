@@ -146,3 +146,17 @@ export const fetchDrinksIngredients = async () => {
   const responseJson = await responseRaw.json();
   return responseJson.drinks;
 };
+
+export const fetchFoodIngredients = async (ingredient) => {
+  const url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
+  const responseRaw = await fetch(url);
+  const responseJson = await responseRaw.json();
+  return responseJson.meals;
+};
+
+export const fetchDrinkIngredients = async (ingredient) => {
+  const urlName = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`;
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.drinks;
+};
