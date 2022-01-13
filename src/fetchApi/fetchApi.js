@@ -10,8 +10,13 @@ export const urlIBebidas = async (digitado) => {
 export const urlNameBebidas = async (digitado) => {
   const urlNameBebida = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${digitado}`;
   const response = await fetch(urlNameBebida);
-  const userData = await response.json();
-  return userData.drinks;
+  try {
+    const userData = await response.json();
+    return userData.drinks;
+  } catch (e) {
+    return global.alert(`Sinto muito, não encontramos nenhuma 
+        receita para esses filtros.`);
+  }
 };
 
 export const urlPBebidas = async (digitado) => {
@@ -65,8 +70,92 @@ export const foodRecipesAPI = async () => {
   return userData.meals;
 };
 
+export const foodRecipesCategoryAPI = async () => {
+  const urlName = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
+  const response = await fetch(urlName);
+  const userData = await response.json().then((data) => data);
+  return userData.meals;
+};
+
 export const drinkRecipesAPI = async () => {
   const urlName = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.drinks;
+};
+
+export const drinkRecipesCategoryAPI = async () => {
+  const urlName = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.drinks;
+};
+
+export const fetchFoodCategory = async (digitado) => {
+  const urlName = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${digitado}`;
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json().then((data) => data);
+  return responseJson.meals;
+};
+
+export const drinkFilterCategory = async (drink) => {
+  const urlName = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${drink}`;
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.drinks;
+};
+
+export const drinkDetailsRequest = async (id) => {
+  const urlName = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.drinks;
+};
+
+export const foodDetailsRequest = async (id) => {
+  const urlName = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.meals;
+};
+
+export const fetchFoodAreas = async () => {
+  const urlName = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.meals;
+};
+
+export const fetchFoodFromOrigin = async (local) => {
+  const urlName = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${local}`;
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.meals;
+};
+
+export const fetchFoodsIngredients = async () => {
+  const urlName = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.meals;
+};
+
+export const fetchDrinksIngredients = async () => {
+  const urlName = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
+  const responseRaw = await fetch(urlName);
+  const responseJson = await responseRaw.json();
+  return responseJson.drinks;
+};
+
+export const fetchFoodIngredients = async (ingredient) => {
+  const url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
+  const responseRaw = await fetch(url);
+  const responseJson = await responseRaw.json();
+  return responseJson.meals;
+};
+
+export const fetchDrinkIngredients = async (ingredient) => {
+  const urlName = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`;
   const responseRaw = await fetch(urlName);
   const responseJson = await responseRaw.json();
   return responseJson.drinks;

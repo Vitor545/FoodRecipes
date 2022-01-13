@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { createContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { urlIBebidas, urlNameBebidas, urlPBebidas, urlIs, urlNames, urlPs, allUrls,
-  allUrlsCocks }
+import { useHistory } from 'react-router';
+import { urlIBebidas, urlNameBebidas,
+  urlPBebidas, urlIs, urlNames, urlPs }
   from '../fetchApi/fetchApi';
 
 // Source useHistory - https://dev.to/ino_gu/utilizando-usehistory-no-react-bgf
@@ -12,38 +12,68 @@ const locationName = document.location.pathname;
 const messageErro = 'Sinto muito, não encontramos nenhuma receita para esses filtros.';
 
 const RecipesContext = createContext();
-
 const RecipesProvider = ({ children }) => {
   const [state, setStateGlobal] = useState({
     email: '',
     password: '',
     foodIng: [],
     foodLetter: [],
+    foodIngredientLink: '',
     foodName: [],
+    foodRecom: [],
     foodRecipes: [],
+    foodRecipesBTN: [],
+    saveFoodRecipes: [],
+    foodPrincipal: true,
+    foodIngredient: false,
+    foodAreas: [],
+    foodFromAreas: [],
+    exploreFoodsIngredients: [],
+    exploreFoodsImgIngredients: [],
+    exploreDrinksIngredients: [],
+    exploreDrinksImgIngredients: [],
     drinkRecipes: [],
+    saveDrinkRecipes: [],
+    saveDrinkToggle: [],
+    drinkDetails: [],
+    foodDetails: [],
+    drinkRecipesBtns: [],
     drinkIng: [],
+    drinkRecom: [],
     drinkLetter: [],
+    drinkPrincipal: true,
+    drinkIngredient: false,
+    drinkIngredientLink: '',
     drinkName: [],
-    drinkAll: [],
-    foodAll: [],
+    isStarted: false,
     valueInputSearch: '',
     valueClickSearch: '',
+    toggleDrink: '',
+    toggleFood: '',
+    foodIngrList: [],
     busca: false,
   });
+
   const history = useHistory();
-  const { email, password,
-    valueInputSearch, valueClickSearch, foodName,
-    foodIng, foodLetter, drinkIng, drinkLetter, drinkName, busca } = state;
+  const { email, password, valueInputSearch, valueClickSearch,
+    foodRecipes, drinkRecipes, drinkRecipesBtns, foodRecipesBTN,
+    toggleFood, saveDrinkRecipes, saveFoodRecipes, toggleDrink,
+    busca, foodName, drinkDetails, foodIng, drinkPrincipal,
+    drinkIngredient, drinkIngredientLink,
+    foodLetter, drinkIng, drinkLetter, drinkName,
+    foodDetails, isStarted, foodIngrList, foodRecom, drinkRecom,
+    foodAreas, foodFromAreas, exploreFoodsIngredients, exploreFoodsImgIngredients,
+    exploreDrinksIngredients, foodIngredientLink,
+    exploreDrinksImgIngredients, foodPrincipal, foodIngredient } = state;
 
   const caseIngredient = async () => {
     if (locationName === '/bebidas') {
       try {
         const bebidasIn = await urlIBebidas(valueInputSearch);
+        if (!bebidasIn) return (global.alert(messageErro));
         if (bebidasIn.length === 1) {
           setStateGlobal({ ...state, drinkIng: bebidasIn });
-          return history.push(`/bebidas/${bebidasIn
-            .map((obj) => obj.idDrink)}`);
+          return history.push(`/bebidas/${bebidasIn.map((obj) => obj.idDrink)}`);
         }
         return setStateGlobal({ ...state, drinkIng: bebidasIn, busca: true });
       } catch (e) {
@@ -51,15 +81,10 @@ const RecipesProvider = ({ children }) => {
       }
     } else {
       const comidasIn = await urlIs(valueInputSearch);
-      if (comidasIn === null) {
-        return (
-          global.alert(messageErro)
-        );
-      }
+      if (comidasIn === null) return (global.alert(messageErro));
       if (comidasIn.length === 1) {
         setStateGlobal({ ...state, foodIng: comidasIn });
-        return history.push(`/comidas/${comidasIn
-          .map((obj) => obj.idMeal)}`);
+        return history.push(`/comidas/${comidasIn.map((obj) => obj.idMeal)}`);
       }
       return setStateGlobal({ ...state, foodIng: comidasIn, busca: true });
     }
@@ -68,23 +93,15 @@ const RecipesProvider = ({ children }) => {
   const caseName = async () => {
     if (locationName === '/bebidas') {
       const bebidasName = await urlNameBebidas(valueInputSearch);
-      if (bebidasName === null) {
-        return (
-          global.alert(messageErro)
-        );
-      }
+      if (bebidasName === null) return (global.alert(messageErro));
       if (bebidasName.length === 1) {
         setStateGlobal({ ...state, drinkName: bebidasName });
         return history.push(`/bebidas/${bebidasName.map((obj) => obj.idDrink)}`);
       }
-      setStateGlobal({ ...state, drinkName: await bebidasName, busca: true });
+      setStateGlobal({ ...state, drinkName: bebidasName, busca: true });
     } else {
       const comidasName = await urlNames(valueInputSearch);
-      if (comidasName === null) {
-        return (
-          global.alert(messageErro)
-        );
-      }
+      if (comidasName === null) return (global.alert(messageErro));
       if (comidasName.length === 1) {
         setStateGlobal({ ...state, foodName: comidasName });
         return history.push(`/comidas/${comidasName.map((obj) => obj.idMeal)}`);
@@ -99,11 +116,7 @@ const RecipesProvider = ({ children }) => {
     }
     if (locationName === '/bebidas') {
       const bebidasLetter = await urlPBebidas(valueInputSearch);
-      if (bebidasLetter === null) {
-        return (
-          global.alert(messageErro)
-        );
-      }
+      if (bebidasLetter === null) return (global.alert(messageErro));
       if (bebidasLetter.length === 1) {
         setStateGlobal({ ...state, drinkLetter: bebidasLetter });
         return history.push(`/bebidas/${bebidasLetter.map((obj) => obj.idDrink)}`);
@@ -111,11 +124,7 @@ const RecipesProvider = ({ children }) => {
       return setStateGlobal({ ...state, drinkLetter: bebidasLetter, busca: true });
     }
     const comidasLetter = await urlPs(valueInputSearch);
-    if (comidasLetter === null) {
-      return (
-        global.alert(messageErro)
-      );
-    }
+    if (comidasLetter === null) return (global.alert(messageErro));
     if (comidasLetter.length === 1) {
       setStateGlobal({ ...state, foodLetter: comidasLetter });
       return history.push(`/comidas/${comidasLetter.map((obj) => obj.idMeal)}`);
@@ -143,13 +152,7 @@ const RecipesProvider = ({ children }) => {
       await caseLetter();
       break;
     default:
-      if (locationName === '/bebidas') {
-        const allbebidas = await allUrlsCocks();
-        setStateGlobal({ ...state, drinkAll: allbebidas });
-      } else {
-        const allcomidas = await allUrls();
-        setStateGlobal({ ...state, foodAll: allcomidas });
-      }
+      console.log('Default');
     }
   };
 
@@ -158,14 +161,35 @@ const RecipesProvider = ({ children }) => {
     const MIN_LENGTH = 6;
     return !(emailValidation.test(email) && password.length > MIN_LENGTH);
   };
+
   const handleChange = ({ target }) => {
     const { name } = target;
     const { value } = target;
     setStateGlobal({ ...state, [name]: value });
   };
 
-  const context = { email,
+  const context = { state,
+    email,
     password,
+    foodRecipes,
+    foodRecipesBTN,
+    saveFoodRecipes,
+    foodAreas,
+    foodFromAreas,
+    foodPrincipal,
+    foodIngredient,
+    exploreFoodsIngredients,
+    exploreFoodsImgIngredients,
+    drinkRecipes,
+    saveDrinkRecipes,
+    drinkRecipesBtns,
+    drinkDetails,
+    toggleFood,
+    drinkPrincipal,
+    drinkIngredient,
+    drinkIngredientLink,
+    foodIngredientLink,
+    toggleDrink,
     handleChange,
     isSubmitButtonDisabled,
     onClickButtonSearch,
@@ -173,13 +197,20 @@ const RecipesProvider = ({ children }) => {
     handleChangeSearch,
     setStateGlobal,
     foodName,
+    valueClickSearch,
     foodIng,
     foodLetter,
     drinkIng,
     drinkLetter,
     drinkName,
-    valueClickSearch,
-    busca };
+    foodDetails,
+    isStarted,
+    foodIngrList,
+    foodRecom,
+    drinkRecom,
+    busca,
+    exploreDrinksIngredients,
+    exploreDrinksImgIngredients };
 
   return (
     <RecipesContext.Provider value={ context }>
@@ -187,7 +218,6 @@ const RecipesProvider = ({ children }) => {
     </RecipesContext.Provider>
   );
 };
-
 RecipesProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

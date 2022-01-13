@@ -6,16 +6,11 @@
   padding: 0;
 }
 
-body {
+.body {
   color: #444;
   font-family: Lato , sans-serif;
   height: 1vh;
 }
-
-/* .container {
-  display: flex;
-  justify-content: center;
-} */
 
 .login-page {
   border: solid 1px black;
@@ -34,12 +29,76 @@ body {
   font-weight: 700;
   height: 80px;
   justify-content: space-evenly;
+  width: 100%;
 }
 
 .header button {
   border-radius: 50%;
   height: 80px;
   width: 80px;
+}
+
+.card-container:any-link {
+  border: 1px green solid;
+  display: inline;
+}
+
+.card-btns {
+  align-items: center;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  width: 1500px;
+}
+
+.card {
+  border: 1px solid black;
+  display: inline-block;
+  margin: 0;
+  padding: 15px;
+  text-align: center;
+  width: 200px;
+}
+
+.card:any-link {
+  display: inline-block;
+}
+
+.card img {
+  width: 150px;
+}
+
+.recipes-card {
+  border: 1px solid black;
+  padding: 15px;
+  text-align: center;
+  width: 500px;
+}
+
+.recipes-card img {
+  width: 150px;
+}
+
+.recipes-card li {
+  margin-left: 10px;
+}
+
+.favorite-btn {
+  padding: 10px;
+}
+
+.favorite-icon {
+  height: 20px;
+  width: 20px;
+}
+
+.share-btn {
+  padding: 10px;
+}
+
+.share-icon {
+  height: 20px;
+  width: 20px;
 }
 
 .footer {
@@ -62,12 +121,47 @@ body {
   width: 50px;
 }
 
+.start-btn {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  z-index: 12;
+}
 
-@media screen and ( max-width : 360px ) {
+.finish-btn {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  z-index: 12;
+}
+
+.favorite-btn span {
+  display: block;
+}
+
+.ingredients-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.done {
+  text-decoration: line-through solid 1px black;
+}
+
+
+@media only screen and ( max-width : 375px ) {
 
   .drink-teste {
     width: 50px;
 
+  }
+
+  .button-header {
+    font-size: 10px;
+    height: 10px;
+    width: 10px;
   }
 
   .card-drink {
@@ -83,10 +177,6 @@ body {
     display: none;
   }
 
-  .button-header {
-    display: none;
-  }
-
   .button_search {
     height: 20px;
     width: 20px;
@@ -94,7 +184,9 @@ body {
 
   .search {
     display: flex;
+    flex-direction: column;
     font-size: 12px;
+    justify-content: center;
     margin: 0 auto;
   }
 
@@ -102,7 +194,42 @@ body {
     font-size: 5px;
   }
 
+  .search label {
+    font-size: 5px;
+  }
+
   .header {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    justify-content: space-evenly;
+    margin: 0 auto;
     padding: 100px;
+    width: 100vw;
+  }
+
+  .start-btn {
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    z-index: 12;
+  }
+
+  .finish-btn {
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    z-index: 12;
+  }
+
+  .ingredients-container {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+  }
+
+  .done {
+    text-decoration: line-through;
   }
 }

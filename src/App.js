@@ -19,10 +19,10 @@ function App() {
     return getNumberRegex.test(pathname);
   };
   return (
-    <body>
+    <div className="body">
       { !verifyUrl() && <Header /> }
       <Routes />
-    </body>
+    </div>
   );
 }
 
