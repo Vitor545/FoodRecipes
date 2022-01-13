@@ -141,6 +141,11 @@
     width: 50px;
 
   }
+  .button-header{
+    width: 10px;
+    font-size: 10px;
+    height: 10px;
+  } 
 
   .card-drink {
     background-color: rgb(201, 179, 253);
@@ -163,14 +168,25 @@
   .search {
     display: flex;
     font-size: 12px;
+    justify-content: center;
+    flex-direction: column;
     margin: 0 auto;
   }
 
   .search input {
     font-size: 5px;
   }
+  .search label {
+    font-size: 5px;
+  }
 
   .header {
+    width:100vw;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     padding: 100px;
   }
 
