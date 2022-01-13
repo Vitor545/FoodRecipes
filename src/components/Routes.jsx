@@ -13,7 +13,7 @@ import ExploreFoodFromOrigin from '../pages/ExploreFoodFromOrigin';
 import RecipeMadePage from '../pages/RecipeMadePage';
 import FoodId from './FoodId';
 import DrinkId from './DrinkId';
-import FavoritesRecipes from '../pages/FavoritesRecipes';
+import FavoriteRecipes from '../pages/FavoriteRecipes';
 import ProgressFood from './ProgressFood';
 import ProgressDrink from './ProgressDrink';
 import NotFound from '../pages/NotFound';
@@ -44,7 +44,7 @@ export default function Routes() {
       />
       <Route exact path="/explorar/comidas/area" component={ ExploreFoodFromOrigin } />
       <Route exact path="/receitas-feitas" component={ RecipeMadePage } />
-      <Route exact path="/receitas-favoritas" component={ FavoritesRecipes } />
+      <Route exact path="/receitas-favoritas" component={ FavoriteRecipes } />
       <Route path="*" component={ NotFound } />
     </Switch>
   );

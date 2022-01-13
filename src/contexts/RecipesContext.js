@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { urlIBebidas, urlNameBebidas,
   urlPBebidas, urlIs, urlNames, urlPs }
@@ -168,6 +168,17 @@ const RecipesProvider = ({ children }) => {
     setStateGlobal({ ...state, [name]: value });
   };
 
+  const [refreshFavorites, setRefreshFavorites] = useState(false);
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  useEffect(() => {
+    const results = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    setFavoriteRecipes(results);
+  }, [refreshFavorites]);
+
+  const handleUpdate = () => {
+    setRefreshFavorites(!refreshFavorites);
+  };
+
   const context = { state,
     email,
     password,
@@ -196,6 +207,10 @@ const RecipesProvider = ({ children }) => {
     handleClickSearch,
     handleChangeSearch,
     setStateGlobal,
+    handleUpdate,
+    favoriteRecipes,
+    setFavoriteRecipes,
+    setRefreshFavorites,
     foodName,
     valueClickSearch,
     foodIng,
