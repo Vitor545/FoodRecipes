@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { createContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import { urlIBebidas, urlNameBebidas,
   urlPBebidas, urlIs, urlNames, urlPs }
   from '../fetchApi/fetchApi';
