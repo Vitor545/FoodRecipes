@@ -114,7 +114,7 @@ export default function ProgressDrink() {
           </div>
         </div>
       ))}
-      <FinishRecipeBtn />
+      <FinishRecipeBtn recipeControl={ currentDrink } ingredientsControl={ ingrList } />
     </div>
   );
 }
