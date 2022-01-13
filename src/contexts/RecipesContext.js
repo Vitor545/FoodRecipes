@@ -77,7 +77,7 @@ const RecipesProvider = ({ children }) => {
         }
         return setStateGlobal({ ...state, drinkIng: bebidasIn, busca: true });
       } catch (e) {
-        console.log('deu bom');
+        global.alert(messageErro);
       }
     } else {
       const comidasIn = await urlIs(valueInputSearch);
