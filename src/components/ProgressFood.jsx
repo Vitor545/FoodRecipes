@@ -15,7 +15,7 @@ export default function ProgressFood() {
   const handleChange = ({ target }) => {
     if (ingrList.includes(target.name)) {
       const filteredList = ingrList.filter((el) => el !== target.name);
-      // console.log(filteredList);
+      console.log(filteredList);
       setIngrList(filteredList);
     } else {
       const newArr = [...ingrList, target.name];
@@ -114,7 +114,7 @@ export default function ProgressFood() {
           </div>
         </div>
       ))}
-      <FinishRecipeBtn recipeControl={ currentFood } />
+      <FinishRecipeBtn recipeControl={ currentFood } ingredientsControl={ ingrList } />
     </div>
   );
 }
