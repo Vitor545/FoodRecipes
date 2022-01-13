@@ -168,7 +168,9 @@ const RecipesProvider = ({ children }) => {
     setFavoriteRecipes(results);
   }, [refreshFavorites]);
 
-  const handleUpdate = () => setRefreshFavorites(!refreshFavorites);
+  const handleUpdate = () => {
+    setRefreshFavorites(!refreshFavorites);
+  };
 
   const context = { state,
     email,
@@ -194,6 +196,8 @@ const RecipesProvider = ({ children }) => {
     setStateGlobal,
     handleUpdate,
     favoriteRecipes,
+    setFavoriteRecipes,
+    setRefreshFavorites,
     foodName,
     valueClickSearch,
     foodIng,
