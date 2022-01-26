@@ -1,235 +1,192 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap') ;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap');
 
-* {
-  box-sizing: border-box;
+*{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  background-color: #F7F4F1;
 }
 
-.body {
-  color: #444;
-  font-family: Lato , sans-serif;
-  height: 1vh;
+body{
+  overflow-x: hidden;
 }
 
-.login-page {
-  border: solid 1px black;
-  height: 200px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 100px;
-  text-align: center;
-  width: 200px;
+input:focus, label:focus, select:focus, textarea:focus{
+  box-shadow: 0,0,0,0;
+  outline: 0;
+  background-color: #ffffff;
 }
 
-.header {
-  background-color: rgba(196, 196, 196, 0.75);
-  display: flex;
-  font-size: 24px;
-  font-weight: 700;
-  height: 80px;
-  justify-content: space-evenly;
+.login-page{
+  height: 420px;
+  width: 300px;
+  background-color: #f9f9f9;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 24px;
+  box-shadow:  0px 100px 80px rgba(0, 0, 0, 0.07), 
+  0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198), 
+  0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275), 
+  0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035), 
+  0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 
+  0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
+  transition: 0.5s;
+}
+
+.login-page div {
+  position: relative;
+  width: 300px;
+  background: url(./images/hamburger-phone.png);
+  height: 188px;
+  border-radius: 24px 24px 0px 0px;
+  transition: 0.5s;
+}
+
+.login-login {
   width: 100%;
-}
-
-.header button {
-  border-radius: 50%;
-  height: 80px;
-  width: 80px;
-}
-
-.card-container:any-link {
-  border: 1px green solid;
-  display: inline;
-}
-
-.card-btns {
-  align-items: center;
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  width: 1500px;
-}
-
-.card {
-  border: 1px solid black;
-  display: inline-block;
-  margin: 0;
-  padding: 15px;
-  text-align: center;
-  width: 200px;
-}
-
-.card:any-link {
-  display: inline-block;
-}
-
-.card img {
-  width: 150px;
-}
-
-.recipes-card {
-  border: 1px solid black;
-  padding: 15px;
-  text-align: center;
-  width: 500px;
-}
-
-.recipes-card img {
-  width: 150px;
-}
-
-.recipes-card li {
-  margin-left: 10px;
-}
-
-.favorite-btn {
-  padding: 10px;
-}
-
-.favorite-icon {
-  height: 20px;
-  width: 20px;
-}
-
-.share-btn {
-  padding: 10px;
-}
-
-.share-icon {
-  height: 20px;
-  width: 20px;
-}
-
-.footer {
-  background-color: rgb(196, 196, 196, 0.75);
-  border: 2px groove black;
-  bottom: 0;
-  height: 80px;
-  position: fixed;
-  text-align: center;
-  width: 100%;
-}
-
-.footerBtns {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.footerImg {
-  height: 80px;
-  width: 50px;
-}
-
-.start-btn {
-  bottom: 0;
-  left: 0;
-  position: fixed;
-  z-index: 12;
-}
-
-.finish-btn {
-  bottom: 0;
-  left: 0;
-  position: fixed;
-  z-index: 12;
-}
-
-.favorite-btn span {
-  display: block;
-}
-
-.ingredients-container {
-  align-items: flex-start;
+  height: 232px;
+  background-color: #F9F9F9;
   display: flex;
   flex-direction: column;
-  width: 80%;
+  align-items: center;
+  border-radius: 0px 0px 24px 24px;
+  transition: 0.5s;
 }
 
-.done {
-  text-decoration: line-through solid 1px black;
+.login-login h2 {
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(264.98deg, rgba(255, 163, 26, 0.6) 2.9%, rgba(245, 98, 98, 0.6) 94.41%);
+  margin-top: 32px;
+  margin-bottom: 24px;
+  background-color: #F9F9F9;
+  font-family: "Poppins";
+  font-style: normal;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  transition: 0.5s;
 }
 
+.login-login form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F9F9F9;
+  transition: 0.5s;
+}
+.login-login form label{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 12px;
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(264.98deg, rgba(255, 163, 26, 0.6) 2.9%, rgba(245, 98, 98, 0.6) 94.41%);
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 8px;
+  line-height: 12px;
+  transition: 0.5s;
+}
 
-@media only screen and ( max-width : 375px ) {
+.login-login form label input {
+  border: 0;
+  width: 162px;
+  height: 23px;
+  border-radius:6px;
+  background-color: #ffffff;
+  transition: 0.5s;
+}
 
-  .drink-teste {
-    width: 50px;
+.login-login form button {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 8px;
+  line-height: 12px;
+  text-align: center;
+  border: 0;
+  width: 48.32px;
+  color: white;
+  height: 22.7px;
+  background: linear-gradient(264.98deg, rgba(255, 163, 26, 0.6) 2.9%, rgba(245, 98, 98, 0.6) 94.41%);
+  border-radius: 6px;
+  transition: 0.5s;
+}
 
-  }
+.login-login form button:disabled {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 8px;
+  line-height: 12px;
+  text-align: center;
+  border: 0;
+  width: 48.32px;
+  color: white;
+  height: 22.7px;
+  background: linear-gradient(264.98deg, rgba(255, 163, 26, 0.2) 2.9%, rgba(245, 98, 98, 0.2) 94.41%);
+  border-radius: 6px;
+  transition: 0.5s;
+}
 
-  .button-header {
-    font-size: 10px;
-    height: 10px;
-    width: 10px;
-  }
-
-  .card-drink {
-    background-color: rgb(201, 179, 253);
-    height: 200px;
-    margin: 15px auto;
-    overflow: hidden;
-    padding: 10px;
-    width: 100px;
-  }
-
-  .page-title {
-    display: none;
-  }
-
-  .button_search {
-    height: 20px;
-    width: 20px;
-  }
-
-  .search {
+@media screen and (min-width: 900px) {
+  .login-page{
+    height: 600px;
+    width: 840px;
     display: flex;
-    flex-direction: column;
-    font-size: 12px;
+  }
+  .login-page div{
+    width: 396px;
+    height: 600px;
+    background: url(./images/hamburger.png);
+    border-radius: 24px 0px 0px 24px;
+  }
+
+  .login-login {
+    width: 444px;
+    height: 600px;
     justify-content: center;
-    margin: 0 auto;
+    border-radius: 0px 24px 24px 0px;
   }
 
-  .search input {
-    font-size: 5px;
+  .login-login h2 {
+    font-size: 36px;
+    line-height: 54px;
   }
 
-  .search label {
-    font-size: 5px;
+  .login-login form label {
+    font-size: 16px;
+    line-height: 24px;
   }
 
-  .header {
-    display: flex;
-    flex-direction: column;
-    height: 100px;
-    justify-content: space-evenly;
-    margin: 0 auto;
-    padding: 100px;
-    width: 100vw;
+  .login-login form label input {
+    width: 278px;
+    height: 39px;
+  }
+  
+  .login-login form button {
+    font-size: 16px;
+    line-height: 24px;
+    width: 83px;
+    color: white;
+    height: 39px;
+  }
+  
+  .login-login form button:disabled {
+    font-size: 16px;
+    line-height: 24px;
+    width: 83px;
+    color: white;
+    height: 39px;
   }
 
-  .start-btn {
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    z-index: 12;
-  }
 
-  .finish-btn {
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    z-index: 12;
-  }
-
-  .ingredients-container {
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-  }
-
-  .done {
-    text-decoration: line-through;
-  }
 }
