@@ -1,18 +1,16 @@
 import PropTypes from 'prop-types';
 import React, { createContext, useState, useEffect } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import { urlIBebidas, urlNameBebidas,
   urlPBebidas, urlIs, urlNames, urlPs }
   from '../fetchApi/fetchApi';
 
 // Source useHistory - https://dev.to/ino_gu/utilizando-usehistory-no-react-bgf
-
-// Source https://stackoverflow.com/questions/3522090/event-when-window-location-href-changes
-const locationName = document.location.pathname;
 const messageErro = 'Sinto muito, não encontramos nenhuma receita para esses filtros.';
 
 const RecipesContext = createContext();
 const RecipesProvider = ({ children }) => {
+  const { pathname } = useLocation();
   const [state, setStateGlobal] = useState({
     email: '',
     password: '',
@@ -67,7 +65,7 @@ const RecipesProvider = ({ children }) => {
     exploreDrinksImgIngredients, foodPrincipal, foodIngredient } = state;
 
   const caseIngredient = async () => {
-    if (locationName === '/bebidas') {
+    if (pathname === '/bebidas') {
       try {
         const bebidasIn = await urlIBebidas(valueInputSearch);
         if (!bebidasIn) return (global.alert(messageErro));
@@ -91,7 +89,7 @@ const RecipesProvider = ({ children }) => {
   };
 
   const caseName = async () => {
-    if (locationName === '/bebidas') {
+    if (pathname === '/bebidas') {
       const bebidasName = await urlNameBebidas(valueInputSearch);
       if (bebidasName === null) return (global.alert(messageErro));
       if (bebidasName.length === 1) {
@@ -114,7 +112,7 @@ const RecipesProvider = ({ children }) => {
     if (valueInputSearch.length !== 1) {
       return global.alert('Sua busca deve conter somente 1 (um) caracter');
     }
-    if (locationName === '/bebidas') {
+    if (pathname === '/bebidas') {
       const bebidasLetter = await urlPBebidas(valueInputSearch);
       if (bebidasLetter === null) return (global.alert(messageErro));
       if (bebidasLetter.length === 1) {

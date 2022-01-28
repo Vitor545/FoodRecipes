@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { RecipesContext } from '../contexts/RecipesContext';
+import { useLocation } from 'react-router';
 import Footer from './Footer';
 
-const locationName = document.location.pathname;
 const ARRAY_12 = 12;
 
 const SearchDrinks = () => {
+  const { pathname } = useLocation();
   const { valueClickSearch, foodName, foodIng, foodLetter, drinkIng, drinkLetter,
     drinkName } = useContext(RecipesContext);
 
@@ -17,25 +18,22 @@ const SearchDrinks = () => {
       return null;
     });
     return (
-      arrayFilter.map((obj, index) => (
-        <div key={ obj.idDrink } className="card-drink">
-          <img
-            src={ obj.strDrinkThumb }
-            className="drink-teste"
-            alt=""
-            data-testid={ `${index}-card-img` }
-          />
-          <h3 data-testid={ `${index}-card-name` }>
-            {obj.strDrink}
+      <div className="card-container-conteuds"> 
+    {    arrayFilter.map((obj, index) => (
+          <div key={ obj.idDrink } className="card">
+            <img
+              src={ obj.strDrinkThumb }
+              className="drink-teste"
+              alt=""
+              data-testid={ `${index}-card-img` }
+            />
+            <h3 data-testid={ `${index}-card-name` }>
+              {obj.strDrink}
 
-          </h3>
-          <p
-            data-testid={ `${index}-recipe-card` }
-          >
-            {obj.strInstructions}
-          </p>
-        </div>
-      ))
+            </h3>
+          </div>
+        ))}
+      </div>
     );
   };
 
@@ -45,22 +43,20 @@ const SearchDrinks = () => {
       return null;
     });
     return (
-      arrayFilter.map((obj, index) => (
-        <div key={ obj.idMeal } className="card-drink">
-          <img
-            src={ obj.strMealThumb }
-            className="drink-teste"
-            alt=""
-            data-testid={ `${index}-card-img` }
-          />
-          <h3 data-testid={ `${index}-card-name` }>{obj.strMeal}</h3>
-          <p
-            data-testid={ `${index}-recipe-card` }
-          >
-            {obj.strInstructions}
-          </p>
-        </div>
-      ))
+      <div className="card-container-conteuds"> 
+        { arrayFilter.map((obj, index) => (
+              <div key={ obj.idMeal } className="card">
+                <img
+                  src={ obj.strMealThumb }
+                  className="drink-teste"
+                  alt=""
+                  data-testid={ `${index}-card-img` }
+                />
+                <h3 data-testid={ `${index}-card-name` }>{obj.strMeal}</h3>
+              </div>
+            ))}
+      </div>
+
     );
   };
 
@@ -104,7 +100,7 @@ const SearchDrinks = () => {
 
   return (
     <div>
-      {searchBusca(locationName)}
+      {searchBusca(pathname)}
       <Footer />
     </div>
   );

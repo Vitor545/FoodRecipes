@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 
-const locationName = document.location.pathname;
-
 export default function StartRecipeBtn({ history }) {
   const { id } = useParams();
   const { pathname } = useLocation();
@@ -21,9 +19,9 @@ export default function StartRecipeBtn({ history }) {
     let infoFromLocal = localStorage.getItem('inProgressRecipes');
     if (infoFromLocal) {
       infoFromLocal = JSON.parse(infoFromLocal);
-      const isSaved = (locationName.includes('/comidas')
+      const isSaved = (pathname.includes('/comidas')
       && Object.keys(infoFromLocal.meals).includes(id))
-      || (locationName.includes('/bebidas')
+      || (pathname.includes('/bebidas')
       && Object.keys(infoFromLocal.cocktails).includes(id));
       console.log(infoFromLocal);
       if (isSaved) {

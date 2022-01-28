@@ -105,7 +105,7 @@ function FoodCard() {
           type="button"
           onClick={ () => setStateGlobal({ ...state, foodRecipes: saveFoodRecipes }) }
         >
-          All Recipes
+         All Recipes
         </button>
         {foodRecipesBTN
           && foodRecipesBTN.map((el) => (
@@ -116,24 +116,24 @@ function FoodCard() {
               onClick={ handleCategory }
               id={ el.strCategory }
             >
-              {el.strCategory}
-              {' '}
+                {el.strCategory}
+                {' '}
             </button>
           ))}
       </div>
-      {foodRecipes
-        && foodRecipes.map((el, index) => (
-          <Link key={ el.idMeal } to={ `/comidas/${el.idMeal}` }>
-            <div data-testid={ `${index}-recipe-card` } className="card">
-              <img
-                src={ el.strMealThumb }
-                alt=""
-                data-testid={ `${index}-card-img` }
-              />
-              <h3 data-testid={ `${index}-card-name` }>{el.strMeal}</h3>
-            </div>
-          </Link>
-        ))}
+      <div className="card-container-conteuds">
+        {foodRecipes
+          && foodRecipes.map((el, index) => (
+            <Link data-testid={ `${index}-recipe-card` } className="card"  key={ el.idMeal } to={ `/comidas/${el.idMeal}` }>
+                <img
+                  src={ el.strMealThumb }
+                  alt=""
+                  data-testid={ `${index}-card-img` }
+                />
+                <h3 data-testid={ `${index}-card-name` }>{el.strMeal}</h3>
+            </Link>
+          ))}
+      </div>
     </div>
   );
 }

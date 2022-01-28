@@ -108,24 +108,25 @@ function DrinkCard() {
           </button>
         )))}
       </div>
-      {drinkRecipes && drinkRecipes.map((el, index) => ((
-        <Link to={ `/bebidas/${el.idDrink}` } key={ index }>
-          <div
+      <div className="card-container-conteuds">
+        {drinkRecipes && drinkRecipes.map((el, index) => ((
+          <Link
             data-testid={ `${index}-recipe-card` }
             className="card"
-            key={ el.drink }
+            to={ `/bebidas/${el.idDrink}` }
+            key={ index }
           >
-            <img
-              src={ el.strDrinkThumb }
-              alt=""
-              data-testid={ `${index}-card-img` }
-            />
-            <h3 data-testid={ `${index}-card-name` }>
-              {el.strDrink}
-            </h3>
-          </div>
-        </Link>)
-      ))}
+              <img
+                src={ el.strDrinkThumb }
+                alt=""
+                data-testid={ `${index}-card-img` }
+              />
+              <h3 data-testid={ `${index}-card-name` }>
+                {el.strDrink}
+              </h3>
+          </Link>)
+        ))}
+      </div>
     </div>
   );
 }
