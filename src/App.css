@@ -71,7 +71,6 @@ input:focus, label:focus, select:focus, textarea:focus{
   text-transform: uppercase;
   font-weight: bold;
   font-size: 18px;
-  line-height: 27px;
   text-align: center;
   transition: 0.5s;
 }
@@ -96,7 +95,6 @@ input:focus, label:focus, select:focus, textarea:focus{
   font-style: normal;
   font-weight: 300;
   font-size: 8px;
-  line-height: 12px;
   transition: 0.5s;
 }
 
@@ -114,7 +112,6 @@ input:focus, label:focus, select:focus, textarea:focus{
   font-style: normal;
   font-weight: 300;
   font-size: 8px;
-  line-height: 12px;
   text-align: center;
   border: 0;
   width: 48.32px;
@@ -130,7 +127,6 @@ input:focus, label:focus, select:focus, textarea:focus{
   font-style: normal;
   font-weight: 300;
   font-size: 8px;
-  line-height: 12px;
   text-align: center;
   border: 0;
   width: 48.32px;
@@ -150,7 +146,8 @@ input:focus, label:focus, select:focus, textarea:focus{
   width: 100%;
   top: 0;
   left: 0;
-  padding: 16px;
+  transition: 0.5s;
+  padding: 32px;
   justify-content: center;
   z-index: 1000;
 }
@@ -158,16 +155,17 @@ input:focus, label:focus, select:focus, textarea:focus{
 .header-principal {
   display: flex;
   justify-content: space-around;
+  transition: 0.5s;
   align-items: center;
 }
 
-.header h1 {
+.header-principal h1 {
   font-family: "Poppins";
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
-  line-height: 27px;
   text-align: center;
+  transition: 0.5s;
   background-clip: text;
   color: transparent;
   background-image: linear-gradient(264.98deg, rgba(255, 163, 26, 0.6) 2.9%, rgba(245, 98, 98, 0.6) 94.41%);
@@ -176,10 +174,16 @@ input:focus, label:focus, select:focus, textarea:focus{
 .button-header{
   background-color: #fcf0e4;
   opacity: 80%;
+  width: 48px;
+  transition: 0.5s;
+
+  height: 48px;
 }
 
 .button-header:hover {
   opacity: 100%;
+  transition: 0.5s;
+  cursor:pointer;
 }
 
 .search {
@@ -187,11 +191,13 @@ input:focus, label:focus, select:focus, textarea:focus{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: 0.5s;
 }
 .search-input::placeholder{
   color:transparent;
   background: linear-gradient(264.98deg, rgba(255, 163, 26, 0.6) 2.9%, rgba(245, 98, 98, 0.6) 94.41%);
   background-clip: text;
+  transition: 0.5s;
 }
 .search-input {
   margin-top: 18px;
@@ -204,7 +210,7 @@ input:focus, label:focus, select:focus, textarea:focus{
   font-style: normal;
   font-weight: 300;
   font-size: 8px;
-  line-height: 12px;
+  transition: 0.5s;
   text-align: center;
 }
 
@@ -212,6 +218,7 @@ input:focus, label:focus, select:focus, textarea:focus{
   display: flex;
   align-items: center;
   justify-content: space-around;
+  transition: 0.5s;
 }
 
 .search-radio-flex {
@@ -220,6 +227,7 @@ input:focus, label:focus, select:focus, textarea:focus{
   align-items: center;
   text-align: center;
   margin: 20px;
+  transition: 0.5s;
 }
 
 .search-radio-flex input {
@@ -231,7 +239,6 @@ input:focus, label:focus, select:focus, textarea:focus{
   font-style: normal;
   font-weight: 500;
   font-size: 8px;
-  line-height: 12px;
   text-align: center;
   color:transparent;
   background: linear-gradient(264.98deg, rgba(255, 163, 26, 0.9) 2.9%, rgba(245, 98, 98, 0.9) 94.41%);
@@ -239,6 +246,7 @@ input:focus, label:focus, select:focus, textarea:focus{
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
+  transition: 0.5s;
 }
 
 .search-radio-flex label:before {
@@ -246,6 +254,7 @@ input:focus, label:focus, select:focus, textarea:focus{
   margin-top: 3px;
   width: 8px;
   height: 8px;
+  transition: 0.5s;
   border-radius: 50%;
   background-color: white;
   border: 5px solid rgba(251, 179, 140, 1);
@@ -253,6 +262,7 @@ input:focus, label:focus, select:focus, textarea:focus{
 
 .search-radio-flex input:checked + label:before {
   background-color: rgba(251, 179, 140, 1);
+  transition: 0.5s;
   border: 5px solid rgb(255, 255, 255);
 }
 
@@ -266,13 +276,14 @@ input:focus, label:focus, select:focus, textarea:focus{
   font-style: normal;
   font-weight: 500;
   font-size: 8px;
-  line-height: 12px;
   text-align: center;
   color: #FFFFFF;
   transition: 0.5s;
 }
 
 .button_search:hover {
+  cursor:pointer;
+  transition: 0.5s;
   background: linear-gradient(264.98deg, rgba(255, 163, 26, 0.9) 2.9%, rgba(245, 98, 98, 0.9) 94.41%);
 }
 
@@ -281,12 +292,14 @@ input:focus, label:focus, select:focus, textarea:focus{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: 0.5s;
 }
 
 .card-btns {
   width: 100%;
   display: flex;
   justify-content: space-around;
+  transition: 0.5s;
 }
 
 .card-btns button {
@@ -302,12 +315,15 @@ input:focus, label:focus, select:focus, textarea:focus{
   color: #ffffff;
   background: linear-gradient(264.98deg, rgba(255, 163, 26, 0.6) 2.9%, rgba(245, 98, 98, 0.6) 94.41%);
   border-radius: 6px;
+  transition: 0.5s;
   border: 3px solid rgb(255, 255, 255);
 }
 
 .card-btns button:hover {
+  cursor:pointer;
   background: linear-gradient(264.98deg, rgba(255, 163, 26, 0.9) 2.9%, rgba(245, 98, 98, 0.9) 94.41%);
   border-radius: 6px;
+  transition: 0.5s;
 }
 
 .card-container-conteuds {
@@ -315,6 +331,7 @@ input:focus, label:focus, select:focus, textarea:focus{
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  transition: 0.5s;
 }
 
 .card {
@@ -333,6 +350,7 @@ input:focus, label:focus, select:focus, textarea:focus{
   0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035), 
   0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 
   0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
+  transition: 0.5s;
 }
 
 .card h3 {
@@ -342,11 +360,11 @@ input:focus, label:focus, select:focus, textarea:focus{
   top: 40px;
   font-weight: bold;
   font-size: 18px;
-  line-height: 27px;
   text-align: center;
   color:transparent;
   background: linear-gradient(264.98deg, rgba(255, 163, 26, 0.9) 2.9%, rgba(245, 98, 98, 0.9) 94.41%);
   background-clip: text;
+  transition: 0.5s;
 }
 
 .card:hover {
@@ -361,59 +379,377 @@ input:focus, label:focus, select:focus, textarea:focus{
 .card img {
   width: 264px;
   height: 264px;
+  transition: 0.5s;
   border-radius: 24px 24px 0px 0px;
 }
+
+.footer {
+  margin: 64px;
+}
+
+.footerBtns {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  background-color: #fcf0e4;
+  bottom: 0;
+  transition: 0.5s;
+  left: 0;
+}
+
+.footerBtns a img {
+  width: 48px;
+  opacity: 75%;
+  height: 48px;
+  transition: 0.5s;
+}
+
+.footerBtns a img:hover {
+  opacity: 100%;
+  transition: 0.5s;
+}
+
+.explorar-recipes {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
+.explorar-recipes-recipes:link {
+ text-decoration: none;
+}
+
+.explorar-recipes-recipes {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(264.98deg, rgba(255, 163, 26, 0.6) 2.9%, rgba(245, 98, 98, 0.6) 94.41%);
+  transition: 0.5s;
+}
+
+.explorar-recipes-recipes:hover {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(264.98deg, rgba(255, 163, 26, 0.9) 2.9%, rgba(245, 98, 98, 0.9) 94.41%);
+  transition: 0.5s;
+}
+
+.explorar-recipes-recipes button {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.explorar-recipes-recipes button:hover {
+  cursor: pointer;
+}
+
+.container-por-origen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-por-origen-se {
+  margin: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-por-origen-se select {
+  border: 1px solid rgba(251, 179, 140, 1);
+  background-color: white;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 6px;
+  color: rgba(251, 179, 140, 1);
+  margin-top: 24px;
+}
+
+.container-por-origen-se p {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  text-align: center;
+  transition: 0.5s;
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(264.98deg, rgba(255, 163, 26, 0.6) 2.9%, rgba(245, 98, 98, 0.6) 94.41%);
+}
+
+.card-favorite {
+  display: flex;
+  text-decoration: none;
+  flex-direction: column;
+  align-items: center;
+  width: 264px;
+  height: 380px;
+  background-color: #F9F9F9 ;
+  margin: 32px;
+  border-radius: 24px;
+  box-shadow:  0px 100px 80px rgba(0, 0, 0, 0.07), 
+  0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198), 
+  0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275), 
+  0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035), 
+  0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 
+  0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
+  transition: 0.5s;
+}
+
+.p-favorite a:link {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.p-favorite a h3, .p-favorite p {
+  position: relative;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  color:transparent;
+  background: linear-gradient(264.98deg, rgba(255, 163, 26, 0.9) 2.9%, rgba(245, 98, 98, 0.9) 94.41%);
+  background-clip: text;
+  transition: 0.5s;
+}
+
+.card-favorite:hover {
+  box-shadow:  0px 100px 80px rgba(0, 0, 0, 0.1), 
+  0px 41.7776px 33.4221px rgba(0, 0, 0, 0.06), 
+  0px 22.3363px 17.869px rgba(0, 0, 0, 0.05), 
+  0px 12.5216px 10.0172px rgba(0, 0, 0, 0.05), 
+  0px 6.6501px 5.32008px rgba(0, 0, 0, 0.035), 
+  0px 2.76726px 2.21381px rgba(0, 0, 0, 0.03);
+}
+
+.card-favorite a img {
+  width: 264px;
+  height: 264px;
+  transition: 0.5s;
+  border-radius: 24px 24px 0px 0px;
+}
+
+.card-favorite a {
+  width: 264px;
+  height: 264px;
+}
+
+.flex-favorite {
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: center;
+}
+
+.b-favorite {
+  width: 264px;
+  justify-content: space-around;
+  background-color: #fcf0e4;
+  display: flex;
+  padding: 3px;
+  align-items: center;
+}
+
+.b-favorite button, .b-favorite div button {
+  margin-left: 15px;
+  margin-right: 15px;
+  background-color: transparent;
+}
+
+.fas {
+  font-size: 20px;
+  background-color: transparent;
+}
+.fa-heart {
+  color:transparent;
+  background: linear-gradient(264.98deg, rgba(255, 163, 26, 0.9) 2.9%, rgba(245, 98, 98, 0.9) 94.41%);
+  background-clip: text;
+}
+
+.fa-heart:hover {
+  cursor: pointer;
+}
+
+.fa-share-alt {
+  background-color: transparent;
+  color:transparent;
+  background: linear-gradient(264.98deg, rgba(255, 163, 26, 0.9) 2.9%, rgba(245, 98, 98, 0.9) 94.41%);
+  background-clip: text;
+}
+
+.fa-share-alt:hover {
+  cursor: pointer;
+}
+
+.favorite-btn span {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 8px;
+  transition: 0.5s;
+  color:transparent;
+  background: linear-gradient(264.98deg, rgba(255, 163, 26, 1) 2.9%, rgba(245, 98, 98, 1) 94.41%);
+  background-clip: text;
+}
+
+.favorite-btn {
+  display: flex;
+  align-items: center;
+}
+
 
 @media screen and (min-width: 900px) {
   .login-page{
     height: 600px;
     width: 840px;
     display: flex;
+    transition: 0.5s;
   }
   .login-page div{
     width: 396px;
     height: 600px;
     background: url(./images/hamburger.png);
     border-radius: 24px 0px 0px 24px;
+    transition: 0.5s;
   }
 
   .login-login {
     width: 444px;
     height: 600px;
     justify-content: center;
+    transition: 0.5s;
     border-radius: 0px 24px 24px 0px;
   }
 
   .login-login h2 {
     font-size: 36px;
-    line-height: 54px;
+    transition: 0.5s;
   }
 
   .login-login form label {
     font-size: 16px;
-    line-height: 24px;
+    transition: 0.5s;
   }
 
   .login-login form label input {
     width: 278px;
+    transition: 0.5s;
     height: 39px;
   }
   
   .login-login form button {
     font-size: 16px;
-    line-height: 24px;
     width: 83px;
     color: white;
     height: 39px;
+    transition: 0.5s;
   }
   
   .login-login form button:disabled {
     font-size: 16px;
-    line-height: 24px;
     width: 83px;
     color: white;
     height: 39px;
+    transition: 0.5s;
   }
 
+  .header {
+    transition: 0.5s;
+  }
+
+  .header h1 {
+    font-size: 36px;
+    transition: 0.5s;
+  }
+  
+  .button-header img{
+    width: 64px;
+    height: 64px;
+    transition: 0.5s;
+  }
+
+  .search-input {
+    border-radius: 12px;
+    width: 840px;
+    height: 44px;
+    font-size: 16px;
+    transition: 0.5s;
+  }
+  
+  .search-label-web {
+    font-size: 16px;
+    transition: 0.5s;
+  }
+  
+  .search-radio-flex label:before {
+    margin-top: 6px;
+    width: 16px;
+    height: 16px;
+    transition: 0.5s;
+    border: 10px solid #fbb38c;
+    transition: 0.5s;
+  }
+  
+  .search-radio-flex input:checked + label:before {
+    border: 10px solid rgb(255, 255, 255);
+    transition: 0.5s;
+  }
+  
+  .button_search {
+    width: 122px;
+    height: 56px;
+    border: 6px solid #FFFFFF;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: 0.5s;
+  }
+  
+  .card-btns button {
+    width: 102px;
+    font-size: 8px;
+    height: 46px;
+    border-radius: 12px;
+    border: 6px solid rgb(255, 255, 255);
+    transition: 0.5s;
+  }
+  
+  .card-btns button:hover {
+    border-radius: 12px;
+    transition: 0.5s;
+  }
+
+  .footerBtns a img {
+    width: 64px;
+    height: 64px;
+    transition: 0.5s;
+  }
 
 }

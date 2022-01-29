@@ -12,16 +12,17 @@ export default function DrinksExplorePage() {
   }, []);
   return (
     <div>
-      Drinks Explore Page
-      <ExploreIngredientsBtn />
-      <Link to={ `/bebidas/${randomDrinkID}` }>
-        <button
-          type="button"
-          data-testid="explore-surprise"
-        >
-          Me Surpreenda!
-        </button>
-      </Link>
+      <div className="explorar-recipes">
+        <ExploreIngredientsBtn />
+        <Link className="explorar-recipes-recipes" to={ `/bebidas/${randomDrinkID}` }>
+          <button
+            type="button"
+            data-testid="explore-surprise"
+          >
+            Me Surpreenda!
+          </button>
+        </Link>
+      </div>
       <Footer />
     </div>
   );

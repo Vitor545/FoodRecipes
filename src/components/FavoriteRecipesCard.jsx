@@ -18,7 +18,7 @@ export default function FavoriteRecipesCard({ index, favorite }) {
 
   const recipeLink = (type, id) => (`/${type}s/${id}`);
   return (
-    <div className="card">
+    <div className="card-favorite">
       <Link to={ () => recipeLink(favorite.type, favorite.id) }>
         <img
           src={ favorite.image }
@@ -26,34 +26,33 @@ export default function FavoriteRecipesCard({ index, favorite }) {
           data-testid={ `${index}-horizontal-image` }
         />
       </Link>
-      <div>
-        <p data-testid={ `${index}-horizontal-top-text` }>
-          {favorite.type === 'comida' ? `${favorite.area} - ${favorite.category}`
-            : favorite.alcoholicOrNot }
-        </p>
-        <Link to={ () => recipeLink(favorite.type, favorite.id) }>
-          <h2 data-testid={ `${index}-horizontal-name` }>{favorite.name}</h2>
-        </Link>
-        <button
-          type="button"
-          className="favorite-btn"
-          onClick={ handleFavorite }
-        >
-          <img
-            data-testid={ `${index}-horizontal-favorite-btn` }
-            className="favorite-icon"
-            src={ blackFavoriteIcon }
-            alt="favorite icon"
+      <div className="flex-favorite">
+      <div className="b-favorite">
+          <button
+            type="button"
+            className="favorite-btn"
+            onClick={ handleFavorite }
+          >
+           <i class="fas fa-heart"></i>
+          </button>
+          <ShareBtn
+            dataTestId={ `${index}-horizontal-share-btn` }
+            type={ favorite.type }
+            id={ favorite.id }
           />
-        </button>
-        <ShareBtn
-          dataTestId={ `${index}-horizontal-share-btn` }
-          type={ favorite.type }
-          id={ favorite.id }
-        />
+        </div>
+        <div className="p-favorite">
+          <p data-testid={ `${index}-horizontal-top-text` }>
+            {favorite.type === 'comida' ? `${favorite.area} - ${favorite.category}`
+              : favorite.alcoholicOrNot }
+          </p>
+          <Link to={ () => recipeLink(favorite.type, favorite.id) }>
+            <h3 data-testid={ `${index}-horizontal-name` }>{favorite.name}</h3>
+          </Link>
+        </div>
       </div>
-      <div />
-    </div>
+    <div />
+  </div>
   );
 }
 

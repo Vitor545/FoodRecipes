@@ -26,34 +26,34 @@ export default function FoodExploreIngredients() {
   }, []);
 
   const srcLink = 'https://www.themealdb.com/images/ingredients/';
-
   return (
     <div>
-      Food Explore Ingredients
-
-      {exploreFoodsIngredients
-      && exploreFoodsIngredients.map(({ strIngredient }, index) => (
-        (
-          <Link
-            to="/comidas"
-            key={ strIngredient }
-            onClick={ () => {
-              setStateGlobal({ ...state,
-                foodPrincipal: false,
-                foodIngredient: true,
-                foodIngredientLink: strIngredient });
-            } }
-          >
-            <div className="card" data-testid={ `${index}-ingredient-card` }>
-              <h2 data-testid={ `${index}-card-name` }>{strIngredient}</h2>
-              <img
-                data-testid={ `${index}-card-img` }
-                src={ `${srcLink}${strIngredient}-Small.png` }
-                alt={ `${strIngredient}` }
-              />
-            </div>
-          </Link>)
-      ))}
+      <div className='container-por-origen-se'><p>Food</p></div>
+      <div className="card-container-conteuds">
+        {exploreFoodsIngredients
+        && exploreFoodsIngredients.map(({ strIngredient }, index) => (
+          (
+            <Link
+              to="/comidas"
+              key={ strIngredient }
+              onClick={ () => {
+                setStateGlobal({ ...state,
+                  foodPrincipal: false,
+                  foodIngredient: true,
+                  foodIngredientLink: strIngredient });
+              } }
+              className="card"
+              data-testid={ `${index}-ingredient-card` }
+            >
+                <img
+                  data-testid={ `${index}-card-img` }
+                  src={ `${srcLink}${strIngredient}-Small.png` }
+                  alt={ `${strIngredient}` }
+                />
+                <h3 data-testid={ `${index}-card-name` }>{strIngredient}</h3>
+            </Link>)
+        ))}
+      </div>
       <Footer />
     </div>
   );

@@ -58,38 +58,47 @@ export default function ExploreFoodFromOrigin() {
 
   return (
     <div>
-      <p>Explore Food From Origin</p>
-      <select data-testid="explore-by-area-dropdown" onChange={ handleChange }>
-        <option data-testid="All-option">All</option>
-        {foodAreas
-          && foodAreas.map(({ strArea }) => {
-            if (strArea === 'American') {
-              return (
-                <option data-testid={ `${strArea}-option` } selected>
-                  {strArea}
-                </option>
-              );
-            }
-            return (
-              <option key={ strArea } data-testid={ `${strArea}-option` }>
-                {strArea}
-              </option>
-            );
-          })}
-      </select>
-      {foodFromAreas
-        && foodFromAreas.map(({ strMeal, strMealThumb, idMeal }, index) => (
-          <Link key={ strMeal } to={ `/comidas/${idMeal}` }>
-            <div data-testid={ `${index}-recipe-card` } className="card">
-              <img
-                src={ strMealThumb }
-                alt=""
-                data-testid={ `${index}-card-img` }
-              />
-              <h2 data-testid={ `${index}-card-name` }>{strMeal}</h2>
-            </div>
-          </Link>
-        ))}
+      <div className="container-por-origen">
+        <div className='container-por-origen-se'>
+          <p>Food</p>
+          <select data-testid="explore-by-area-dropdown" onChange={ handleChange }>
+            <option data-testid="All-option">All</option>
+            {foodAreas
+              && foodAreas.map(({ strArea }) => {
+                if (strArea === 'American') {
+                  return (
+                    <option data-testid={ `${strArea}-option` } selected>
+                      {strArea}
+                    </option>
+                  );
+                }
+                return (
+                  <option key={ strArea } data-testid={ `${strArea}-option` }>
+                    {strArea}
+                  </option>
+                );
+              })}
+          </select>
+        </div>
+        <div className="card-container-conteuds">
+          {foodFromAreas
+            && foodFromAreas.map(({ strMeal, strMealThumb, idMeal }, index) => (
+              <Link
+                key={ strMeal }
+                to={ `/comidas/${idMeal}`}
+                data-testid={ `${index}-recipe-card` }
+                className="card"
+              >
+                  <img
+                    src={ strMealThumb }
+                    alt=""
+                    data-testid={ `${index}-card-img` }
+                  />
+                  <h3 data-testid={ `${index}-card-name` }>{strMeal}</h3>
+              </Link>
+            ))}
+        </div>
+      </div>
       <Footer />
     </div>
   );

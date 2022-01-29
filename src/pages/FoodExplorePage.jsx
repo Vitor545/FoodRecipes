@@ -14,18 +14,18 @@ export default function FoodExplorePage() {
 
   return (
     <div>
-
-      Food Explore Page
-      <ExploreIngredientsBtn />
-      <ExploreFromOriginBtn />
-      <Link to={ `/comidas/${randomMealId}` }>
-        <button
-          type="button"
-          data-testid="explore-surprise"
-        >
-          Me Surpreenda!
-        </button>
-      </Link>
+      <div className="explorar-recipes">
+        <ExploreIngredientsBtn />
+        <ExploreFromOriginBtn />
+        <Link className="explorar-recipes-recipes" to={ `/comidas/${randomMealId}` }>
+          <button
+            type="button"
+            data-testid="explore-surprise"
+          >
+            Me Surpreenda!
+          </button>
+        </Link>
+      </div>
       <Footer />
     </div>
   );

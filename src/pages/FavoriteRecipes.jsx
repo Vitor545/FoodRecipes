@@ -18,37 +18,41 @@ export default function FavoriteRecipes() {
 
   return (
     <div>
-      <button
-        type="button"
-        data-testid="filter-by-all-btn"
-        onClick={ () => handleClick() }
-      >
-        All
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-food-btn"
-        onClick={ () => handleClick('comida') }
-      >
-        Food
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ () => handleClick('bebida') }
+      <div className="card-btns">
+        <button
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ () => handleClick() }
+        >
+          All
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-food-btn"
+          onClick={ () => handleClick('comida') }
+        >
+          Food
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ () => handleClick('bebida') }
 
-      >
-        Drinks
-      </button>
-      {
-        favoriteRecipes.map((favorite, index) => (
-          <FavoriteRecipesCard
-            index={ index }
-            key={ favorite.id }
-            favorite={ favorite }
-          />
-        ))
-      }
+        >
+          Drinks
+        </button>
+      </div>
+      <div className="card-container-conteuds">
+        {
+          favoriteRecipes.map((favorite, index) => (
+            <FavoriteRecipesCard
+              index={ index }
+              key={ favorite.id }
+              favorite={ favorite }
+            />
+          ))
+        }
+      </div>
     </div>
   );
 }

@@ -44,12 +44,7 @@ export default function ShareBtn({ dataTestId, id, type }) {
         className="share-btn"
         onClick={ shareLink }
       >
-        <img
-          data-testid={ dataTestId || 'share-btn' }
-          className="share-icon"
-          src={ shareIcon }
-          alt="favorite icon"
-        />
+        <i class="fas fa-share-alt"></i>
       </button>
       <span>{copyLink ? 'Link copiado!' : null}</span>
     </div>

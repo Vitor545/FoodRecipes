@@ -14,7 +14,7 @@ function ExploreIngredientsBtn() {
   };
 
   return (
-    <div>
+    <div className="explorar-recipes-recipes">
       <button
         className="IngredientsBTN"
         type="button"

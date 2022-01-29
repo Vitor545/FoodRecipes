@@ -27,41 +27,44 @@ export default function DrinksExploreIngrientes() {
 
   return (
     <div>
-      Drinks Explore Ingredients
-      {exploreDrinksIngredients
-      && exploreDrinksIngredients.map(({ strIngredient1 }, index) => (
-        (
-          <Link
-            to="/bebidas"
-            key={ strIngredient1 }
-            onClick={ () => {
-              setStateGlobal({ ...state,
-                drinkPrincipal: false,
-                drinkIngredient: true,
-                drinkIngredientLink: strIngredient1 });
-            } }
-          >
-            {index === 0 ? (
-              <div data-testid={ `${index}-ingredient-card` } className="card">
-                <h2 data-testid={ `${index}-card-name` }>{strIngredient1}</h2>
-                <img
-                  data-testid="0-card-img"
-                  src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` }
-                  alt={ `${strIngredient1}` }
-                />
-              </div>
-            ) : (
-              <div data-testid={ `${index}-ingredient-card` } className="card">
-                <h2 data-testid={ `${index}-card-name` }>{strIngredient1}</h2>
-                <img
-                  data-testid={ `${index}-card-img` }
-                  src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` }
-                  alt={ `${strIngredient1}` }
-                />
-              </div>
-            )}
-          </Link>)
-      ))}
+      <div className='container-por-origen-se'><p>Drink</p></div>
+      <div className="card-container-conteuds">
+        {exploreDrinksIngredients
+        && exploreDrinksIngredients.map(({ strIngredient1 }, index) => (
+          (
+            <Link
+              to="/bebidas"
+              key={ strIngredient1 }
+              onClick={ () => {
+                setStateGlobal({ ...state,
+                  drinkPrincipal: false,
+                  drinkIngredient: true,
+                  drinkIngredientLink: strIngredient1 });
+              } }
+              className="card"
+            >
+              {index === 0 ? (
+                <React.Fragment data-testid={ `${index}-ingredient-card` }>
+                  <img
+                    data-testid="0-card-img"
+                    src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` }
+                    alt={ `${strIngredient1}` }
+                  />
+                  <h3 data-testid={ `${index}-card-name` }>{strIngredient1}</h3>
+                </React.Fragment>
+              ) : (
+                <React.Fragment data-testid={ `${index}-ingredient-card` }>
+                  <img
+                    data-testid={ `${index}-card-img` }
+                    src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` }
+                    alt={ `${strIngredient1}` }
+                  />
+                  <h3 data-testid={ `${index}-card-name` }>{strIngredient1}</h3>
+                </React.Fragment>
+              )}
+            </Link>)
+        ))}
+      </div>
       <Footer />
     </div>
   );
