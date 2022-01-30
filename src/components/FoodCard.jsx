@@ -25,6 +25,12 @@ function FoodCard() {
   const requestAPIIngredients = async () => {
     const recipesByIngredients = await fetchFoodIngredients(foodIngredientLink);
     console.log(recipesByIngredients);
+    const foodFilteredIng = recipesByIngredients.filter((el, index) => {
+      if (index < AMOUNT_NUMBER) {
+        return el;
+      }
+      return null;
+    });
     const btn = await foodRecipesCategoryAPI();
     const btnFiltered = btn.filter((ele, index) => {
       if (index < AMOUNT_NUMBER_BTN) {
@@ -33,7 +39,7 @@ function FoodCard() {
       return null;
     });
     setStateGlobal({ ...state,
-      foodRecipes: recipesByIngredients,
+      foodRecipes: foodFilteredIng,
       foodRecipesBTN: btnFiltered });
   };
 
@@ -93,8 +99,8 @@ function FoodCard() {
   }
 
   useEffect(() => {
-    if (foodIngredient) requestAPIIngredients();
     if (foodPrincipal) requestAPI();
+    if (foodIngredient) requestAPIIngredients();
   }, []);
 
   return (

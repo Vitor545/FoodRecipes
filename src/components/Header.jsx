@@ -12,7 +12,7 @@ export default function Header() {
   const { pathname } = useLocation();
   // Array de pathnames que ícone não aparece
   const notShowIconImg = ['/explorar', '/explorar-comidas',
-    '/explorar/comidas/ingredientes', '/receitas-feitas',
+    '/explorar/comidas/ingredientes', "/explorar/comidas/area", '/receitas-feitas',
     '/perfil', '/receitas-favoritas', '/', '/explorar/comidas',
     '/explorar/bebidas', '/explorar/bebidas/ingredientes'];
   const { onClickButtonSearch, handleClickSearch,
@@ -33,80 +33,84 @@ export default function Header() {
     }
   };
   // Função que renderiza os inputs
-  const renderInputsSearch = () => (
-      <div className="search">
-        <label htmlFor="search-input">
-          <input
-            type="text"
-            data-testid="search-input"
-            placeholder="Pesquise uma receita"
-            className="search-input"
-            onChange={ handleChangeSearch }
-          />
-        </label>
-        <div className="search-radios">
-          <div className="search-radio-flex">
-              <input
-                value="ingredient"
-                id="ingredientFilter"
-                name="radio"
-                type="radio"
-                className="ing_search"
-                data-testid="ingredient-search-radio"
-                onClick={ handleClickSearch }
-              />
-              <label
-                className="search-label-web" 
-                htmlFor="ingredientFilter"
-              >
-                Ingrediente
-              </label>
-          </div>
-          <div className="search-radio-flex">
-              <input
-                value="name"
-                id="nameFilter"
-                type="radio"
-                name="radio"
-                className="name_search"
-                data-testid="name-search-radio"
-                onClick={ handleClickSearch }
-              />
-              <label
-                htmlFor="nameFilter"
-                className="search-label-web"
-              >
-                Nome
-              </label>
+  const renderInputsSearch = () => {
+      if(pathname === "/comidas" || pathname === "/bebidas") {
+        return (
+            <div className="search">
+          <label htmlFor="search-input">
+            <input
+              type="text"
+              data-testid="search-input"
+              placeholder="Pesquise uma receita"
+              className="search-input"
+              onChange={ handleChangeSearch }
+            />
+          </label>
+          <div className="search-radios">
+            <div className="search-radio-flex">
+                <input
+                  value="ingredient"
+                  id="ingredientFilter"
+                  name="radio"
+                  type="radio"
+                  className="ing_search"
+                  data-testid="ingredient-search-radio"
+                  onClick={ handleClickSearch }
+                />
+                <label
+                  className="search-label-web" 
+                  htmlFor="ingredientFilter"
+                >
+                  Ingrediente
+                </label>
             </div>
             <div className="search-radio-flex">
-              <input
-                value="first-letter"
-                id="firstLetter"
-                type="radio"
-                name="radio"
-                data-testid="first-letter-search-radio"
-                className="letter_search"
-                onClick={ handleClickSearch }
-              />
-              <label
-                htmlFor="firstLetter"
-                className="search-label-web web-left"
-              >
-                Primeira Letra
-              </label>
-            </div>
+                <input
+                  value="name"
+                  id="nameFilter"
+                  type="radio"
+                  name="radio"
+                  className="name_search"
+                  data-testid="name-search-radio"
+                  onClick={ handleClickSearch }
+                />
+                <label
+                  htmlFor="nameFilter"
+                  className="search-label-web"
+                >
+                  Nome
+                </label>
+              </div>
+              <div className="search-radio-flex">
+                <input
+                  value="first-letter"
+                  id="firstLetter"
+                  type="radio"
+                  name="radio"
+                  data-testid="first-letter-search-radio"
+                  className="letter_search"
+                  onClick={ handleClickSearch }
+                />
+                <label
+                  htmlFor="firstLetter"
+                  className="search-label-web web-left"
+                >
+                  Primeira Letra
+                </label>
+              </div>
+          </div>
+          <button
+            type="button"
+            data-testid="exec-search-btn"
+            onClick={ onClickButtonSearch }
+            className="button_search"
+          >
+            Buscar
+          </button>
         </div>
-        <button
-          type="button"
-          data-testid="exec-search-btn"
-          onClick={ onClickButtonSearch }
-          className="button_search"
-        >
-          Buscar
-        </button>
-      </div>
-  );
+        );
+      }
+};
 
   return (
     <div className="header">

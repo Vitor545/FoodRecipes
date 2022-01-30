@@ -1,14 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { RecipesContext } from '../contexts/RecipesContext';
 import drinkIcon from '../images/copo.svg';
 import exporeIcon from '../images/bussula.svg';
 import mealIcon from '../images/garfo.svg';
 
 export default function Footer() {
+  const history = useHistory();
+  const { state, setStateGlobal } = useContext(RecipesContext);
+  const funcaoDrink = () => {
+    setStateGlobal({ ...state, busca: false })
+  }
+  const funcaoFood = () => {
+    setStateGlobal({ ...state, busca: false })
+  }
   return (
     <footer data-testid="footer" className="footer">
-      <div className="footerBtns">
-        <Link to="/bebidas">
+      <div className="footerBtns" >
+        <Link to="/bebidas" onClick={funcaoDrink}>
           <img
             className="footerImg"
             src={ drinkIcon }
@@ -24,7 +33,7 @@ export default function Footer() {
             data-testid="explore-bottom-btn"
           />
         </Link>
-        <Link to="/comidas">
+        <Link to="/comidas" onClick={funcaoFood}>
           <img
             className="footerImg"
             src={ mealIcon }

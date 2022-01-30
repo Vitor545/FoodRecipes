@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@300&display=swap');
 *{
   margin: 0;
   padding: 0;
@@ -350,7 +350,6 @@ input:focus, label:focus, select:focus, textarea:focus{
   0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035), 
   0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 
   0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
-  transition: 0.5s;
 }
 
 .card h3 {
@@ -520,7 +519,6 @@ input:focus, label:focus, select:focus, textarea:focus{
   0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035), 
   0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 
   0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
-  transition: 0.5s;
 }
 
 .p-favorite a:link {
@@ -588,6 +586,11 @@ input:focus, label:focus, select:focus, textarea:focus{
   font-size: 20px;
   background-color: transparent;
 }
+
+.far {
+  font-size: 20px;
+  background-color: transparent;
+}
 .fa-heart {
   color:transparent;
   background: linear-gradient(264.98deg, rgba(255, 163, 26, 0.9) 2.9%, rgba(245, 98, 98, 0.9) 94.41%);
@@ -623,8 +626,149 @@ input:focus, label:focus, select:focus, textarea:focus{
 .favorite-btn {
   display: flex;
   align-items: center;
+  
 }
 
+.body-finish {
+  margin-top: calc(5%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.flex-finish {
+  width: 320px;
+  font-family: 'Poppins';
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #F9F9F9 ;
+  border-radius: 24px;
+  box-shadow:  0px 100px 80px rgba(0, 0, 0, 0.07), 
+  0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198), 
+  0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275), 
+  0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035), 
+  0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 
+  0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
+}
+
+.flex-finish img {  
+  width: 150px;
+  height: 150px;
+  border-radius: 12px;
+  margin-bottom: 6px;
+}
+
+.finish-btn {
+  height: 28.7px;
+  background: linear-gradient(264.98deg, rgba(255, 163, 26, 0.6) 2.9%, rgba(245, 98, 98, 0.6) 94.41%);
+  border: 3px solid #FFFFFF;
+  border-radius: 6px;
+  font-family: 'Poppins';
+  font-style: normal;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin: 10px;
+  font-weight: 500;
+  font-size: 8px;
+  text-align: center;
+  color: #FFFFFF;
+  transition: 0.5s;
+}
+
+.finish-btn:disabled {
+  background: linear-gradient(264.98deg, rgba(255, 163, 26, 0.2) 2.9%, rgba(245, 98, 98, 0.2) 94.41%);
+  transition: 0.5s;
+}
+
+.finish-btn:hover {
+  cursor: pointer;
+  background: linear-gradient(264.98deg, rgba(255, 163, 26, 0.9) 2.9%, rgba(245, 98, 98, 0.9) 94.41%);
+}
+
+.b-finish {
+  width: 320px;
+  justify-content: space-around;
+  background-color: #fcf0e4;
+  display: flex;
+  padding: 3px;
+  align-items: center;
+}
+
+.flex-finish h3, .flex-finish h4{
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  text-align: center;
+  transition: 0.5s;
+  margin-top: 6px;
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(264.98deg, rgba(255, 163, 26, 0.6) 2.9%, rgba(245, 98, 98, 0.6) 94.41%);
+}
+
+.flex-finish h3 {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.flex-finish h4 {
+  margin-bottom: 6px;
+}
+.finish-label-container {
+  display: flex;
+  align-items: center;
+}
+.finish-label-container label:before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  margin-right: 3px;
+  display: inline-block;
+  transition: 0.5s;
+  background-color: white;
+  border-radius: 3px;
+  border: 1px solid rgba(251, 179, 140, 1);
+}
+
+.finish-label-container input:checked + label:before {
+  background-color: rgba(251, 179, 140, 1);
+  transition: 0.5s;
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.finish-label-container  input {
+  display: none;
+}
+
+.ingredients-container {
+  margin: 10px;
+  margin-bottom: 0;
+  display: flex;
+  background-color: #fcf0e4;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: rgb(255, 89, 0);
+  flex-direction: column;
+}
+
+.instructions {
+  text-align: center;
+  font-size: 12px;
+  font-weight: normal;
+  margin: 18px;
+  background-color: #fcf0e4;
+  padding: 10px;
+  border-radius: 12px;
+  color: rgba(251, 179, 140, 1);
+}
 
 @media screen and (min-width: 900px) {
   .login-page{

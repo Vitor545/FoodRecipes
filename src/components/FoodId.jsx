@@ -20,7 +20,7 @@ export default function FoodId({ history }) {
       foodRecom: foodRecommended,
       foodDetails: food,
       foodDetail: true,
-      foodIngredient: true });
+      foodIngredient: false });
   };
 
   const renderIngredients = () => {

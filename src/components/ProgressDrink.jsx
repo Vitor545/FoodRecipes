@@ -5,6 +5,7 @@ import { updateLocalDrink } from '../services/functions';
 import FavoriteBtn from './FavoriteBtn';
 import FinishRecipeBtn from './FinishRecipeBtn';
 import ShareBtn from './ShareBtn';
+import Footer from '../components/Footer';
 
 export default function ProgressDrink() {
   const [currentDrink, setCurrentDrink] = useState([]);
@@ -13,12 +14,12 @@ export default function ProgressDrink() {
   const { id } = useParams();
 
   const handleChange = ({ target }) => {
-    if (ingrList.includes(target.name)) {
-      const filteredList = ingrList.filter((el) => el !== target.name);
+    if (ingrList.includes(target.value)) {
+      const filteredList = ingrList.filter((el) => el !== target.value);
       // console.log(filteredList);
       setIngrList(filteredList);
     } else {
-      const newArr = [...ingrList, target.name];
+      const newArr = [...ingrList, target.value];
       setIngrList(newArr);
     }
   };
@@ -36,20 +37,26 @@ export default function ProgressDrink() {
       .filter((el) => el !== '' && el !== null);
     return (
       values.map((ing, i) => (
-        <label
-          key={ i }
-          htmlFor="input-ingredient"
-          data-testid={ `${i}-ingredient-step` }
-        >
+        <div className="finish-label-container">
           <input
+            id= {`finish-label-ing${i}`}
             className="input-ingredient"
             name={ ing }
+            value={ `${ing} - ${valuesMeasure[i]}` }
             type="checkbox"
-            checked={ ingrList.includes(ing) }
+            checked={ ingrList.includes(`${ing} - ${valuesMeasure[i]}`) }
             onChange={ handleChange }
           />
-          {`${ing} - ${valuesMeasure[i] ? valuesMeasure[i] : ''}`}
-        </label>
+
+          <label
+            key={ i }
+            htmlFor={`finish-label-ing${i}`}
+            data-testid={ `${i}-ingredient-step` }
+            className="finish-label-container"
+          >
+            {`${ing} - ${valuesMeasure[i] ? valuesMeasure[i] : ''}`}
+          </label>
+        </div>
       ))
     );
   };
@@ -88,13 +95,13 @@ export default function ProgressDrink() {
     );
   }
   return (
-    <div>
+    <div className="body-finish">
       { currentDrink
       && currentDrink.map((
         { idDrink, strDrink, strDrinkThumb, strInstructions, strAlcoholic },
       ) => (
         // Problema com key única
-        <div key={ idDrink } className="recipes-card">
+        <div key={ idDrink } className="recipes-card flex-finish">
           <h3 data-testid="recipe-title">{strDrink}</h3>
           <h4 data-testid="recipe-category">{`Categoria: ${strAlcoholic}`}</h4>
           <img
@@ -105,16 +112,17 @@ export default function ProgressDrink() {
           <div className="ingredients-container">
             {renderProgressDrink()}
           </div>
-          <p data-testid="instructions">
+          <p data-testid="instructions" className="instructions">
             {strInstructions}
           </p>
-          <div>
-            <FavoriteBtn currentRecipe={ currentDrink } />
+          <div className="b-finish">
             <ShareBtn />
+            <FavoriteBtn currentRecipe={ currentDrink } />
           </div>
+          <FinishRecipeBtn recipeControl={ currentDrink } ingredientsControl={ ingrList } />
         </div>
       ))}
-      <FinishRecipeBtn recipeControl={ currentDrink } ingredientsControl={ ingrList } />
+      <Footer />
     </div>
   );
 }

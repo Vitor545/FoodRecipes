@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import FavoriteRecipesCard from '../components/FavoriteRecipesCard';
 import { RecipesContext } from '../contexts/RecipesContext';
+import Footer from '../components/Footer';
 
 export default function FavoriteRecipes() {
   const { setFavoriteRecipes,
@@ -43,7 +44,7 @@ export default function FavoriteRecipes() {
         </button>
       </div>
       <div className="card-container-conteuds">
-        {
+        { favoriteRecipes &&
           favoriteRecipes.map((favorite, index) => (
             <FavoriteRecipesCard
               index={ index }
@@ -53,6 +54,7 @@ export default function FavoriteRecipes() {
           ))
         }
       </div>
+      <Footer />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import FavoriteBtn from './FavoriteBtn';
 import ShareBtn from './ShareBtn';
 import FinishRecipeBtn from './FinishRecipeBtn';
 import { updateLocalFood } from '../services/functions';
+import Footer from '../components/Footer';
 
 export default function ProgressFood() {
   const [currentFood, setCurrentFood] = useState([]);
@@ -13,12 +14,12 @@ export default function ProgressFood() {
   const { id } = useParams();
 
   const handleChange = ({ target }) => {
-    if (ingrList.includes(target.name)) {
-      const filteredList = ingrList.filter((el) => el !== target.name);
+    if (ingrList.includes(target.value)) {
+      const filteredList = ingrList.filter((el) => el !== target.value);
       console.log(filteredList);
       setIngrList(filteredList);
     } else {
-      const newArr = [...ingrList, target.name];
+      const newArr = [...ingrList, target.value];
       setIngrList(newArr);
     }
   };
@@ -36,20 +37,25 @@ export default function ProgressFood() {
       .filter((el) => el !== '' && el !== null);
     return (
       values.map((ing, i) => (
-        <label
-          key={ i }
-          htmlFor="input-ingredient"
-          data-testid={ `${i}-ingredient-step` }
-        >
-          <input
-            className="input-ingredient"
-            name={ ing }
-            type="checkbox"
-            checked={ ingrList.includes(ing) }
-            onChange={ handleChange }
-          />
-          {`${ing} - ${valuesMeasure[i] ? valuesMeasure[i] : ''}`}
-        </label>
+        <div className="finish-label-container">
+            <input
+              id= {`finish-label-ing${i}`}
+              className="input-ingredient"
+              name={ ing }
+              value={ `${ing} - ${valuesMeasure[i]}` }
+              type="checkbox"
+              checked={ ingrList.includes(`${ing} - ${valuesMeasure[i]}`)}
+              onChange={ handleChange }
+            ></input>
+            <label
+              key={ i }
+              htmlFor={`finish-label-ing${i}`}
+              data-testid={ `${i}-ingredient-step` }
+              className="finish-label-container"
+            > 
+              {`${ing} - ${valuesMeasure[i] ? valuesMeasure[i] : ''}`}
+            </label>
+        </div>
       ))
     );
   };
@@ -89,32 +95,33 @@ export default function ProgressFood() {
     );
   }
   return (
-    <div>
-      { currentFood
-      && currentFood.map((
-        { idMeal, strMeal, strCategory, strMealThumb, strInstructions },
-      ) => (
-        <div key={ idMeal } className="recipes-card">
-          <h3 data-testid="recipe-title">{strMeal}</h3>
-          <h4 data-testid="recipe-category">{`Categoria: ${strCategory}`}</h4>
-          <img
-            src={ strMealThumb }
-            alt={ `${strMeal}` }
-            data-testid="recipe-photo"
-          />
-          <div className="ingredients-container">
-            {renderProgressFood()}
+    <div className="body-finish">
+        { currentFood
+        && currentFood.map((
+          { idMeal, strMeal, strCategory, strMealThumb, strInstructions },
+        ) => (
+          <div key={ idMeal } className="recipes-card flex-finish">
+            <h3 data-testid="recipe-title">{strMeal}</h3>
+            <h4 data-testid="recipe-category">{`Categoria: ${strCategory}`}</h4>
+            <img
+              src={ strMealThumb }
+              alt={ `${strMeal}` }
+              data-testid="recipe-photo"
+            />
+            <div className="ingredients-container">
+              {renderProgressFood()}
+            </div>
+            <p className="instructions" data-testid="instructions">
+              {strInstructions}
+            </p>
+            <div className="b-finish">
+              <ShareBtn />
+              <FavoriteBtn currentRecipe={ currentFood } />
+            </div>
+          <FinishRecipeBtn recipeControl={ currentFood } ingredientsControl={ ingrList } />
           </div>
-          <p data-testid="instructions">
-            {strInstructions}
-          </p>
-          <div>
-            <ShareBtn />
-            <FavoriteBtn currentRecipe={ currentFood } />
-          </div>
-        </div>
-      ))}
-      <FinishRecipeBtn recipeControl={ currentFood } ingredientsControl={ ingrList } />
+        ))}
+        <Footer />
     </div>
   );
 }

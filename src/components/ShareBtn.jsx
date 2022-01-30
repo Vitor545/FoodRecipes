@@ -43,6 +43,7 @@ export default function ShareBtn({ dataTestId, id, type }) {
         type="button"
         className="share-btn"
         onClick={ shareLink }
+        style={{ backgroundColor: 'transparent' }}
       >
         <i class="fas fa-share-alt"></i>
       </button>

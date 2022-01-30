@@ -61,13 +61,9 @@ export default function FavoriteBtn(props) {
       type="button"
       className="favorite-btn"
       onClick={ handleFavoriteIcon }
+      style={{ backgroundColor: 'transparent' }}
     >
-      <img
-        data-testid="favorite-btn"
-        className="favorite-icon"
-        src={ isFavorited ? blackFavoriteIcon : whiteFavoriteIcon }
-        alt="favorite icon"
-      />
+      { isFavorited ? <i class="fas fa-heart"></i> : <i class="far fa-heart"></i> }
     </button>
   );
 }

@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 export default function FinishRecipeBtn(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [isDisable, setIsDisable] = useState(true);
+  const { pathname } = useLocation();
   const [controlList, setControlList] = useState();
   const history = useHistory();
   const { ingredientsControl, recipeControl } = props;
@@ -45,7 +46,10 @@ export default function FinishRecipeBtn(props) {
       data-testid="finish-recipe-btn"
       type="button"
       disabled={ isDisable }
-      onClick={ () => history.push('/receitas-feitas') }
+      onClick={ () => {
+        if(pathname.includes('bebidas')) history.push('/bebidas')
+        if(pathname.includes('comidas')) history.push('/comidas')
+      }}
     >
       Finalizar receita
     </button>
