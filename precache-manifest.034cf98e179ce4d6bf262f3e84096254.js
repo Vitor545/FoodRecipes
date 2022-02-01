@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b33af2c251805692e5649408dc741a56",
+    "revision": "23551026f437abb947c1d6c5f663deee",
     "url": "/FoodRecipes/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/FoodRecipes/static/css/2.34413b16.chunk.css"
   },
   {
-    "revision": "85f4f906a309003a2ea3",
-    "url": "/FoodRecipes/static/css/main.722892c9.chunk.css"
+    "revision": "e6e2f6e5ff3f06ba8a16",
+    "url": "/FoodRecipes/static/css/main.82017c2a.chunk.css"
   },
   {
     "revision": "e6d4172e37a5f6fd1632",
@@ -20,7 +20,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/FoodRecipes/static/js/2.e476cb15.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "85f4f906a309003a2ea3",
+    "revision": "e6e2f6e5ff3f06ba8a16",
     "url": "/FoodRecipes/static/js/main.8060f66b.chunk.js"
   },
   {
