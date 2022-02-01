@@ -7,6 +7,7 @@ import FoodsRecommended from './FoodsRecommended';
 import FavoriteBtn from './FavoriteBtn';
 import ShareBtn from './ShareBtn';
 import StartRecipeBtn from './StartRecipeBtn';
+import Footer from '../components/Footer';
 import { RecipesContext } from '../contexts/RecipesContext';
 
 export default function FoodId({ history }) {
@@ -39,6 +40,7 @@ export default function FoodId({ history }) {
         <li
           key={ i }
           data-testid={ `${i}-ingredient-name-and-measure` }
+          className="finish-label-container"
         >
           {`${ing} - ${valuesMeasure[i]}`}
         </li>
@@ -47,12 +49,12 @@ export default function FoodId({ history }) {
   };
 
   const renderCard = () => (
-    <div>
+    <div className="body-finish">
       { foodDetails
       && foodDetails.map((
         { idMeal, strMeal, strCategory, strMealThumb, strInstructions, strYoutube },
       ) => (
-        <div key={ idMeal } className="recipes-card">
+        <div key={ idMeal } className="recipes-card flex-finish">
           <h3 data-testid="recipe-title">{strMeal}</h3>
           <h4 data-testid="recipe-category">{`Categoria: ${strCategory}`}</h4>
           <img
@@ -60,20 +62,20 @@ export default function FoodId({ history }) {
             alt={ `${strMeal}` }
             data-testid="recipe-photo"
           />
-          <ul>
+          <ul className='ingredients-container'>
             { renderIngredients() }
           </ul>
-          <p data-testid="instructions">
+          <p className='instructions' data-testid="instructions">
             {strInstructions}
           </p>
 
-          <video width="320" height="240" controls data-testid="video">
+          <video className="video-recipe" width="320" height="240" controls data-testid="video">
             <track kind="captions" />
             <source src={ strYoutube } type="video/mp4" />
             <source src="movie.ogg" type="video/ogg" />
             Your browser does not support the video tag.
           </video>
-          <div>
+          <div className='b-finish'>
             <ShareBtn />
             <FavoriteBtn currentRecipe={ foodDetails } />
           </div>
@@ -83,6 +85,7 @@ export default function FoodId({ history }) {
           <StartRecipeBtn history={ history } />
         </div>
       ))}
+        <Footer />
     </div>
   );
 

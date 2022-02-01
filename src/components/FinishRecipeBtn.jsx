@@ -37,7 +37,12 @@ export default function FinishRecipeBtn(props) {
 
   if (isLoading) {
     return (
-      <h1>Loading...</h1>
+      <div className="loading">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     );
   }
   return (

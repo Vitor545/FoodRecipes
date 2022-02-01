@@ -91,7 +91,12 @@ export default function ProgressFood() {
 
   if (isLoading) {
     return (
-      <h1>LOADING...</h1>
+    <div className="loading">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     );
   }
   return (

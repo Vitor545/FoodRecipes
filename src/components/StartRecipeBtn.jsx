@@ -39,7 +39,7 @@ export default function StartRecipeBtn({ history }) {
     <button
       type="button"
       data-testid="start-recipe-btn"
-      className="start-btn"
+      className="finish-btn"
       onClick={ inProgressPage }
     >
       { bugButton ? 'Continuar Receita' : 'Iniciar Receita' }

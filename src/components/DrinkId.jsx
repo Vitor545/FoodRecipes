@@ -6,6 +6,7 @@ import { drinkDetailsRequest, urlNames } from '../fetchApi/fetchApi';
 import DrinksRecommended from './DrinksRecommended';
 import FavoriteBtn from './FavoriteBtn';
 import ShareBtn from './ShareBtn';
+import Footer from '../components/Footer';
 import StartRecipeBtn from './StartRecipeBtn';
 
 export default function DrinkId({ history }) {
@@ -37,6 +38,7 @@ export default function DrinkId({ history }) {
         <li
           key={ ing }
           data-testid={ `${i}-ingredient-name-and-measure` }
+          className="finish-label-container"
         >
           {valuesMeasure[i] === ''
             ? `${ing} ${valuesMeasure[i]}` : `${ing} - ${valuesMeasure[i]}`}
@@ -67,13 +69,13 @@ export default function DrinkId({ history }) {
   }, []);
 
   return (
-    <div>
+    <div className="body-finish">
       { drinkDetails
       && drinkDetails.map((
         { idDrink, strDrink, strDrinkThumb, strInstructions, strAlcoholic },
       ) => (
         // Problema com key única
-        <div key={ idDrink } className="recipes-card">
+        <div key={ idDrink } className="recipes-card flex-finish">
           <h3 data-testid="recipe-title">{strDrink}</h3>
           <h4 data-testid="recipe-category">{`Categoria: ${strAlcoholic}`}</h4>
           <img
@@ -81,22 +83,23 @@ export default function DrinkId({ history }) {
             alt={ `${strDrink}` }
             data-testid="recipe-photo"
           />
-          <ul>
+          <ul className='ingredients-container'>
             {renderIngredients()}
           </ul>
-          <p data-testid="instructions">
+          <p className='instructions' data-testid="instructions">
             {strInstructions}
           </p>
-          <div>
+          <div className='b-finish'>
             <FavoriteBtn currentRecipe={ drinkDetails } />
             <ShareBtn />
           </div>
           <div className="recommended-recipes">
             <DrinksRecommended />
           </div>
+          <StartRecipeBtn history={ history } />
         </div>
       ))}
-      <StartRecipeBtn history={ history } />
+        <Footer />
     </div>
   );
 }
