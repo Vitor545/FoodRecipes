@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/food-recipes/static/css/main.44ec61c5.chunk.css",
+    "main.js": "/food-recipes/static/js/main.4725df09.chunk.js",
+    "main.js.map": "/food-recipes/static/js/main.4725df09.chunk.js.map",
+    "runtime-main.js": "/food-recipes/static/js/runtime-main.edc3d154.js",
+    "runtime-main.js.map": "/food-recipes/static/js/runtime-main.edc3d154.js.map",
+    "static/css/2.34413b16.chunk.css": "/food-recipes/static/css/2.34413b16.chunk.css",
+    "static/js/2.35834142.chunk.js": "/food-recipes/static/js/2.35834142.chunk.js",
+    "static/js/2.35834142.chunk.js.map": "/food-recipes/static/js/2.35834142.chunk.js.map",
+    "index.html": "/food-recipes/index.html",
+    "precache-manifest.20063ebfc4ec2cdc2de3cf1d4d1c0263.js": "/food-recipes/precache-manifest.20063ebfc4ec2cdc2de3cf1d4d1c0263.js",
+    "service-worker.js": "/food-recipes/service-worker.js",
+    "static/css/2.34413b16.chunk.css.map": "/food-recipes/static/css/2.34413b16.chunk.css.map",
+    "static/css/main.44ec61c5.chunk.css.map": "/food-recipes/static/css/main.44ec61c5.chunk.css.map",
+    "static/js/2.35834142.chunk.js.LICENSE.txt": "/food-recipes/static/js/2.35834142.chunk.js.LICENSE.txt",
+    "static/media/blackHeartIcon.svg": "/food-recipes/static/media/blackHeartIcon.b8913346.svg",
+    "static/media/bussula.svg": "/food-recipes/static/media/bussula.28d41780.svg",
+    "static/media/copo.svg": "/food-recipes/static/media/copo.bb775e01.svg",
+    "static/media/garfo.svg": "/food-recipes/static/media/garfo.54de4ec0.svg",
+    "static/media/hamburger-phone.png": "/food-recipes/static/media/hamburger-phone.85b1ed66.png",
+    "static/media/App.css": "/food-recipes/static/media/hamburger.e4e6f5fb.png",
+    "static/media/img01.jpg": "/food-recipes/static/media/img01.f2a32803.jpg",
+    "static/media/img02.jpg": "/food-recipes/static/media/img02.6c78fbb5.jpg",
+    "static/media/profile-photo.svg": "/food-recipes/static/media/profile-photo.704baa03.svg",
+    "static/media/search.svg": "/food-recipes/static/media/search.434bf82a.svg",
+    "static/media/shareIcon.svg": "/food-recipes/static/media/shareIcon.06215ed4.svg",
+    "static/media/whiteHeartIcon.svg": "/food-recipes/static/media/whiteHeartIcon.ea3b6ba8.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.edc3d154.js",
+    "static/css/2.34413b16.chunk.css",
+    "static/js/2.35834142.chunk.js",
+    "static/css/main.44ec61c5.chunk.css",
+    "static/js/main.4725df09.chunk.js"
+  ]
+}
