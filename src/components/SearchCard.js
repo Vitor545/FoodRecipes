@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { RecipesContext } from '../contexts/RecipesContext';
 import { useLocation } from 'react-router';
 import Footer from './Footer';
+import { Link } from 'react-router-dom';
 
 const ARRAY_12 = 12;
 
@@ -20,7 +21,7 @@ const SearchDrinks = () => {
     return (
       <div className="card-container-conteuds"> 
     {    arrayFilter.map((obj, index) => (
-          <div key={ obj.idDrink } className="card">
+          <Link to={ `/bebidas/${obj.idDrink}` } key={ obj.idDrink } className="card">
             <img
               src={ obj.strDrinkThumb }
               className="drink-teste"
@@ -31,7 +32,7 @@ const SearchDrinks = () => {
               {obj.strDrink}
 
             </h3>
-          </div>
+          </Link>
         ))}
       </div>
     );
@@ -45,7 +46,7 @@ const SearchDrinks = () => {
     return (
       <div className="card-container-conteuds"> 
         { arrayFilter.map((obj, index) => (
-              <div key={ obj.idMeal } className="card">
+              <Link to={ `/comidas/${obj.idMeal}` } key={ obj.idMeal } className="card">
                 <img
                   src={ obj.strMealThumb }
                   className="drink-teste"
@@ -53,7 +54,7 @@ const SearchDrinks = () => {
                   data-testid={ `${index}-card-img` }
                 />
                 <h3 data-testid={ `${index}-card-name` }>{obj.strMeal}</h3>
-              </div>
+              </Link>
             ))}
       </div>
 
