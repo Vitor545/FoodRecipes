@@ -45,7 +45,6 @@ export default function Routes() {
       <Route exact path="/explorar/comidas/area" component={ ExploreFoodFromOrigin } />
       <Route exact path="/receitas-feitas" component={ RecipeMadePage } />
       <Route exact path="/receitas-favoritas" component={ FavoriteRecipes } />
-      <Route path="*" component={ NotFound } />
     </Switch>
   );
 }

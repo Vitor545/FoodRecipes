@@ -2,7 +2,7 @@
   "name": "recipes-app-test",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https:\/\/Vitor545.github.io/food-recipes",
+  "homepage": "https://vitor545.github.io/FoodRecipes",
   "dependencies": {
     "@sheerun/mutationobserver-shim": "^0.3.3",
     "@splidejs/react-splide": "^0.6.17",
