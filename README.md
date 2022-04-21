@@ -35,7 +35,7 @@
 <h3 align='center'> 🌎 Rodando no navegador</h3>
 
 - Você pode clicar no link para ser redirecionado ao site:
-[VITORTUNES](https://vitortunes.netlify.app/#/)
+[FoodRecipes](https://vitor545.github.io/FoodRecipes/#/)
 
 
 <br/>
@@ -68,8 +68,8 @@
 📋 Copie as linhas de código e cole no terminal.
 
 ```bash
-git clone git@github.com:Vitor545/VitorSTunes.git
-cd VitorSTunes
+git clone git@github.com:Vitor545/FoodRecipes.git
+cd FoodRecipes
 npm i
 npm start 
 ```
