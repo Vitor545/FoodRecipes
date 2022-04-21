@@ -6,6 +6,10 @@
 
 **Hum, que delícia!** Nesse projeto eu criei uma aplicação para `pesquisar, favoritar e descobrir novas receitas`. Tudo isso com o uso de tecnologias como `React` e trabalho em grupo. Foi um projeto desafiador, pois houveram vários `conflitos no GitHub` o qual o grupo teve que se reunir para solucioná-los algo que acontece com frequência no mercado. Além disso, foi usado `Context API e Hooks para fazer gerenciamento de estado`.
 
+<br />
+
+<img width=100% src="ezgif.com-gif-maker.gif"></img>
+
 <br/>
 
 
